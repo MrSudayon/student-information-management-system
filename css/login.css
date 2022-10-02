@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@700&family=Poppins:wght@400;700&display=swap');
+
+:root {
+    --main-color: #5ef286;
+    --dark-color: #11152a;
+    --light-color: #d0d4ed;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--dark-color);
+    background-color: #e6e6e6;
+}
+a {
+    text-decoration: none;
+}
+h2 {
+    font-size: 3em;
+    font-weight: 400;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 20px;
+}
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.wrapper>div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    min-height: 500px;
+    margin: 5em auto;
+    background-color: var(--main-color);
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.45) 0 25px 20px -20px;
+}
+:is(.login,.signup) > div {
+    position: relative;
+    flex: 1 0 50%;
+    padding: 60px;
+}
+.content-heading .y-style {
+    display: flex;
+    flex-direction: column;
+}
+.logo a {
+    display: inline-block;
+    margin-bottom: 60px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+.logo span {
+    color: #f2795e;
+    font-size: 1.2em;
+}
+.content-heading {
+    color: var(--dark-color);
+}
+.content-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.welcome {
+    text-align: center;
+}
+
+
+form input:not(#terms,#remember) {
+    font-family: inherit;
+    width: 100%;
+    outline: 0;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    border-radius: 7px;
+    border: 1px solid var(--light-color);
+}
+form input::placeholder {
+    color: var(--light-color);
+}
+form button {
+    background-color: #9afcd5;
+    color: white;
+    width: 100%;
+    margin: 30px 0;
+    border: 0;
+    line-height: 42px;
+    border-radius: 7px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .3s ease-out;
+    -webkit-transition: all .3s ease-out;
+}
+button:hover {
+    background-color: var(--dark-color);
+}
+.afterform {
+    text-align: center;
+    margin-top: 20px;
+}
+form .check {
+    position: relative;
+    padding-left: 20px;
+    font-size: 12px;
+    float: left;
+}
+form .check input {
+    position: absolute;
+    left: 0;
+    top: 4px;
+}
+form .forgot {
+    float: right;
+    font-size: 12px;
+}
+form label a, .afterform a {
+    color: var(--main-color)
+}
+form :is(p,label) a:hover, .afterform a:hover {
+    border-bottom: 1px dotted;
+}
+
+/* Hides sign-up/login form if not necessary*/
+.login-show .signup, .signup-show .login {
+    display: none;
+}
+.signup-show .signup, .login-show .login {
+    display: flex;
+}
+
+.content-form::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-color: white;
+    border-radius: 50%;
+    transform: translate3d(-27%, 21%, 0);
+    -webkit-transform: translate3d(-27%, 21%, 0);
+    animation: move 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    -webkit-animation: move 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes move {
+    from {
+        opacity: 0;
+        transform: translate3d(50%, 60%, 0);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.y-style {
+    position: relative;
+    transform: translate3d(0, 20%, 0);
+    -webkit-transform: translate3d(0, 20%, 0);
+    animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    -webkit-animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20%, 0);
+    }
+    to {
+        opacity: 1;
+    }
+}
+:is(.login-show, .signup-show) .y-style {
+    transform: translate3d(0,0,0);
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .wrapper>div {
+        flex-direction: row;
+        max-width: 800px;
+    }
+    .content-heading .y-style {
+        height: 100%;
+        justify-content: space-between;
+    }
+    .welcome {
+        text-align: left;
+        margin: 5em 0 auto;
+    }
+    @keyframes move {
+        from {
+            opacity: 0;
+            transform: translate3d(0, -100%, 0);
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}
