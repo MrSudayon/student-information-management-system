@@ -26,7 +26,7 @@ h2 {
 .side-menu {
     position: fixed;
     background-color: var(--main-color);
-    width: 6vw;
+    width: 18vh;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -42,6 +42,7 @@ h2 {
 .logo a {
     font-family: Georgia, serif;
     color: black;
+    font-weight: bold;
 }
 .side-menu .smateo-hs { 
     height: 10vh;
@@ -56,10 +57,29 @@ h2 {
     color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding: 15px;
+    margin: 0 auto;
     cursor: pointer;
 }
 .side-menu li:hover {
     background: #38923c;
-    color: red;
+    color: var(--dark-color);
+}
+
+@media screen and (max-width: 400px) {
+    .logo {
+        width: 8vh;
+        display: flex;
+        margin: 0 auto;
+    }
+    .side-menu {
+        position: fixed;
+        display: flex;
+        width: 8vh;
+        align-items: center;
+        margin: 0 auto;
+    }
+    .side-menu h4 {
+        display: none;
+    }
 }
