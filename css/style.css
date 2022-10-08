@@ -11,6 +11,7 @@
 }
 body {
     min-height: 100vh;
+    background-color: #424242;
 }
 a {
     text-decoration: none;
@@ -24,13 +25,12 @@ h2 {
 }
 
 .side-menu {
-    position: fixed;
+    position: absolute;
     background-color: var(--main-color);
     width: 19vh;
-    min-height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.6) 0 0 8px 4px;
 }
 .logo {
     background-color: var(--light-color);
@@ -77,18 +77,17 @@ h2 {
     position: absolute;
     right: 0;
     width: 90vw;
-    min-height: 100vh;
+    height: 100%;
     background-color: rgb(255, 238, 238);
-    box-shadow: rgba(0, 0, 0, 0.6) 0 0 8px 4px;
 }
 .container .dashb_content {
     position: relative;
     width: 89vw;
-    height: 100vh;
+    height: 100%;
     margin: 15px 10px 0;
 }
 .container .dashb_content h1 {
-    margin: 3px 15px 0;
+    margin: 3px 25px 5px;
 }
 hr.line {
     border: 1px solid var(--main-color);
@@ -102,18 +101,14 @@ hr.line {
 }
 
 @media screen and (max-width: 400px) {
-    .logo {
-        width: 8vh;
-        display: flex;
-        margin: 0 auto;
-    }
-    .logo a {
-        margin: 15px 0 10px;
+    body {
+        max-width: 100vh;
     }
     .side-menu {
-        position: fixed;
+        position: absolute;
         display: flex;
         width: 8vh;
+        height: 100%;
         align-items: center;
         margin: 0 auto;
     }
@@ -123,11 +118,26 @@ hr.line {
     .side-menu h4 {
         display: none;
     }
+    .logo {
+        width: 8vh;
+        display: flex;
+    }
+    .logo a {
+        margin: 15px 0 10px;
+    }
 
     .container {
-        width: 80vw;
-        height: 100vh;
-        box-shadow: none; /*to be deleted later(2) */
+        position: absolute;
+        width: 38vh;
+        height: 100%;
+        margin: 0;
     }
+    .container .dashb_content {
+        position: relative;
+        width: 35vh;
+        height: 100%;
+        margin: 15px 10px 0;
+    }
+
 }
 
