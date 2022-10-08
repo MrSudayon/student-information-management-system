@@ -26,7 +26,7 @@ h2 {
 .side-menu {
     position: fixed;
     background-color: var(--main-color);
-    width: 18vh;
+    width: 19vh;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -34,20 +34,24 @@ h2 {
 }
 .logo {
     background-color: var(--light-color);
-    text-align: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
     justify-content: center;
-    padding: 15px;
-    margin: 0 auto;
+    /*width: 18vh;
+    height: 8vh;*/
 }
 .logo a {
+    margin: 35px 0 35px;
+    text-align: center;
     font-family: Georgia, serif;
     color: black;
     font-weight: bold;
 }
 .side-menu .smateo-hs { 
+    top: 0;
     height: 10vh;
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 .side-menu li {
@@ -66,11 +70,45 @@ h2 {
     color: var(--dark-color);
 }
 
+
+/* container, content etc */
+
+.container {
+    position: absolute;
+    right: 0;
+    width: 90vw;
+    min-height: 100vh;
+    background-color: rgb(255, 238, 238);
+    box-shadow: rgba(0, 0, 0, 0.6) 0 0 8px 4px;
+}
+.container .dashb_content {
+    position: relative;
+    width: 89vw;
+    height: 100vh;
+    margin: 15px 10px 0;
+}
+.container .dashb_content h1 {
+    margin: 3px 15px 0;
+}
+hr.line {
+    border: 1px solid var(--main-color);
+}
+.container .dashb_content .smateo-logo {
+    display: flex;
+    justify-content: center;
+}
+.container .dashb_content .smateo-logo img {
+    height: 150px;
+}
+
 @media screen and (max-width: 400px) {
     .logo {
         width: 8vh;
         display: flex;
         margin: 0 auto;
+    }
+    .logo a {
+        margin: 15px 0 10px;
     }
     .side-menu {
         position: fixed;
@@ -79,7 +117,17 @@ h2 {
         align-items: center;
         margin: 0 auto;
     }
+    .side-menu li {
+        width: 8vh;
+    }
     .side-menu h4 {
         display: none;
     }
+
+    .container {
+        width: 80vw;
+        height: 100vh;
+        box-shadow: none; /*to be deleted later(2) */
+    }
 }
+

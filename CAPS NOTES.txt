@@ -1,0 +1,20 @@
+- A web and mobile based management information system for san mateo senior high
+
+    Student -
+
+    Profs - 
+
+1*REQUIREMENTS
+	Hardware
+	-3gb ram or better
+	-
+
+	Software
+	-Browser
+	
+**USERS ROLE
+	-Teacher (Subject name, Uploading, Posting Announcement, View students, Edit schedules.)
+	-Student (Main purp, Downloading, View grades, view modules, view history etc,)
+2*DESIGN
+	-Slightly Similar on Canvas -Kyle
+	
