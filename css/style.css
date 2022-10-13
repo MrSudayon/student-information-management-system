@@ -11,7 +11,7 @@
 }
 body {
     min-height: 100vh;
-    background-color: #424242;
+    background-color: #424242; /* white */
 }
 a {
     text-decoration: none;
@@ -22,6 +22,8 @@ li {
 h1, 
 h2 {
     color: var(--dark-color);
+    font-size: 1.2rem;
+    left: 0;
 }
 
 .side-menu {
@@ -33,7 +35,7 @@ h2 {
     flex-direction: column;
 }
 .logo {
-    background-color: var(--light-color);
+    background-color: var(--light-color); /* white */
     display: flex;
     height: 100%;
     width: 100%;
@@ -100,6 +102,43 @@ hr.line {
     height: 150px;
 }
 
+
+
+/* To-Do-Lists CSS */
+.a-todo {
+    position: relative;
+    margin: 0 auto;
+    background-color: #eee;
+    font: 1rem 'Poppins', sans-serif;
+}
+.a-todo > h1,
+.day-activity {
+    padding: .2rem;
+    font-size: 1.2rem;
+}
+.day-activity {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    margin-left: 14vh;
+    background: left/contain content-box border-box no-repeat
+        url('/images/notebook.png') white;
+}
+.day-activity > h2,
+.day-activity > p {
+    margin: .2rem;
+    font-size: 1rem;
+    margin-left: 6vh;
+}
+input.chk-box {
+    display: absolute;
+    margin: 20px 50px 0;
+    float: left;
+    border-style: none;
+    transform: scale(2);
+}
+
+/* Responsive Area */
 @media screen and (max-width: 400px) {
     body {
         max-width: 100vh;
@@ -139,5 +178,30 @@ hr.line {
         margin: 15px 10px 0;
     }
 
-}
+    /*To-do*/
+    .a-todo {
+        border: 1px solid black; /*to be remove later*/
+    }
+    .a-todo h1 {
+        text-align: left;
+        padding-top: 10px;
+        font-size: 1rem;
+    }
+    .day-activity {
+        margin-left: 10vh;
+        width: 15vw;
+        background: left/contain content-box border-box no-repeat
+            url('/images/notebook.png') white;
+    }
+    .day-activity > h2,
+    .day-activity > p {
+        display: flex;
+        margin-left: 7vh;
+    }
+    input.chk-box {
+        transform: scale(2);
+        margin: 40px 30px 0 50px;
+    }
+    
 
+}

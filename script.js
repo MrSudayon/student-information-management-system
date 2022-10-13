@@ -1,6 +1,7 @@
 const signup = document.querySelector('.t-signup');
 const login = document.querySelector('.t-login');
 const addclass = document.querySelector('.site');
+const forg = document.querySelector('.forgot');
 
 signup.addEventListener('click', function() {
     addclass.className = 'site signup-show';
