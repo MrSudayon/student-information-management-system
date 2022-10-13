@@ -11,7 +11,7 @@
 }
 body {
     min-height: 100vh;
-    background-color: #424242; /* white */
+    background-color: white;
 }
 a {
     text-decoration: none;
@@ -35,7 +35,7 @@ h2 {
     flex-direction: column;
 }
 .logo {
-    background-color: var(--light-color); /* white */
+    background-color: white;
     display: flex;
     height: 100%;
     width: 100%;
@@ -47,8 +47,11 @@ h2 {
     margin: 35px 0 35px;
     text-align: center;
     font-family: Georgia, serif;
-    color: black;
+    color: blue;
     font-weight: bold;
+}
+.logo span {
+    color: black;
 }
 .side-menu .smateo-hs { 
     top: 0;
