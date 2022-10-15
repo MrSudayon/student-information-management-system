@@ -141,6 +141,32 @@ input.chk-box {
     transform: scale(2);
 }
 
+/* Subjects CSS */
+.content {
+    padding: 2000px;
+}
+.header1 {
+    padding:5px;
+    text-align: center;
+    background-color:#4cc0ff;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+}
+.food-card {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,.5); 
+    cursor: pointer;
+}
+.aside {
+    background-color:#DCDCDC;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.aside img {
+    margin-top: 5px;
+}
+
 /* Responsive Area */
 @media screen and (max-width: 400px) {
     body {

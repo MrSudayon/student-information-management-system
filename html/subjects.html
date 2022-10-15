@@ -13,7 +13,7 @@
     <!-- sidebar -->
     <div class="side-menu">
         <div class="smateo-hs">
-            <div class="logo"><a href="dashboard.html">San Mateo <span>SHS</span></a></div>
+            <div class="logo"><a href="dashboard.html">San Mateo <br><span>SHS</span></a></div>
         </div>
         <ul >
             <a href="#account.html"><li><img src="/images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
@@ -34,7 +34,114 @@
                     <img src="../images/smateo-shs.jpg">
                 </div>
                 <br><hr class="line">
-                
+                <!-- Boxes -->
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+        justify-content: flex-start;
+    }
+    .row {
+        border: 1px solid black;
+    }
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    [class*="col-"] {
+        float: left;
+        padding: 15px;
+    }
+    [class*="col-"] {
+        width: 100%;
+    }
+    @media only screen and (min-width: 400px) {
+        /* For tablets: */
+        .col-s-1 {width: 8.33%;}
+        .col-s-2 {width: 16.66%;}
+        .col-s-3 {width: 25%;}
+        .col-s-4 {width: 33.33%;}
+        .col-s-5 {width: 41.66%;}
+        .col-s-6 {width: 50%;}
+        .col-s-7 {width: 58.33%;}
+        .col-s-8 {width: 66.66%;}
+        .col-s-9 {width: 75%;}
+        .col-s-10 {width: 83.33%;}
+        .col-s-11 {width: 91.66%;}
+        .col-s-12 {width: 100%;}
+    }
+    @media only screen and (min-width: 768px) {
+        /* For desktop: */
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+    }
+        
+</style>
+                <!-- Subjects Contents -->
+                <div class="row">
+                    <div class="col-3 col-s-12">	
+
+                        <div class="food-card"style="border-radius:25px">
+                            <div class="header1" style="border-radius:25px 25px 0px 0px" > 
+                                <h1>Sample Subject</h1>
+                            <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
+                            <p><font color="black">Sample Subject Description</font></p>
+                            </div>
+                            <div class="aside" style="border-radius: 0px 0px 25px 25px">
+                                <center>
+                                <h2><img style="width:150px;height:150px" src="/images/notebook.png"></h2>
+                                </center>
+                            </div>
+                        </div> 
+                    </div>
+                    
+                    <!-- To be removed when back-end applies -->
+                    <div class="col-3 col-s-12">	
+                        <div class="food-card"style="border-radius:25px">
+                            <div class="header1" style="border-radius:25px 25px 0px 0px"> 
+                                <h1>Sample Subject2</h1>
+                            <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
+                            <p><font color="black">Sample Subject Description</font></p>
+                            </div>
+                            <div class="aside" style="border-radius: 0px 0px 25px 25px">
+                                <center>
+                                <h2><img style="width:150px;height:150px" src="/images/notebook.png"></h2>
+                                </center>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="col-3 col-s-12">	
+                        <div class="food-card"style="border-radius:25px">
+                            <div class="header1" style="border-radius:25px 25px 0px 0px"> 
+                                <h1>Sample Subject3</h1>
+                            <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
+                            <p><font color="black">Sample Subject Description</font></p>
+                            </div>
+                            <div class="aside" style="border-radius: 0px 0px 25px 25px">
+                                <center>
+                                <h2><img style="width:150px;height:150px" src="/images/notebook.png"></h2>
+                                </center>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- To be removdd -->
+
+                </div>
+                <!-- Subjects Contents -->
+
+
+
             </div>
         </div>
     </div>
