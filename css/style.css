@@ -26,6 +26,9 @@ h2 {
     left: 0;
 }
 
+.dashb_content {
+    position: absolute;
+}
 .side-menu {
     position: absolute;
     background-color: var(--main-color);
@@ -33,6 +36,9 @@ h2 {
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+.side-menu ul .smateo-hs .logo {
+    position: sticky;
 }
 .logo {
     background-color: white;
@@ -59,6 +65,7 @@ h2 {
     display: flex;
     justify-content: center;
 }
+
 .side-menu li {
     font-size: 15px;
     font-weight: bold;
@@ -77,7 +84,6 @@ h2 {
 
 
 /* container, content etc */
-
 .container {
     position: absolute;
     right: 0;
@@ -141,6 +147,7 @@ input.chk-box {
     transform: scale(2);
 }
 
+
 /* Subjects CSS */
 .content {
     padding: 2000px;
@@ -167,11 +174,49 @@ input.chk-box {
     margin-top: 5px;
 }
 
-/* Responsive Area */
-@media screen and (max-width: 400px) {
-    body {
-        max-width: 100vh;
-    }
+
+/* Accounts CSS */
+.profile-settings {
+    position: absolute;
+}
+.profile-settings .left-pane {
+    display: flex;
+    float: left;
+    height: 35vw;
+    padding: 20px;
+    border: 1px solid black;
+}
+.left-pane .profile-icon img {
+    height: 20vh;
+    margin-top: 5px;
+}
+.left-pane .profile-icon .usern {
+    text-align: center;
+}
+
+.profile-settings .right-pane {
+    float: right;
+    display: flex;
+    border: 1px solid black;
+    height: 35vw;
+    margin-left: 2vw;
+    width: 35vw;
+}
+.right-pane .right-content {
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Responsive CSS Area */
+@media screen and (max-width: 400px),(max-width: 450px) {
     .side-menu {
         position: absolute;
         display: flex;
@@ -231,6 +276,20 @@ input.chk-box {
         transform: scale(2);
         margin: 40px 30px 0 50px;
     }
+
+    /*Account Settings*/
+    .profile-settings .left-pane {
+        padding: 2px;
+    }
+    .left-pane .profile-icon img {
+        height: 8vh;
+        margin-top: 5px;
+        align-self: center;
+    }
+    .left-pane .usern {
+        font-size: 12px;
+    }
+
     
 
 }
