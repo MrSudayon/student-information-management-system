@@ -200,7 +200,7 @@ input.chk-box {
     border: 1px solid black;
     height: 35vw;
     margin-left: 2vw;
-    width: 35vw;
+    width: 70vw;
 }
 .right-pane .right-content {
     padding: 20px;
@@ -216,7 +216,7 @@ input.chk-box {
 
 
 /* Responsive CSS Area */
-@media screen and (max-width: 400px),(max-width: 450px) {
+@media screen and (max-width: 400px) {
     .side-menu {
         position: absolute;
         display: flex;
@@ -280,6 +280,11 @@ input.chk-box {
     /*Account Settings*/
     .profile-settings .left-pane {
         padding: 2px;
+        width: 10vh;
+    }
+    .profile-settings .right-pane {
+        width: 23vh;
+        height: 50vh;
     }
     .left-pane .profile-icon img {
         height: 8vh;
