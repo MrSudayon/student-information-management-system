@@ -207,6 +207,22 @@ input.chk-box {
 }
 
 
+/* Teachers CSS */
+.compose-msg {
+    position: relative;
+    
+}
+.compose {
+    float: right;
+    margin-right: 20px;
+    background-color: var(--main-color);
+    border-radius: 8px; 
+    width: 60px;
+    padding: 5px;
+}
+.compose img {
+    width: 50px;
+}
 
 
 
