@@ -176,13 +176,19 @@ input.chk-box {
 
 
 /* Accounts CSS */
-.profile-settings {
+.profile {
     position: absolute;
 }
-.profile-settings .left-pane {
-    display: flex;
+.dashb_content .profile {
+    align-items: center;
+    justify-items: center;
+}
+.profile .left-pane {
+    position: relative;
     float: left;
+    margin-right: 2vh;
     height: 35vw;
+    width: 80vh;
     padding: 20px;
     border: 1px solid black;
 }
@@ -190,27 +196,50 @@ input.chk-box {
     height: 20vh;
     margin-top: 5px;
 }
-.left-pane .profile-icon .usern {
+.profile-icon .usern h1 {
+    font-size: 2em;
+}
+.left-pane .acc-settings {
+    margin-top: 30px;
     text-align: center;
 }
+.acc-settings h4 {
+    color: black;
+    font-size: 1em;
+}
+.acc-settings h4:hover {
+    color: rgb(73, 167, 255);
+    background-color: var(--main-color);  
+}
 
-.profile-settings .right-pane {
-    float: right;
-    display: flex;
+
+.profile .right-pane {
+    position: relative;
+    display: flex; 
     border: 1px solid black;
     height: 35vw;
-    margin-left: 2vw;
-    width: 70vw;
+    margin-left: 2vh;
+    width: 80vh;
 }
 .right-pane .right-content {
     padding: 20px;
-}
 
+}
+.right-content h4 {
+    margin-top: 10px;
+    word-spacing: 1px;
+    font-size: medium;
+}
+.right-content .rc-text {
+    font-size: 15px;
+    margin-bottom: 10px;
+    cursor: default;
+    flex-direction: column; /* asdasd */
+}
 
 /* Teachers CSS */
 .compose-msg {
-    position: relative;
-    
+    position: relative;   
 }
 .compose {
     float: right;
@@ -294,22 +323,51 @@ input.chk-box {
     }
 
     /*Account Settings*/
-    .profile-settings .left-pane {
-        padding: 2px;
-        width: 10vh;
-    }
-    .profile-settings .right-pane {
-        width: 23vh;
-        height: 50vh;
+    .profile .left-pane {
+        height: 50vw;
+        width: 35vh;
+        padding: 20px;
+        border: 1px solid black;
     }
     .left-pane .profile-icon img {
-        height: 8vh;
+        height: 10vh;
         margin-top: 5px;
-        align-self: center;
     }
-    .left-pane .usern {
-        font-size: 12px;
+    .profile-icon .usern h1 {
+        font-size: 1em;
     }
+    .left-pane .acc-settings {
+        margin-top: 0;
+    }
+    .acc-settings h4 {
+        color: black;
+        font-size: .8em;
+    }
+    .acc-settings h4:hover {
+        color: rgb(73, 167, 255);
+        background-color: var(--main-color);  
+    }
+    
+    
+    .profile .right-pane {
+        border: 1px solid black;
+        height: 100vw;
+        width: 30vh;
+    }
+    .right-pane .right-content {
+        padding: 20px;
+    }
+    .right-content h4 {
+        margin-top: 0;
+        word-spacing: 1px;
+        font-size: small;
+    }
+    .right-content .rc-text {
+        font-size: 15px;
+        margin-bottom: 10px;
+        cursor: default;
+    }
+    
 
     
 
