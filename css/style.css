@@ -131,7 +131,7 @@ hr.line {
     flex-direction: column;
     margin-left: 14vh;
     background: left/contain content-box border-box no-repeat
-        url('/images/notebook.png') white;
+        url('../images/notebook.png') white;
 }
 .day-activity > h2,
 .day-activity > p {
@@ -190,7 +190,6 @@ input.chk-box {
     height: 35vw;
     width: 80vh;
     padding: 20px;
-    border: 1px solid black;
 }
 .left-pane .profile-icon img {
     height: 20vh;
@@ -216,7 +215,6 @@ input.chk-box {
 .profile .right-pane {
     position: relative;
     display: flex; 
-    border: 1px solid black;
     height: 35vw;
     margin-left: 2vh;
     width: 80vh;
@@ -298,9 +296,6 @@ input.chk-box {
     }
 
     /*To-do*/
-    .a-todo {
-        border: 1px solid black; /*to be remove later*/
-    }
     .a-todo h1 {
         text-align: left;
         padding-top: 10px;
@@ -310,7 +305,7 @@ input.chk-box {
         margin-left: 10vh;
         width: 15vw;
         background: left/contain content-box border-box no-repeat
-            url('/images/notebook.png') white;
+            url('../images/notebook.png') white;
     }
     .day-activity > h2,
     .day-activity > p {
@@ -327,7 +322,7 @@ input.chk-box {
         height: 50vw;
         width: 35vh;
         padding: 20px;
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
     .left-pane .profile-icon img {
         height: 10vh;
@@ -350,7 +345,7 @@ input.chk-box {
     
     
     .profile .right-pane {
-        border: 1px solid black;
+        /*border: 1px solid black;*/
         height: 100vw;
         width: 30vh;
     }
