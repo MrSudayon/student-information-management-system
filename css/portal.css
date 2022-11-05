@@ -19,8 +19,9 @@ h2 {
     font-size: 1.2rem;
 } 
 h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: var(--dark-color);
-    font-size: 1.2rem;
+    font-size: 1.7rem;
 }
 .container {
     position: absolute;
