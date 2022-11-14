@@ -7,100 +7,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/style.css">
         <title>Dashboard</title>
-
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-:root {
-    --main-color: #5ef286;
-    --dark-color: #11152a;
-    --light-color: #d0d4ed;
-}
-.side-menu {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.side-menu a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.side-menu a:hover {
-  color: #f1f1f1;
-}
-
-.side-menu .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 2em;
-  padding: 10px;
-}
-
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: var(--main-color);
-  color: black;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 12px;
-}
-.side-menu .closebtn:hover {
-    color: red;
-}
-.openbtn:hover {
-  background-color: rgb(88, 185, 105);
-}
-
-#main {
-  transition: margin-left .5s;
-  padding: 15px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .side-menu {padding-top: 15px;}
-  .side-menu a {font-size: 18px;}
-}
-</style>
 </head>
 
 <body>
-    <!-- sidebar -->
     
-    <div class="side-menu" id="mySidebar">
-       
-
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <ul>
-            <a href="account.html"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-            <a href="dashboard.html"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-            <a href="subjects.html"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
-            <a href="teachers.html"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teachers</h4></li></a>
-            <a href="#history.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
-            <a href="../index.html"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
-        </ul>
-    </div>
-    
+<!-- sidebar -->
+<div class="side-menu" id="mySidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <ul>
+        <a href="account.html"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
+        <a href="dashboard.html"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
+        <a href="subjects.html"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
+        <a href="teachers.html"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teachers</h4></li></a>
+        <a href="#history.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
+        <a href="../index.html"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
+    </ul>
+</div>
+<!-- sidebar -->
+  
+<!-- Main -->
 <div id="main">
     <button class="openbtn" onclick="openNav()">☰</button>  
-    
+    <button class="openbtn1" onclick="openNav1()">☰</button> 
     <!-- Contents -->
- 
         <div class="dashb_content">
             <div class="smateo-logo">
                 <img src="../images/smateo-shs.jpg">
@@ -110,12 +39,10 @@ body {
             <div class="news">
                 <h1>News</h1>
             </div>
-            
-    
-            
         </div>
-</div>
     <!-- Contents -->
+</div>
+<!-- Main -->
   
 
 
@@ -123,31 +50,9 @@ body {
 
 
   
-<script>
-  function checkMediaQuery() {
-    
-    if (window.innerWidth > 768) {
-      function openNav() {
-          document.getElementById("mySidebar").style.width = "220px";
-          document.getElementById("main").style.marginLeft = "220px";
-      }
-    }
-  }
+<script src="../sidebar_nav.js"></script>
 
-         
-    function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-    }
-
-    window.addEventListener('resize', checkMediaQuery);   
-
-
-</script>
-    
-    
-    
-    <!--
+    <!-- Drafts
     <div class="side-menu">
         <div class="smateo-hs">
             <div class="logo"><a href="#">San Mateo <br><span>SHS</span></a></div>
@@ -164,10 +69,6 @@ body {
     </div>
 
     -->
-    <!-- sidebar -->
 
-    <!-- Top Nav -->
-
-    
 </body>
 </html>

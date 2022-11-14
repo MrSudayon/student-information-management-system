@@ -37,86 +37,14 @@ h2 {
     position: relative;
 }
 .side-menu {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    background-color: var(--main-color);
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-.side-menu a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-.side-menu a:hover {
-    color: #f1f1f1;
-}
-.side-menu .closebtn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 2em;
-    padding: 10px;
-}
-.openbtn {
-    font-size: 20px;
-    cursor: pointer;
     background-color: var(--main-color);
-    color: black;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 12px;
-    transition: 0.3s;
+    height: 100%;
+    display: flex;
 }
-.openbtn1 {
-    display: none;
-    font-size: 20px;
-    cursor: pointer;
-    background-color: var(--main-color);
-    color: black;
-    padding: 10px 15px; 
-    border: none;
-    border-radius: 12px;
-    transition: 0.3s;
+.side-menu ul .smateo-hs .logo {
+    position: sticky;
 }
-.side-menu .closebtn:hover {
-    color: red;
-}
-.openbtn:hover, .openbtn1:hover {
-    background-color: rgb(88, 185, 105);
-    transition: 0.5s;
-}
-
-#main {
-    transition: margin-left .5s;
-    padding: 15px;
-}
-@media screen and (max-width: 450px) {
-.openbtn {
-    display: none;
-}
-.openbtn1 {
-    display: block;
-}
-.closebtn {
-    margin-left: 10px;
-}
-
-}
-/* height < 450px bababa padding and a smaller font size */
-@media screen and (max-height: 450px) {
-    .side-menu {padding-top: 15px;}
-    .side-menu a {font-size: 18px;}
-}
-
 .side-menu .menu-text {
     font-size: 18px;
     font-weight: bolder;
@@ -141,12 +69,13 @@ h2 {
 
 /* container, content etc */
 
-.dashb_content {
+.container .dashb_content {
     position: relative;
+    width: 89vw;
     height: 100%;
-    margin: 10px 5px 0;
+    margin: 15px 10px 0;
 }
-.dashb_content h1 {
+.container .dashb_content h1 {
     margin: 3px 25px 5px;
 }
 hr.line {
@@ -162,7 +91,7 @@ hr.line {
 
 
 
-/* To-Do-Lists CSS 
+/* To-Do-Lists CSS */
 .a-todo {
     position: relative;
     margin: 0 auto;
@@ -195,7 +124,6 @@ input.chk-box {
     border-style: none;
     transform: scale(2);
 }
-*/
 
 
 /* Subjects CSS */
@@ -224,16 +152,18 @@ input.chk-box {
 
 /* Accounts CSS */
 .profile {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+    position: absolute;
 }
-
+.dashb_content .profile {
+    align-items: center;
+    justify-items: center;
+}
 .profile .left-pane {
-    border: 1px black solid;
+    position: relative;
+    float: left;
+    margin-right: 2vh;
     height: 35vw;
-    width: 40%;
+    width: 80vh;
     padding: 20px;
 }
 .left-pane .profile-icon img {
@@ -250,24 +180,23 @@ input.chk-box {
 .acc-settings h4 {
     color: black;
     font-size: 1em;
-    transition: 0.3s;
 }
 .acc-settings h4:hover {
-    color: white;
-    background-color: rgb(110, 110, 110);
-    transition: 0.5s;
+    color: rgb(73, 167, 255);
+    background-color: var(--main-color);  
 }
 
 
 .profile .right-pane {
-    border: 1px black solid;
-    float: right;
-    top: 0;
+    position: relative;
+    display: flex; 
     height: 35vw;
-    width:  58%;
+    margin-left: 2vh;
+    width: 80vh;
 }
 .right-pane .right-content {
     padding: 20px;
+
 }
 .right-content h4 {
     margin-top: 10px;
@@ -276,7 +205,9 @@ input.chk-box {
 }
 .right-content .rc-text {
     font-size: 15px;
+    margin-bottom: 10px;
     cursor: default;
+    flex-direction: column; /* asdasd */
 }
 
 /* Teachers CSS 
@@ -300,6 +231,11 @@ input.chk-box {
     position: relative;
     float: right;   
 }
+
+
+
+
+
 
 
 /* Responsive CSS Area */
@@ -337,15 +273,10 @@ input.chk-box {
     }
 
     /*Account Settings*/
-    .profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     .profile .left-pane {
         height: 50vw;
-        width: 80%;
-        padding: 15px;
+        width: 35vh;
+        padding: 20px;
         /*border: 1px solid black;*/
     }
     .left-pane .profile-icon img {
@@ -370,8 +301,8 @@ input.chk-box {
     
     .profile .right-pane {
         /*border: 1px solid black;*/
-        height: 100%;
-        width: 90%;
+        height: 100vw;
+        width: 30vh;
     }
     .right-pane .right-content {
         padding: 20px;

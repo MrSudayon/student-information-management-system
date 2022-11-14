@@ -1,42 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/style.css">
-        <title>Subjects</title>
-    </head>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Subjects</title>
 
-<body>
-    <!-- sidebar -->
-    <div class="side-menu">
-        <div class="smateo-hs">
-            <div class="logo"><a href="dashboard.html">San Mateo <br><span>SHS</span></a></div>
-        </div>
-        <ul >
-            <a href="account.html"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-            <a href="dashboard.html"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-            <!-- Selected -->
-            <a href="subjects.html"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> <!--Modules?-->
-            <a href="teachers.html"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teachers</h4></li></a><!--Profs,Instructor..?-->
-            <a href="#history.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
-            <a href="../index.html"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
-        </ul>
-    </div>
-    <!-- sidebar -->
-    <!-- Top Nav -->
-
-    <!-- Contents -->
-    <div class="container">
-        <div class="dashb_content">
-            <div class="smateo-logo">
-                <img src="../images/smateo-shs.jpg">
-            </div>
-            <br><hr class="line">
-            <!-- Boxes -->
 <style type="text/css">
+
     * {
         box-sizing: border-box;
         justify-content: flex-start;
@@ -85,67 +57,100 @@
         .col-10 {width: 83.33%;}
         .col-11 {width: 91.66%;}
         .col-12 {width: 100%;}
-    }
-        
+    }  
 </style>
-            <!-- Subjects Contents -->
-            <div class="row">
-                <div class="col-3 col-s-12">	
+</head>
 
-                    <div class="subj-card"style="border-radius:25px">
-                        <div class="header1" style="border-radius:25px 25px 0px 0px" > 
-                            <h1>Sample Subject</h1>
-                        <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
-                        <p><font color="black">Sample Subject Description</font></p>
-                        </div>
-                        <div class="aside" style="border-radius: 0px 0px 25px 25px">
-                            <center>
-                            <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </center>
-                        </div>
-                    </div> 
-                </div>
-                
-                            <!-- To be removed when back-end applies -->
-                            <div class="col-3 col-s-12">	
-                                <div class="subj-card"style="border-radius:25px">
-                                    <div class="header1" style="border-radius:25px 25px 0px 0px"> 
-                                        <h1>Sample Subject2</h1>
-                                    <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
-                                    <p><font color="black">Sample Subject Description</font></p>
-                                    </div>
-                                    <div class="aside" style="border-radius: 0px 0px 25px 25px">
-                                        <center>
-                                        <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                                        </center>
-                                    </div>
-                                </div> 
-                            </div>
+<body>
 
-                            <div class="col-3 col-s-12">	
-                                <div class="subj-card"style="border-radius:25px">
-                                    <div class="header1" style="border-radius:25px 25px 0px 0px"> 
-                                        <h1>Sample Subject3</h1>
-                                    <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
-                                    <p><font color="black">Sample Subject Description</font></p>
-                                    </div>
-                                    <div class="aside" style="border-radius: 0px 0px 25px 25px">
-                                        <center>
-                                        <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                                        </center>
-                                    </div>
-                                </div> 
-                            </div>
-                            <!-- To be removdd -->
+<!-- sidebar -->
+<div class="side-menu" id="mySidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <ul >
+        <a href="account.html"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
+        <a href="dashboard.html"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
+        <!-- Selected -->
+        <a href="subjects.html"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> <!--Modules?-->
+        <a href="teachers.html"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teachers</h4></li></a><!--Profs,Instructor..?-->
+        <a href="#history.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
+        <a href="../index.html"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
+    </ul>
+</div>
+<!-- sidebar -->
 
+<!-- Main -->
+<div id="main">
+    <button class="openbtn" onclick="openNav()">☰</button>  
+    <button class="openbtn1" onclick="openNav1()">☰</button> 
+    <!-- Contents -->
+    <div class="dashb_content">
+        <div class="smateo-logo">
+            <img src="../images/smateo-shs.jpg">
+        </div>
+        <br><hr class="line">
+        <!-- Boxes -->
+
+        <!-- Subjects Contents -->
+        <div class="row">
+            <div class="col-3 col-s-12">	
+
+                <div class="subj-card"style="border-radius:25px">
+                    <div class="header1" style="border-radius:25px 25px 0px 0px" > 
+                        <h1>Sample Subject</h1>
+                    <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
+                    <p><font color="black">Sample Subject Description</font></p>
+                    </div>
+                    <div class="aside" style="border-radius: 0px 0px 25px 25px">
+                        <center>
+                        <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
+                        </center>
+                    </div>
+                </div> 
             </div>
-            <!-- Subjects Contents -->
+            
+                        <!-- To be removed when back-end applies -->
+                        <div class="col-3 col-s-12">	
+                            <div class="subj-card"style="border-radius:25px">
+                                <div class="header1" style="border-radius:25px 25px 0px 0px"> 
+                                    <h1>Sample Subject2</h1>
+                                <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
+                                <p><font color="black">Sample Subject Description</font></p>
+                                </div>
+                                <div class="aside" style="border-radius: 0px 0px 25px 25px">
+                                    <center>
+                                    <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
+                                    </center>
+                                </div>
+                            </div> 
+                        </div>
 
-
+                        <div class="col-3 col-s-12">	
+                            <div class="subj-card"style="border-radius:25px">
+                                <div class="header1" style="border-radius:25px 25px 0px 0px"> 
+                                    <h1>Sample Subject3</h1>
+                                <p><input type="hidden" value="Sample Subj" name="subj_id"></p>
+                                <p><font color="black">Sample Subject Description</font></p>
+                                </div>
+                                <div class="aside" style="border-radius: 0px 0px 25px 25px">
+                                    <center>
+                                    <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
+                                    </center>
+                                </div>
+                            </div> 
+                        </div>
+                        <!-- To be removdd -->
 
         </div>
+        <!-- Subjects Contents -->
+
+
+
     </div>
     <!-- Contents -->
+</div>
+<!-- Menu -->
 
+
+<script src="../sidebar_nav.js"></script>
 </body>
 </html>
