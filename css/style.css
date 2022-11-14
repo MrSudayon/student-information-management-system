@@ -39,10 +39,8 @@ h2 {
 .side-menu {
     position: absolute;
     background-color: var(--main-color);
-    width: 19vh;
     height: 100%;
     display: flex;
-    flex-direction: column;
 }
 .side-menu ul .smateo-hs .logo {
     position: sticky;
@@ -82,10 +80,13 @@ h2 {
     align-items: center;
     padding: 15px;
     margin: 0 auto;
+    width: 100vh;
     cursor: pointer;
+    margin-left: 0;
 }
-.side-menu li:hover {
+.side-menu ul a:hover {
     background: #38923c;
+    width: 100vh;
     color: var(--dark-color);
 }
 
@@ -104,11 +105,11 @@ h2 {
 hr.line {
     border: 1px solid var(--main-color);
 }
-.container .dashb_content .smateo-logo {
+.dashb_content .smateo-logo {
     display: flex;
     justify-content: center;
 }
-.container .dashb_content .smateo-logo img {
+.dashb_content .smateo-logo img {
     height: 150px;
 }
 
@@ -262,41 +263,12 @@ input.chk-box {
 
 
 /* Responsive CSS Area */
-@media screen and (max-width: 400px) {
-    .side-menu {
-        position: absolute;
-        display: flex;
-        width: 8vh;
-        height: 100%;
-        align-items: center;
-        margin: 0 auto;
-    }
-    .side-menu li {
-        width: 8vh;
-    }
+@media screen and (max-width: 450px) {
+
     .side-menu h4 {
         display: none;
     }
-    .logo {
-        width: 8vh;
-        display: flex;
-    }
-    .logo a {
-        margin: 15px 0 10px;
-    }
 
-    .container {
-        position: absolute;
-        width: 38vh;
-        height: 100%;
-        margin: 0;
-    }
-    .container .dashb_content {
-        position: relative;
-        width: 35vh;
-        height: 100%;
-        margin: 15px 10px 0;
-    }
 
     /*To-do*/
     .a-todo h1 {
