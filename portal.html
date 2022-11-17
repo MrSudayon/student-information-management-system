@@ -12,23 +12,11 @@
 <body>
 
 <style type="text/css">
-    * {
-        box-sizing: border-box;
-    }
-    .row {
-        border: 1px solid black;
-        padding: 0 120px 0;
-    }
-    .row::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
+
+    
+
     [class*="col-"] {
-        float: left;
-        padding: 15px;
-    }
-    [class*="col-"] {
+        padding: 10px;
         width: 100%;
     }
     @media only screen and (min-width: 400px) {
@@ -44,7 +32,9 @@
         .col-s-9 {width: 75%;}
         .col-s-10 {width: 83.33%;}
         .col-s-11 {width: 91.66%;}
-        .col-s-12 {width: 100%;}
+        .col-s-12 {width: 45%;}
+        
+        
     }
     @media only screen and (min-width: 768px) {
         /* For desktop: */
@@ -65,117 +55,125 @@
 </style>
 
     <!-- Contents -->
-    <div class="container">
-        <div class="dashb_content">
-            <div class="smateo-logo">
-                <img src="images/smateo-shs.jpg">
+    <div class="dashb_content">
+        <div class="portal-nav">
+            
+            <h2><a class="smshs" href="#"><img src="images/smateo-shs.jpg" style="height:70px; width:70px; margin-right: 8px;">San Mateo Senior High School Portal (SM SHS)</a></h2>
+
+            <div class="portal-nav-collapse">
+                <ul>
+                    <li><a href="portal.html"> Home </a></li>
+                    <li><a href="#"> About Us </a></li>
+                    <!-- <li><a href="#"> Academics </a></li> -->
+                    <li><a href="#"> Contact </a></li>
+                    <li><a class="student-portal" href="index.html"> Student Portal </a></li>
+                </ul>
             </div>
 
-            <hr class="line">       
-            <div class="news">
-                <h2>San Mateo Senior High School Portal (SM SHS)</h1>
+        </div>
+        
+        <br>
+        <div class="news">
+            <div class="portal-wallp">
+                asd
             </div>
+        </div>
 
+        
+        <!-- Program Offered -->
+        <div class="program-offered">
+            <h1 style="font-size: 2.5em; margin-bottom: 1%;">PROGRAM OFFERED</h1>
+            <center>
+            <div class="row">
+            
+                <div class="col-3 col-s-12"> 
+                    <div class="program-card"style="border-radius:25px">
+                        <div class="aside a1" style="border-radius: 25px 25px 25px 25px">
+                            <center>
+                                <h1>STEM</h1>
+                                <p><input type="hidden" value="STEM" name="subj_id"></p>
+                            </center>
+                            <img style="width:120px;height:120px" src="images/notebook.png">
+                        </div>
+                    </div> 
+                </div>
 
-            <div class="program-offered">
-                <center><h1>PROGRAM OFFERED</h1></center>
+                <div class="col-3 col-s-12"> 
+                    <div class="program-card"style="border-radius:25px">
+                        <div class="aside a2" style="border-radius: 25px 25px 25px 25px">
+                            <center>
+                                <h1>ABM</h1>
+                                <p><input type="hidden" value="STEM" name="subj_id"></p>
+                            </center>
+                            <img style="width:120px;height:120px" src="images/notebook.png">
+                        </div>
+                    </div> 
+                </div>
 
-                <div class="row">
-                
-                    <div class="col-3 col-s-12"> 
-                        <div class="program-card"style="border-radius:25px">
-                            <div class="aside" style="border-radius: 25px 25px 25px 25px">
-                                <center>
-                                    <h1>STEM</h1>
-                                    <p><input type="hidden" value="STEM" name="subj_id"></p>
-                                </center>
-                                <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </div>
-                        </div> 
-                    </div>
-    
-                    <div class="col-3 col-s-12"> 
-                        <div class="program-card"style="border-radius:25px">
-                            <div class="aside" style="border-radius: 25px 25px 25px 25px">
-                                <center>
-                                    <h1>ABM</h1>
-                                    <p><input type="hidden" value="STEM" name="subj_id"></p>
-                                </center>
-                                <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </div>
-                        </div> 
-                    </div>
-    
-                    <div class="col-3 col-s-12"> 
-                        <div class="program-card"style="border-radius:25px">
-                            <div class="aside" style="border-radius: 25px 25px 25px 25px">
-                                <center>
-                                    <h1>HUMSS</h1>
-                                    <p><input type="hidden" value="STEM" name="subj_id"></p>
-                                </center>
-                                <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </div>
-                        </div> 
-                    </div>
-    
-                    <div class="col-3 col-s-12"> 
-                        <div class="program-card"style="border-radius:25px">
-                            <div class="aside" style="border-radius: 25px 25px 25px 25px">
-                                <center>
-                                    <h1>TECHVOC</h1>
-                                    <p><input type="hidden" value="STEM" name="subj_id"></p>
-                                </center>
-                                <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </div>
-                        </div> 
-                    </div>
-    
-                    <div class="col-3 col-s-12"> 
-                        <div class="program-card"style="border-radius:25px">
-                            <div class="aside" style="border-radius: 25px 25px 25px 25px">
-                                <center>
-                                    <h1>COMP PROG</h1>
-                                    <p><input type="hidden" value="STEM" name="subj_id"></p>
-                                </center>
-                                <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </div>
-                        </div> 
-                    </div>
+                <div class="col-3 col-s-12"> 
+                    <div class="program-card"style="border-radius:25px">
+                        <div class="aside a3" style="border-radius: 25px 25px 25px 25px">
+                            <center>
+                                <h1>HUMSS</h1>
+                                <p><input type="hidden" value="STEM" name="subj_id"></p>
+                            </center>
+                            <img style="width:120px;height:120px" src="images/notebook.png">
+                        </div>
+                    </div> 
+                </div>
 
-                    <div class="col-3 col-s-12"> 
-                        <div class="program-card"style="border-radius:25px">
-                            <div class="aside" style="border-radius: 25px 25px 25px 25px">
-                                <center>
-                                    <h1>COOKERY</h1>
-                                    <p><input type="hidden" value="STEM" name="subj_id"></p>
-                                </center>
-                                <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </div>
-                        </div> 
-                    </div>
+                <div class="col-3 col-s-12"> 
+                    <div class="program-card"style="border-radius:25px">
+                        <div class="aside a4" style="border-radius: 25px 25px 25px 25px">
+                            <center>
+                                <h1>TECHVOC</h1>
+                                <p><input type="hidden" value="STEM" name="subj_id"></p>
+                            </center>
+                            <img style="width:120px;height:120px" src="images/notebook.png">
+                        </div>
+                    </div> 
+                </div>
 
-                    <div class="col-3 col-s-12"> 
-                        <div class="program-card"style="border-radius:25px">
-                            <div class="aside" style="border-radius: 25px 25px 25px 25px">
-                                <center>
-                                    <h1>ANIMATION</h1>
-                                    <p><input type="hidden" value="STEM" name="subj_id"></p>
-                                </center>
-                                <h2><img style="width:150px;height:150px" src="../images/notebook.png"></h2>
-                            </div>
-                        </div> 
-                    </div>
-    
+                <div class="col-3 col-s-12"> 
+                    <div class="program-card"style="border-radius:25px">
+                        <div class="aside a5" style="border-radius: 25px 25px 25px 25px">
+                            <center>
+                                <h1>COMP PROG</h1>
+                                <p><input type="hidden" value="STEM" name="subj_id"></p>
+                            </center>
+                            <img style="width:120px;height:120px" src="images/notebook.png">
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="col-3 col-s-12"> 
+                    <div class="program-card"style="border-radius:25px">
+                        <div class="aside a6" style="border-radius: 25px 25px 25px 25px">
+                            <center>
+                                <h1>COOKERY</h1>
+                                <p><input type="hidden" value="STEM" name="subj_id"></p>
+                            </center>
+                            <img style="width:120px;height:120px" src="images/notebook.png">
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="col-3 col-s-12"> 
+                    <div class="program-card"style="border-radius:25px">
+                        <div class="aside a7" style="border-radius: 25px 25px 25px 25px">
+                            <center>
+                                <h1>ANIMATION</h1>
+                                <p><input type="hidden" value="STEM" name="subj_id"></p>
+                            </center>
+                            <img style="width:120px;height:120px" src="images/notebook.png">
+                        </div>
+                    </div> 
                 </div>
 
             </div>
-            
-                
-            
-            
-            
-        
+            </center>
         </div>
+        <!-- Program Offered -->   
     </div>
     <!-- Contents -->
 </body>

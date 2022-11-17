@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@700&family=Poppins:wght@400;700&display=swap');
 
 :root {
-    --main-color: #5ef286;
+    --main-color: #60b8ff;
     --dark-color: #11152a;
     --light-color: #d0d4ed;
 }
@@ -91,7 +91,7 @@ form input::placeholder {
     color: var(--light-color);
 }
 form button {
-    background-color: #9afcd5;
+    background-color: var(--main-color);
     color: white;
     width: 100%;
     margin: 30px 0;
