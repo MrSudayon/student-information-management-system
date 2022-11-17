@@ -56,26 +56,26 @@
 
     <!-- Contents -->
     <div class="dashb_content">
-        <div class="portal-nav">
-            
-            <h2><a class="smshs" href="#"><img src="images/smateo-shs.jpg" style="height:70px; width:70px; margin-right: 8px;">San Mateo Senior High School Portal (SM SHS)</a></h2>
-
+        <div class="content_header">
+            <div class="header-nav">
+                <h2><a class="smshs" href="#"><img src="images/smateo-shs.jpg" style="height:70px; width:70px; margin-right: 8px;">San Mateo Senior High School Portal (SM SHS)</a></h2>
+            </div>    
             <div class="portal-nav-collapse">
                 <ul>
-                    <li><a href="portal.html"> Home </a></li>
-                    <li><a href="#"> About Us </a></li>
+                    <li><a class="nav-tabs" href="portal.html">Home</a></li>
+                    <li><a class="nav-tabs" href="#" style="white-space: nowrap;">About Us</a></li>
                     <!-- <li><a href="#"> Academics </a></li> -->
-                    <li><a href="#"> Contact </a></li>
+                    <li><a class="nav-tabs" href="#">Contact</a></li>
                     <li><a class="student-portal" href="index.html"> Student Portal </a></li>
                 </ul>
             </div>
-
         </div>
+       
         
         <br>
         <div class="news">
             <div class="portal-wallp">
-                asd
+                <img src="images/smateo-wallpaper.jpg">
             </div>
         </div>
 
@@ -96,6 +96,12 @@
                             <img style="width:120px;height:120px" src="images/notebook.png">
                         </div>
                     </div> 
+                    <button type="button" class="collapsible">STEM</button>
+                        <div class="content">
+                            <p>STEM stands for Science, Technology, Engineering, and Mathematics strand. Through the STEM strand, 
+                                senior high school students are exposed to complex mathematical and science theories and concepts which will serve as a foundation 
+                                for their college courses.</p>
+                        </div>
                 </div>
 
                 <div class="col-3 col-s-12"> 
@@ -108,6 +114,12 @@
                             <img style="width:120px;height:120px" src="images/notebook.png">
                         </div>
                     </div> 
+                    <button type="button" class="collapsible">ABM</button>
+                        <div class="content">
+                            <p>ABM strand paves the way for business-related college degrees. It teaches the basic concepts of financial management, 
+                                accounting, and corporate operations. The programs under this strand aims to instill crucial skills that one needs to 
+                                perform well in their future careers and businesses.</p>
+                        </div>
                 </div>
 
                 <div class="col-3 col-s-12"> 
@@ -120,6 +132,11 @@
                             <img style="width:120px;height:120px" src="images/notebook.png">
                         </div>
                     </div> 
+                    <button type="button" class="collapsible">HUMMS</button>
+                        <div class="content">
+                            <p>The HUMMS strand is a multi-faceted option for SHS students that dream of contributing to society by way of literature, 
+                                communication, medicine, education, or legal practice.</p>
+                        </div>
                 </div>
 
                 <div class="col-3 col-s-12"> 
@@ -132,6 +149,12 @@
                             <img style="width:120px;height:120px" src="images/notebook.png">
                         </div>
                     </div> 
+                    <button type="button" class="collapsible">Tech Voc</button>
+                        <div class="content">
+                            <p>The program focuses on the principles and practices underlying the analysis, design, implementation, and management of 
+                                information technology and preparation in health, social and other community development services, business, hotel, and 
+                                restaurant services.</p>
+                        </div>
                 </div>
 
                 <div class="col-3 col-s-12"> 
@@ -144,6 +167,12 @@
                             <img style="width:120px;height:120px" src="images/notebook.png">
                         </div>
                     </div> 
+                    <button type="button" class="collapsible">Computer Programming</button>
+                        <div class="content">
+                            <p>The course will include designing, coding, debugging, testing, and documenting programs using a high level programming language. 
+                                The course is intended to prepare students for a programming-oriented academic path. 
+                                This course is included in the Field of Study Curriculum for Computer Science.</p>
+                        </div>
                 </div>
 
                 <div class="col-3 col-s-12"> 
@@ -156,6 +185,12 @@
                             <img style="width:120px;height:120px" src="images/notebook.png">
                         </div>
                     </div> 
+                    <button type="button" class="collapsible">Culinary Arts</button>
+                        <div class="content">
+                            <p>A Culinary Arts course trains aspirants to prepare, cook as well as present food/ meals in an effective and attractive manner. 
+                                Pursuing courses in the field of Culinary Arts is an ideal choice for aspirants who want to make a career in the field of food and 
+                                beverage management, kitchen management as well as other hospitality and food related job profiles.</p>
+                        </div>
                 </div>
 
                 <div class="col-3 col-s-12"> 
@@ -168,6 +203,10 @@
                             <img style="width:120px;height:120px" src="images/notebook.png">
                         </div>
                     </div> 
+                    <button type="button" class="collapsible">Animation</button>
+                        <div class="content">
+                            <p>Study of designing, drawing and making the illusion of motion pictures just by changing their static images which are not similar to each other.</p>
+                        </div>
                 </div>
 
             </div>
@@ -176,5 +215,25 @@
         <!-- Program Offered -->   
     </div>
     <!-- Contents -->
+        
+        
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                content.style.maxHeight = null;
+                } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            });
+            }
+        
+        </script>
+  
 </body>
 </html>
