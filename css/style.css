@@ -165,43 +165,6 @@ hr.line {
 }
 
 
-
-/* To-Do-Lists CSS 
-.a-todo {
-    position: relative;
-    margin: 0 auto;
-    background-color: #eee;
-    font: 1rem 'Poppins', sans-serif;
-}
-.a-todo > h1,
-.day-activity {
-    padding: .2rem;
-    font-size: 1.2rem;
-}
-.day-activity {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    margin-left: 14vh;
-    background: left/contain content-box border-box no-repeat
-        url('../images/notebook.png') white;
-}
-.day-activity > h2,
-.day-activity > p {
-    margin: .2rem;
-    font-size: 1rem;
-    margin-left: 6vh;
-}
-input.chk-box {
-    display: absolute;
-    margin: 20px 50px 0;
-    float: left;
-    border-style: none;
-    transform: scale(2);
-}
-*/
-
-
 /* Subjects CSS */
 
 .header {
@@ -235,7 +198,6 @@ input.chk-box {
 }
 
 .profile .left-pane {
-    border: 1px black solid;
     height: 35vw;
     width: 40%;
     padding: 20px;
@@ -264,7 +226,6 @@ input.chk-box {
 
 
 .profile .right-pane {
-    border: 1px black solid;
     float: right;
     top: 0;
     height: 35vw;
@@ -323,27 +284,6 @@ input.chk-box {
    }
     .side-menu h4 {
         display: none;
-    }
-    /*To-do*/
-    .a-todo h1 {
-        text-align: left;
-        padding-top: 10px;
-        font-size: 1rem;
-    }
-    .day-activity {
-        margin-left: 10vh;
-        width: 15vw;
-        background: left/contain content-box border-box no-repeat
-            url('../images/notebook.png') white;
-    }
-    .day-activity > h2,
-    .day-activity > p {
-        display: flex;
-        margin-left: 7vh;
-    }
-    input.chk-box {
-        transform: scale(2);
-        margin: 40px 30px 0 50px;
     }
 
     /*Account Settings*/

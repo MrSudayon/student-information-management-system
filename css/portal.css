@@ -104,7 +104,6 @@ h1 {
 }
 .news {
     width: 100%;
-    border: 1px black solid;
     margin-top: 5em;
 }
 .news, .portal-wallp img { 
