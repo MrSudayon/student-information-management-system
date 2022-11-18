@@ -280,25 +280,28 @@ input.chk-box {
     cursor: default;
 }
 
-/* Teachers CSS 
-.compose-msg {
-    position: relative;   
+/* Teachers CSS */
+.right button {
+    padding: 3px 12px 3px;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 1rem;
+    border: 1px black solid;
+    background-color: lightskyblue;
+    border-radius: 5px;
 }
-.compose {
-    float: right;
-    margin-right: 20px;
+.right input[type="search"] {
+    height: 2em;
+}
+.right button:hover {
     background-color: var(--main-color);
-    border-radius: 8px; 
-    width: 60px;
-    padding: 5px;
 }
-.compose img {
-    width: 50px;
-}
-*/
+
 .right {
+    margin-top: -25px;
+    margin-right: 20px;
     display: flex;
-    flex-direction: row;
+    gap: 4px;
     justify-content: flex-end;
 }
 
