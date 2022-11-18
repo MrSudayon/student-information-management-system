@@ -52,10 +52,12 @@ h2 {
 .side-menu a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    font-size:1.5em;
     display: block;
     transition: 0.3s;
+}
+.side-menu ul {
+    margin-top: 20px;
 }
 .side-menu a:hover {
     color: #f1f1f1;
@@ -64,8 +66,12 @@ h2 {
     position: absolute;
     top: 10px;
     right: 10px;
+    color: #818181;
     font-size: 2em;
-    padding: 10px;
+    padding: 5px;
+}
+.side-menu .closebtn:hover {
+    color: red;
 }
 .openbtn {
     font-size: 20px;
@@ -87,9 +93,6 @@ h2 {
     border: none;
     border-radius: 12px;
     transition: 0.3s;
-}
-.side-menu .closebtn:hover {
-    color: red;
 }
 .openbtn:hover, .openbtn1:hover {
     background-color: rgb(34, 131, 187);
@@ -286,15 +289,18 @@ input.chk-box {
     cursor: pointer;
     font-family: Poppins;
     font-size: 1rem;
-    border: 1px black solid;
+    border: 1px white solid;
     background-color: lightskyblue;
     border-radius: 5px;
+    transition: .5s;
 }
 .right input[type="search"] {
     height: 2em;
 }
 .right button:hover {
+    border: 1px black solid;
     background-color: var(--main-color);
+    transition: .5s;
 }
 
 .right {

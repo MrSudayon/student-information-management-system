@@ -29,11 +29,9 @@ h1 {
     width: 100%;
 }
 .content_header {
-    position: relative;
     height: 5.5em;
 }
 .header-nav {
-    height: 100%;
     position: relative;
     padding: 0 10px 0;
     background-color: var(--main-color);
@@ -43,7 +41,7 @@ h1 {
 .header-nav img {
     margin-top: 10px;
 }
-.header-nav .smshs {
+.smshs {
     margin-left: 3em;
     margin-top: -1.8em;
     text-decoration: none;
@@ -51,19 +49,19 @@ h1 {
 }
 
 .portal-nav-collapse {
-    position: inherit;
+    margin-top: -20px;
+    position: relative;
     height: 3em;
-    border: 1px black solid;
 }
-ul, a {
-    margin-top: 6px;
-    text-align: center;
+.portal-nav-collapse ul {
     list-style: none;
-    text-decoration: none;
-    color: black;
     font-size: 1.2em;
 }
-.portal-nav-collapse .nav-tabs {
+.portal-nav-collapse a {
+    text-decoration: none;
+    margin-top: 10px;
+}
+.nav-tabs {
     columns: 3;
     padding: 0 10px 0;
     float: left;
@@ -71,23 +69,31 @@ ul, a {
     margin-right: 5px;
     margin-bottom: 1.5em;
     border-radius: 5px;
+    color: black;
     background-color: aliceblue;
+    transition: .3s;
 }
 .nav-tabs:hover {
     background-color: var(--main-color);
     color: antiquewhite;
+    transition: .3s;
+    border: 1px black solid;
 }
 .student-portal {
     float: right;
     background-color: aliceblue;
+    white-space: nowrap;
     border-radius: 5px;
     padding: 0 20px 0;
     margin-right: 1.5em;
     color: rgb(111, 202, 255);
+    transition: .3s;
 }
 .student-portal:hover {
     background-color: var(--main-color);
     color: antiquewhite;
+    transition: .3s;
+    border: 1px black solid;
 }
 
 
@@ -99,17 +105,16 @@ ul, a {
 .news {
     width: 100%;
     border: 1px black solid;
+    margin-top: 5em;
 }
-.news, .portal-wallp img{ 
+.news, .portal-wallp img { 
     display: flex;
     background-color: rgba(216, 216, 216, 0.116);
     height: 30vw;
     justify-content: center;
     align-content: center;
 }
-.news .portal-wallp img {
-    justify-items: center;
-}
+
 
 @media screen and (max-width: 400px) {
     .portal-wallp {
