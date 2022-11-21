@@ -1,0 +1,10 @@
+:root {
+    --main-color: #60b8ff;
+    /*--main-color: #5ef286; Green Theme*/ 
+    --dark-color: #11152a;
+    --light-color: #d0d4ed;
+}
+
+.side-menu .menu-text {
+    font-size: 15px;
+}
