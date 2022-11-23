@@ -8,3 +8,22 @@
 .side-menu .menu-text {
     font-size: 15px;
 }
+
+table {
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+    width: 100%;
+    border: .5px solid black;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  td {
+    background-color: #ddd;
+  }
+  
+td:nth-child(even) {
+    background-color: lightblue;
+}
