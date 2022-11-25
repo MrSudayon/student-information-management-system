@@ -18,7 +18,7 @@ body {
     font-weight: 400;
     line-height: 1.8;
     color: var(--dark-color);
-    background-color: var(--dark-color);
+    background-color: #ccc;
 }
 a {
     text-decoration: none;
@@ -44,6 +44,10 @@ h2 {
     background-color: var(--main-color);
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.45) 0 25px 20px -20px;
+}
+.login {
+    margin-top: 0;
+    padding-top: 0;
 }
 :is(.login,.signup) > div {
     position: relative;
@@ -185,6 +189,7 @@ form :is(p,label) a:hover, .afterform a:hover {
 
 
 @media screen and (min-width: 768px) {
+    body { background-color: var(--dark-color); }
     .wrapper>div {
         flex-direction: row;
         max-width: 800px;

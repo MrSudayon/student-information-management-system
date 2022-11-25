@@ -4,11 +4,11 @@
     --light-color: #d0d4ed;
 }
 * {
-
     font-family: 'Poppins', sans-serif;
 }
 body {
-    height: 100vh;
+    height: 100%;
+    width: 99%;
     background-color: rgb(233, 252, 255);
 }
 
@@ -41,7 +41,7 @@ h1 {
 .header-nav img {
     margin-top: 10px;
 }
-.smshs {
+.header-nav .smshs {
     margin-left: 3em;
     margin-top: -1.8em;
     text-decoration: none;
@@ -97,6 +97,38 @@ h1 {
 }
 
 
+@media screen and (min-width: 450px)  {
+    
+    .content_header {
+        padding: 0;
+    }
+
+    .smshs {
+        margin-top: -75px;
+    }
+    .portal-wallp {
+        padding: 0;
+    }
+    .dashb_content {
+        width: 99%;
+        padding: 0;
+        margin: 0 auto;
+    }
+    .dashb_content .row {
+        margin-top: 0%;
+        height: 100%;
+        width: 99%;
+        padding: 0;
+    }
+    .program-offered {
+        width: 99%;
+        padding: 0;
+    }
+    .program-card {
+        width: 80%;
+    }
+    
+}
 
 
 .header-nav, .portal-nav-collapse a {
@@ -115,15 +147,8 @@ h1 {
 }
 
 
-@media screen and (max-width: 400px) {
-    .portal-wallp {
-        height: 100vw;
-        width: 170vh;
-    }
-}
-
 /* Program Offered */
-.dashb_content .program-offered .row {
+.row {
     position: relative;
     width: 140vh;
     padding: 0 120px 0;
@@ -136,7 +161,6 @@ h1 {
     clear: both;
 }
 .program-offered { 
-   
     margin-top: 5%;
 }
 .program-card {
@@ -190,9 +214,11 @@ h1 {
     width: 80%;
     border: none;
     text-align: center;
+    transition: .4s;
     font-size: 18px;
     font-family: Impact, Haettenschweiler;
 }
+
 .active, .collapsible:hover {
     background-color: #ccc;
 }
