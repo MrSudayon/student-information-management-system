@@ -58,9 +58,13 @@ h2 {
     display: flex;
     flex-direction: column;
 }
+.center {
+    margin-right: auto;
+    margin-left: auto;
+}
 .logo a {
     display: inline-block;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     font-size: 18px;
     font-weight: 700;
     color: var(--dark-color);
@@ -80,7 +84,6 @@ h2 {
 .welcome {
     text-align: center;
 }
-
 
 form input:not(#terms,#remember) {
     font-family: inherit;
@@ -190,6 +193,8 @@ form :is(p,label) a:hover, .afterform a:hover {
 
 @media screen and (min-width: 768px) {
     body { background-color: var(--dark-color); }
+
+
     .wrapper>div {
         flex-direction: row;
         max-width: 800px;
@@ -197,6 +202,10 @@ form :is(p,label) a:hover, .afterform a:hover {
     .content-heading .y-style {
         height: 100%;
         justify-content: space-between;
+    }
+    .center {
+        margin-left: 0px;
+        
     }
     .welcome {
         text-align: left;

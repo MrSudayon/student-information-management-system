@@ -104,10 +104,10 @@ h2 {
     padding: 15px;
 }
 @media screen and (max-width: 450px) {
-    .openbtn {
+    #main h2, .openbtn {
         display: none;
     }
-    .openbtn1 {
+    .openbtn1  {
         display: block;
     }
     .closebtn {
@@ -264,7 +264,7 @@ hr.line {
 }
 
 .right {
-    margin-top: -25px;
+    margin-top: 5px;
     margin-right: 20px;
     display: flex;
     gap: 4px;
@@ -335,5 +335,7 @@ hr.line {
         margin-bottom: 10px;
         cursor: default;
     }
+
+    /* Subject CSS */
     
 }
