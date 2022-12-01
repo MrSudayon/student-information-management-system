@@ -104,16 +104,15 @@ h2 {
     padding: 15px;
 }
 @media screen and (max-width: 450px) {
-.openbtn {
-    display: none;
-}
-.openbtn1 {
-    display: block;
-}
-.closebtn {
-    margin-left: 10px;
-}
-
+    .openbtn {
+        display: none;
+    }
+    .openbtn1 {
+        display: block;
+    }
+    .closebtn {
+        margin-left: 10px;
+    }
 }
 /* height < 450px bababa padding and a smaller font size */
 @media screen and (max-height: 450px) {
