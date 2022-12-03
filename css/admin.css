@@ -36,8 +36,13 @@ h3 {
     text-align: left;
     padding: 8px;
 }
+.course_lists th {
+    text-align: center;
+
+}
 .course_lists td {
     background-color: #ddd;
+    text-align: center;
 }
   
 .course_lists td:nth-child(even) {
@@ -62,7 +67,7 @@ h3 {
     width: 100%; 
     height: 30px; 
     border-radius: 8px; 
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     cursor: pointer;
     background-color: lightblue;
     transition: .5s;

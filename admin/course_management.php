@@ -1,5 +1,5 @@
 <?php
-    
+    include "../dbase/db_connect.php";
 ?>
 
 <!DOCTYPE html>
@@ -50,9 +50,9 @@
                     <form method="POST" action="">
                         <table class="add_course">
                             <tr>
-                                <th><input type="text" placeholder="Course Code" style="font-family: Consolas; height: 30px;"> </th>
-                                <th><input type="text" placeholder="Course Name" style="font-family: Consolas; height: 30px;"> </th>
-                                <th><input type="textarea" placeholder="Description" style="font-family: Consolas; height: 30px;"> </th>
+                                <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;"> </th>
+                                <th><input type="text" name="course_name" placeholder="Course Name" style="font-family: Consolas; height: 30px;"> </th>
+                                <th><input type="textarea" name="course_desc" placeholder="Description" style="font-family: Consolas; height: 30px;"> </th>
                             </tr>
                             <tr>
                                 <td>Course Code</td>
@@ -60,26 +60,53 @@
                                 <td>Description</td>
                             </tr>
                             <tr>
-                                <th><input type="text" placeholder="Units" value="3.0" style="font-family: Consolas; height: 30px;"> </th>
-                                <th><input type="text" placeholder="Course Name" style="font-family: Consolas; height: 30px;"> </th>
+                                <th><input type="text" name="course_unit" placeholder="Units" value="3.0" style="font-family: Consolas; height: 30px;"> </th>
+                                <th><input type="date" name="dateadded"  value="<?php echo date('Y-m-d'); ?>" placeholder="Date Added" style="font-family: Consolas; height: 30px; width: 100%;"> </th>
                                 <th><label for="assign"></label>
                                     <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;">
-                                        <option value="1">Instrucor 1</option>
-                                        <option value="2">Instrucor 2</option>
-                                        <option value="3">Instrucor 3</option>
+                                        <option value="instructor 1">Instructor 1</option>
+                                        <option value="instructor 2">Instructor 2</option>
+                                        <option value="instructor 3">Instructor 3</option>
                                     </select>
                                 </th>
                             </tr>
                             <tr>
                                 <td>Unit</td>
-                                <td>Course Grade</td>
+                                <td>Date Added</td>
                                 <td>Assign to:</td>
                             </tr>
                             <tr>
-                                <th colspan=3><button type="submit" class="btn_add">ADD</button></th>
+                                <th colspan=3><button type="submit" name="add" class="btn_add">ADD</button></th>
                             </tr>
                         </table>
                     </form>
+
+                    <?php
+                        if(isset($_POST['add'])) {
+                            $c_name = $_POST['course_name'];
+                            $c_code = $_POST['course_code'];
+                            $c_desc = $_POST['course_desc'];
+                            $c_unit = $_POST['course_unit'];
+                            $c_dateadd = $_POST['dateadded'];
+                            $c_assign = $_POST['assign'];
+
+                            $sql = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key)
+                                    VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey')";
+
+                            if (mysqli_query($conn, $sql)) {
+                                ?>
+                                    <script>
+                                        alert("New Record Added!");
+                                    </script>
+                                <?php
+                                echo "<meta http-equiv='refresh' content='0'>";
+                            } else {
+                                echo "Error: " . $sql . "<br>" . $conn->error;
+                            }
+                            $conn->close();
+                               
+                        }
+                    ?>
                 </div>
             </div>
             
@@ -87,43 +114,40 @@
             <hr class="line">       
             <h3>Course Lists</h3>
             <?php
-                $sel = "SELECT * FROM user AS u 
-                INNER JOIN cart AS c 
-                ON (u.EMP_ID = c.C_ID) 
-                WHERE status='Waiting for Approval'";
+                $sel = "SELECT * FROM subject_tbl";
                 $result = $conn->query($sel);
 
                 if ($result->num_rows > 0) 
                     {
                         echo "<table class=course_lists>";
                             echo "<tr>";
-                                echo "<th>Course Name</th>";
                                 echo "<th>Course Code</th>";
+                                echo "<th>Course Name</th>";
                                 echo "<th>Description</th>";
                                 echo "<th>Units</th>";
-                                echo "<th>Course Grade</th>";
-                                echo "<th>Assign/Action</th>";
+                                echo "<th>Date Added</th>";
+                                echo "<th>Assigned to</th>";
                                 echo "<th>Course Key-Code</th>";
+                                echo "<th>Action</th>";
                             echo "</tr>";
-
+                    while($row = $result->fetch_assoc()) 
+						{   
                             echo "<tr>";
-                                echo "<td>Android Development with Android Studio</td>";
-                                echo "<td>ITEL 420</td>";
-                                echo "<td style=width: 30%;>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                                    <br>Sint optio ea ducimus voluptate, fuga consectetur dolores! 
-                                    <br>Perferendis sequi facilis eveniet accusamus, nobis 
-                                    <br>praesentium aut provident odit incidunt explicabo inventore 
-                                    <br>necessitatibus.</td>";
-                                echo "<td>3.0</td>";
-                                echo "<td>Grade 12</td>";
-                                echo "<td>//button assign to instructor or section?</td>";
-                                echo "<td>**generate code</td>";
-                            echo "</tr>";
+                                echo "<td width=7%;>" . $row["subj_code"];
+                                echo "<td width=20%;>" . $row["subj_name"];
+                                echo "<td width=25%;>" . $row["subj_desc"];
+                                echo "<td>" . $row["unit"];
+                                echo "<td>" . $row["date_added"];
+                                echo "<td>" . $row["assignedto"];
+                                echo "<td width=5%;>" . $row["subj_key"];    
+                                echo "<td width=5%;>Action</td>";   
+                        }
+                        echo "</tr>";
                         echo "</table>";
-                    }
+                   
                     } else {
                                         
-                        echo "<CENTER><p  style='color:red' font-size='3em'>0 results</p></CENTER>";
+                        echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
                                     
                     }
                 
