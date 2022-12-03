@@ -32,10 +32,12 @@ h1 {
     height: 5.5em;
 }
 .header-nav {
-    position: relative;
     padding: 0 10px 0;
+    margin-left: 0;
     background-color: var(--main-color);
-    border: 1px black solid;
+    border: 1px yellow solid;
+    border-radius: 8px;
+
 }
 
 .header-nav img {

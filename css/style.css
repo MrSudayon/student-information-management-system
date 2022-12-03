@@ -195,11 +195,11 @@ hr.line {
     justify-content: space-between;
     width: 100%;
 }
-
 .profile .left-pane {
     height: 35vw;
     width: 40%;
     padding: 20px;
+    border: 1px solid black;
 }
 .left-pane .profile-icon img {
     height: 20vh;
@@ -227,21 +227,24 @@ hr.line {
 .profile .right-pane {
     float: right;
     top: 0;
+    border: 1px solid black;
     height: 35vw;
     width:  58%;
+    justify-content: center;
 }
 .right-pane .right-content {
-    padding: 20px;
+    padding: 30px;
 }
 .right-content h4 {
-    margin-top: 10px;
+    margin-top: 15px;
     word-spacing: 1px;
     font-size: medium;
+    cursor: default;
 }
 .right-content .rc-text {
     font-size: 15px;
-    cursor: default;
 }
+
 
 /* Teachers CSS */
 .right button {

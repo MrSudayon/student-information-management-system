@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-        <title>Course Management</title>
+        <title>Student Management</title>
 
 </head>
 
@@ -18,7 +18,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <ul>
         <a href="admin_dashboard.html"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
-        <a href="course_management.html"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Course Management</h4></li></a>
+        <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Course Management</h4></li></a>
         <a href="student_management.html"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
         <a href="#"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
         <a href="../portal.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
@@ -28,39 +28,26 @@
   
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Course Management</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;User Priveleges</h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
-            <div class="smateo-logo">
-                <img src="../images/smateo-shs.jpg">
-            </div>
             <br><hr class="line">       
-            <h1>Table Management</h1>
             <br>
+            <!-- CRUD -->
+            <!-- Create User for Admin or Instructor -->
             <table>
                 <tr>
-                    <th>Course Name</th>
-                    <th>Course Code</th>
-                    <th>Description</th>
-                    <th>Units</th>
-                    <th>Assign</th>
-                    <th>Date Added</th>
-                    <th>Course Key-Code</th>
+                    <th>Name</th>
+                    <th>DoB</th>
+                    <th>Priveleges</th>
+                    <th>Active</th>
                 </tr>
-
                 <tr>
-                    <td>Android Development with Android Studio</td>
-                    <td>ITEL 420</td>
-                    <td style="width: 30%;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                        <br>Sint optio ea ducimus voluptate, fuga consectetur dolores! 
-                        <br>Perferendis sequi facilis eveniet accusamus, nobis 
-                        <br>praesentium aut provident odit incidunt explicabo inventore 
-                        <br>necessitatibus.</td>
-                    <td>3.0</td>
-                    <td>//button assign to instructor</td>
-                    <td>01/01/1899</td>
-                    <td>**generate code</td>
+                    <td>Roy Magnifico</td>
+                    <td>05/00/2000</td>
+                    <td>Student</td>
+                    <td>1</td>
                 </tr>
             </table>
         </div>
