@@ -24,7 +24,7 @@ h3 {
     margin: 10px 0;
 }
 
-/* Course Tabel CSS */
+/* Course Tabel/Add Course Tabeeeeell CSS */
 .course_lists {
     border-collapse: collapse;
     width: 100%;
@@ -54,11 +54,6 @@ h3 {
     justify-content: center;
     height: 10%;
 }
-.head p {
-    text-align: center;
-    margin: 10px 0;
-    font-size: 1.5em;
-}
 .add_course td {
     text-align: center;
     padding: 5px;
@@ -76,6 +71,11 @@ h3 {
     background-color: var(--main-color);
     transition: .5s;
 }
+
+.course_image {
+    padding: 5px 7px;
+}
+
 /* Instructor Tabel CSS */
 
 

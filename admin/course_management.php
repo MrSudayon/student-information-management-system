@@ -43,12 +43,14 @@
             
             
             <div class="add_tbl">
-                <div class="head">
-                    <p>Add Course</p>
-                </div>
+                <h3>Add Course</h3>
                 <div class="content">
                     <form method="POST" action="">
                         <table class="add_course">
+                            <tr>   
+                                <th colspan=3> <label for="course_image" style="font-family: Consolas; height: 30px; font-weight:500;">Select Image:</label>
+                                               <input type="file" name="course_image" accept="image/x-png,image/gif,image/jpeg" class="course_image" id="course_image" style="font-family: Consolas; height: 30px;"></th>
+                            </tr>
                             <tr>
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;"> </th>
                                 <th><input type="text" name="course_name" placeholder="Course Name" style="font-family: Consolas; height: 30px;"> </th>
@@ -61,7 +63,7 @@
                             </tr>
                             <tr>
                                 <th><input type="text" name="course_unit" placeholder="Units" value="3.0" style="font-family: Consolas; height: 30px;"> </th>
-                                <th><input type="date" name="dateadded"  value="<?php echo date('Y-m-d'); ?>" placeholder="Date Added" style="font-family: Consolas; height: 30px; width: 100%;"> </th>
+                                <th><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;"> </th>
                                 <th><label for="assign"></label>
                                     <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;">
                                         <option value="instructor 1">Instructor 1</option>
@@ -72,7 +74,7 @@
                             </tr>
                             <tr>
                                 <td>Unit</td>
-                                <td>Date Added</td>
+                                <td>Department</td>
                                 <td>Assign to:</td>
                             </tr>
                             <tr>
@@ -89,9 +91,11 @@
                             $c_unit = $_POST['course_unit'];
                             $c_dateadd = $_POST['dateadded'];
                             $c_assign = $_POST['assign'];
+                            $department = $_POST['department'];
+                            $c_image = $_POST['course_image'];
 
-                            $sql = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key)
-                                    VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey')";
+                            $sql = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key, dept, subj_image)
+                                    VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image')";
 
                             if (mysqli_query($conn, $sql)) {
                                 ?>
@@ -123,8 +127,10 @@
                             echo "<tr>";
                                 echo "<th>Course Code</th>";
                                 echo "<th>Course Name</th>";
+                                echo "<th>Image</th>";
                                 echo "<th>Description</th>";
                                 echo "<th>Units</th>";
+                                echo "<th>Department</th>";
                                 echo "<th>Date Added</th>";
                                 echo "<th>Assigned to</th>";
                                 echo "<th>Course Key-Code</th>";
@@ -135,12 +141,14 @@
                             echo "<tr>";
                                 echo "<td width=7%;>" . $row["subj_code"];
                                 echo "<td width=20%;>" . $row["subj_name"];
-                                echo "<td width=25%;>" . $row["subj_desc"];
-                                echo "<td>" . $row["unit"];
-                                echo "<td>" . $row["date_added"];
-                                echo "<td>" . $row["assignedto"];
+                                echo "<td width=10%;>" . $row["subj_image"];
+                                echo "<td width=30%;>" . $row["subj_desc"];
+                                echo "<td width=5%;>" . $row["unit"];
+                                echo "<td width=8%;>" . $row["date_added"];
+                                echo "<td width=8%;>" . $row["dept"];
+                                echo "<td width=14%;>" . $row["assignedto"];
                                 echo "<td width=5%;>" . $row["subj_key"];    
-                                echo "<td width=5%;>Action</td>";   
+                                echo "<td width=5%;>Delete/Update</td>";   
                         }
                         echo "</tr>";
                         echo "</table>";
