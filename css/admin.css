@@ -54,9 +54,12 @@ h3 {
     justify-content: center;
     height: 10%;
 }
+.add_course th {
+    padding-top: 10px;
+}
 .add_course td {
     text-align: center;
-    padding: 5px;
+    padding: 0 5px 15px 5px;
 }
 .btn_add {
     width: 100%; 

@@ -45,11 +45,11 @@
             <div class="add_tbl">
                 <h3>Add Course</h3>
                 <div class="content">
-                    <form method="POST" action="">
+                    <form method="POST" action="course_management.php">
                         <table class="add_course">
                             <tr>   
                                 <th colspan=3> <label for="course_image" style="font-family: Consolas; height: 30px; font-weight:500;">Select Image:</label>
-                                               <input type="file" name="course_image" accept="image/x-png,image/gif,image/jpeg" class="course_image" id="course_image" style="font-family: Consolas; height: 30px;"></th>
+                                               <input type="file" name="course_image" accept="image/*,.pdf" class="course_image" id="course_image" style="font-family: Consolas; height: 30px;"></th>
                             </tr>
                             <tr>
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;"> </th>
@@ -84,30 +84,43 @@
                     </form>
 
                     <?php
+                        include_once("../dbase/db_connect.php");
+
                         if(isset($_POST['add'])) {
                             $c_name = $_POST['course_name'];
                             $c_code = $_POST['course_code'];
                             $c_desc = $_POST['course_desc'];
-                            $c_unit = $_POST['course_unit'];
-                            $c_dateadd = $_POST['dateadded'];
+                            $c_unit = $_POST['course_unit'];     
+                            $d=mktime(11, 14, 54, 8, 12, 2014);
+                            $c_dateadd = date("Y-m-d h:i:sa", $d);       
                             $c_assign = $_POST['assign'];
                             $department = $_POST['department'];
                             $c_image = $_POST['course_image'];
+                            
+                            
 
-                            $sql = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key, dept, subj_image)
-                                    VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image')";
-
-                            if (mysqli_query($conn, $sql)) {
+                            try {
+                                $sql = mysqli_query($conn, "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key, dept, subj_image, archive)
+                                VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image',0)");
+                
                                 ?>
                                     <script>
                                         alert("New Record Added!");
                                     </script>
                                 <?php
                                 echo "<meta http-equiv='refresh' content='0'>";
-                            } else {
-                                echo "Error: " . $sql . "<br>" . $conn->error;
+                                /*
+                                $sql = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key, dept, subj_image, archive)
+                                VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image',0)";
+                                
+                            $sql->mysqli_query($conn,$sql);
+                            */
+                            } catch (mysqli_sql_exception $e) {
+                                var_dump($e);
+                                exit;
                             }
-                            $conn->close();
+                           
+
                                
                         }
                     ?>
@@ -118,7 +131,7 @@
             <hr class="line">       
             <h3>Course Lists</h3>
             <?php
-                $sel = "SELECT * FROM subject_tbl";
+                $sel = "SELECT * FROM subject_tbl WHERE archive=0";
                 $result = $conn->query($sel);
 
                 if ($result->num_rows > 0) 
@@ -159,7 +172,7 @@
                                     
                     }
                 
-                            $conn->close();
+                    $conn->close();
             ?>
                 
         </div>
