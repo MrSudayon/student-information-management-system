@@ -150,7 +150,7 @@ h2 {
     margin: 10px 5px 0;
 }
 .dashb_content h1 {
-    margin: 3px 25px 5px;
+    margin: 3px 25px 15px;
 }
 hr.line {
     border: 1px solid var(--main-color);
@@ -206,10 +206,9 @@ hr.line {
     width: 100%;
 }
 .profile .left-pane {
-    height: 35vw;
     width: 40%;
     padding: 20px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 .left-pane .profile-icon img {
     height: 20vh;
@@ -237,8 +236,7 @@ hr.line {
 .profile .right-pane {
     float: right;
     top: 0;
-    border: 1px solid black;
-    height: 35vw;
+    /*border: 1px solid black;*/
     width:  58%;
     justify-content: center;
 }
@@ -246,14 +244,36 @@ hr.line {
     padding: 30px;
 }
 .right-content h4 {
-    margin-top: 15px;
     word-spacing: 1px;
+    text-align: right;
+    padding-right: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: medium;
     cursor: default;
 }
 .right-content .rc-text {
     font-size: 15px;
 }
+.student_info {
+    display: flex;
+    flex-direction: flex-start;
+}
+.student_info td {
+    padding: 3px 0;
+    
+}
+.student_info input[type="text"] {
+    width: 100%;
+    font-weight: 600;
+}
+.student_info h5 {
+    font-weight: 500;
+    font-style: italic;
+}
+.right-title {
+    margin: 5px 10px; 
+}
+
 
 
 /* Teachers CSS */
@@ -297,7 +317,10 @@ hr.line {
     .side-menu h4 {
         display: none;
     }
-
+    .dashb_content h1 {
+        font-size: small;
+        margin: 3px 25px 10px;
+    }
     /*Account Settings*/
     .profile {
         display: flex;
@@ -332,23 +355,27 @@ hr.line {
     
     .profile .right-pane {
         /*border: 1px solid black;*/
-        height: 100%;
+        margin-top: 5px;
         width: 90%;
     }
     .right-pane .right-content {
-        padding: 20px;
+        padding: 10px;
     }
     .right-content h4 {
-        margin-top: 0;
         word-spacing: 1px;
         font-size: small;
     }
     .right-content .rc-text {
         font-size: 15px;
-        margin-bottom: 10px;
         cursor: default;
     }
-
+    .right-title {
+        font-size: 15px;
+        text-align: center;
+    }
+    .right-title img {
+        margin-top: 5px;
+    }
     /* Subject CSS */
     
 }

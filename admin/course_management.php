@@ -1,5 +1,5 @@
 <?php
-    include "../dbase/db_connect.php";
+    include_once ("../dbase/db_connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +84,7 @@
                     </form>
 
                     <?php
-                        include_once("../dbase/db_connect.php");
+                        
 
                         if(isset($_POST['add'])) {
                             $c_name = $_POST['course_name'];
@@ -92,7 +92,7 @@
                             $c_desc = $_POST['course_desc'];
                             $c_unit = $_POST['course_unit'];     
                             $d=mktime(11, 14, 54, 8, 12, 2014);
-                            $c_dateadd = date("Y-m-d h:i:sa", $d);       
+                            $c_dateadd = date("Y-m-d h:i", $d);       
                             $c_assign = $_POST['assign'];
                             $department = $_POST['department'];
                             $c_image = $_POST['course_image'];
@@ -157,8 +157,8 @@
                                 echo "<td width=10%;>" . $row["subj_image"];
                                 echo "<td width=30%;>" . $row["subj_desc"];
                                 echo "<td width=5%;>" . $row["unit"];
-                                echo "<td width=8%;>" . $row["date_added"];
                                 echo "<td width=8%;>" . $row["dept"];
+                                echo "<td width=8%;>" . $row["date_added"];
                                 echo "<td width=14%;>" . $row["assignedto"];
                                 echo "<td width=5%;>" . $row["subj_key"];    
                                 echo "<td width=5%;>Delete/Update</td>";   

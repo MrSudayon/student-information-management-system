@@ -104,7 +104,7 @@
         <div class="row">
             <div class="col-3 col-s-12">	
 
-                <a href="../courses/course1_view.html">
+                <a href="../courses/course1_view.php?subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
                 <div class="subj-card"style="border-radius:25px">
                     <div class="header" style="border-radius:25px 25px 0px 0px" > 
                         <h1><?php echo strtoupper ($row['subj_name']); ?></h1>
