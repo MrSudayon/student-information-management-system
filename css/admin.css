@@ -24,6 +24,47 @@ h3 {
     margin: 10px 0;
 }
 
+/* Dashboard CSS */
+
+.boxes {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+.card {
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5em;
+    letter-spacing: .3rem;
+    padding: 15px;
+
+    height: 280px;
+    width: 280px;
+    background-color: rgb(122, 251, 255);
+    border: 2px rgb(0, 136, 129) solid;
+    border-radius: 15px;
+}
+@media screen and (max-width: 400px) {
+    .boxes {
+        gap: 30px;
+    }
+    .card h3 {
+        font-size: 1em;
+        margin: 0 0;
+    }
+    .card {
+        font-size: .8em;
+        letter-spacing: 1px;
+        padding: 8px;
+
+        height: 120px;
+        width: 120px;
+    }
+}
+
+
 /* Course Tabel/Add Course Tabeeeeell CSS */
 
 .update_btn {
