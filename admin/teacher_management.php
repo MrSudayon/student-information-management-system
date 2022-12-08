@@ -34,7 +34,7 @@
     <!-- Contents -->
         <div class="dashb_content">
             <div class="smateo-logo">
-                <img src="../images/smateo-shs.jpg">
+                <img src="../images/smateo-shs.png">
             </div>
             <br><hr class="line">       
             <h1>Table Management</h1>

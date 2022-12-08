@@ -29,12 +29,6 @@ $sub_img = "";
             $sub_prof = $row['assignedto'];
             $dept = $row['dept'];
         }
-    
-    
-
-
-       
-    
 ?>
 
 <!DOCTYPE html>

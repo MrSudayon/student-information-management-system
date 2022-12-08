@@ -46,7 +46,7 @@
     <!-- Contents -->
         <div class="dashb_content">
             <div class="smateo-logo">
-                <img src="../images/smateo-shs.jpg">
+                <img src="../images/smateo-shs.png">
             </div>
             <br><hr class="line">       
             
@@ -161,18 +161,19 @@
                 if ($result->num_rows > 0) 
                     {   
                         echo "<table class=course_lists>";
-                            echo "<tr>";
-                                echo "<th>Course Code</th>";
-                                echo "<th>Course Name</th>";
-                                echo "<th>Image</th>";
-                                echo "<th>Description</th>";
-                                echo "<th>Units</th>";
-                                echo "<th>Department</th>";
-                                echo "<th>Date Added</th>";
-                                echo "<th>Assigned to</th>";
-                                echo "<th>Course Key-Code</th>";
-                                echo "<th>Action</th>";
-                            echo "</tr>";
+                            echo "<tbody>";
+                            echo "<tr bgcolor=#363636 style='color:white'>";
+                            echo "<th>Course Code</th>";
+                            echo "<th>Course Name</th>";
+                            echo "<th>Image</th>";
+                            echo "<th>Description</th>";
+                            echo "<th>Units</th>";
+                            echo "<th>Department</th>";
+                            echo "<th>Date Added</th>";
+                            echo "<th>Assigned to</th>";
+                            echo "<th>Course Key-Code</th>";
+                            echo "<th colspan=2>Action</th>";
+                        echo "</tr>";
                     while($row = $result->fetch_assoc()) 
 						{   
                             echo "<tr>";
@@ -189,15 +190,13 @@
                                 echo "<td width=8%;>" . $row["date_added"];
                                 echo "<td width=14%;>" . $row["assignedto"];
                                 echo "<td width=5%;>" . $row["subj_key"];    
-                                echo "<td width=5%;>"?> 
-                                                    <form method="GET">
-                                                        <a href="../actions/update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>" class="update_btn">UPDATE</a>
-                                                        <a href="../actions/remove.php?subj_code=<?php echo ($row['subj_code']); ?>" class="delete_btn">REMOVE</a> 
-                                                    </form>
-                                                    <?php "</td>";   
-                                                
+                                ?> 
+                                    <td><a href="../actions/update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>" class="update_btn">UPDATE</a></td>
+                                    <td><a href="../actions/remove.php?id=<?php echo ($row['subj_code']); ?>" class="delete_btn">REMOVE</a></td>
+                                <?php
                         }
-                        echo "</tr>";
+                            echo "</tr>";
+                            echo "</tbody>";
                         echo "</table>";
                    
                     } else {

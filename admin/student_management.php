@@ -1,6 +1,8 @@
+<?php 
+    include "../dbase/db_connect.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +10,6 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
         <title>Student Management</title>
-
 </head>
 
 <body>
@@ -31,45 +32,75 @@
 <div id="main">
     <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student Management</h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
-    <!-- Contents -->
-        <div class="dashb_content">
+   <!-- Contents -->
+   <div class="dashb_content">
             <div class="smateo-logo">
-                <img src="../images/smateo-shs.jpg">
+                <img src="../images/smateo-shs.png">
             </div>
             <br><hr class="line">       
-            <h1>Table Management</h1>
-            <br>
-            <table class="student_lists">
-                <tr>
-                    <th>Student Name</th>
-                    <th>Year & Section</th>
-                    <th>Units</th>
-                    <th>BoD</th>
-                    <th>SF 10</th>
-                    <th>View Grades</th>
-                    <th>Active</th>
-                </tr>
-                <tr>
-                    <td>Roy Magnifico</td>
-                    <td>BSIT 4-A-3</td>
-                    <td>*total units count</td>
-                    <td>05/00/2000</td>
-                    <td>//button view or dl form137(sf10)</td>
-                    <td>//button view or dl grade</td>
-                    <td>1</td>
-                </tr>
-            </table>
-        </div>
+    
+            <h3>Students Lists</h3>
+            <?php
+                $ins =  "SELECT * FROM user 
+                        WHERE UTYPE = 3";
+                $res = $conn->query($ins);
+
+                if ($res->num_rows > 0) 
+                {
+                        echo "<table class=course_lists >";
+                            echo "<center>";
+                            echo "<tbody>";
+                            echo "<tr bgcolor=#363636 style='color:white'>";
+                                echo "<th>Grade</th>";
+                                echo "<th>Department</th>";
+                                echo "<th>LRN</th>";
+                                echo "<th>Last Name</th>";
+                                echo "<th>First Name</th>";
+                                echo "<th>Middle initial</th>";
+                                echo "<th>Suffix</th>";
+                                echo "<th>Section</th>";
+                                echo "<th>Date of Birth</th>";
+                                echo "<th>Download Grades</th>";
+                                echo "<th>Is Enrolled</th>";
+                                echo "<th colspan=2>Action</th>";
+                            echo "</tr>";
+                    while($row = $res->fetch_assoc()) 
+						{   
+                            echo "<tr>";
+                                echo "<td width=5%;>12</td>";
+                                echo "<td width=8%;>STEM</td>";
+                                echo "<td width=20%;>" . $row['LRN'];
+                                echo "<td width=15%;>" . $row['LAST']; 
+                                echo "<td width=15%>" . $row['FIRST'];
+                                echo "<td width=7%;>" . $row['MID'];
+                                echo "<td> Jr. </td>";
+                                echo "<td width=5%;> 3 </td>";
+                                echo "<td>12-23-2022</td>";
+                                echo "<td width=10%;> .pdf .docx </td>";    
+                                echo "<td>No</td>";
+                                ?> 
+                                    <td><a href="../actions/update.php?id=<?php echo ($row['LRN']);?>" class="update_btn">UPDATE</a></td>
+                                    <td><a href="../actions/remove.php?id=<?php echo ($row['LRN']); ?>" class="delete_btn">REMOVE</a></td>
+                                <?php 
+                        }
+                            echo "</tr>";
+                            echo "</tbody>";
+                        echo "</table>";
+                   
+                    } else {
+                                        
+                        echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
+                                    
+                    }
+                
+                    $conn->close();
+            ?>
     <!-- Contents -->
-</div>
+    </div>
 <!-- Main -->
-  
+ </div>
 
 
-
-
-
-  
 <script src="../sidebar_nav.js"></script>
 
 </body>

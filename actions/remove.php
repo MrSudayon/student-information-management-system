@@ -1,7 +1,7 @@
 <?php 
 include ("../dbase/db_connect.php");
 
-$subj_code = $_GET ['subj_code'];
+$subj_code = $_GET ['id'];
 
 try {
 
