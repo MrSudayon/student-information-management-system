@@ -1,7 +1,7 @@
 <?php 
 include "../dbase/db_connect.php";
 
-$sub_id = "";
+$id = "";
 $sub_code = "";
 $sub_name = "";
 $sub_desc = "";
@@ -11,17 +11,17 @@ $dept = "";
 $sub_img = "";
 
     if(isset($_GET['id'])) {
-        $sub_id = $_GET['id'];
+        $id = $_GET['id'];
         $sub_code = $_GET['subj_code'];
     }
-        $sql = "SELECT * FROM subject_tbl WHERE subj_id = '$sub_id' ";
+        $sql = "SELECT * FROM subject_tbl WHERE subj_id = '$id' ";
         $res = $conn->query($sql);
 
         if ($res->num_rows > 0) 
         {
             $row = mysqli_fetch_array($res);
 
-            $sub_id = $row['subj_id'];
+            $id = $row['subj_id'];
             $sub_code = $row['subj_code'];
             $sub_name = $row['subj_name'];
             $sub_desc = $row['subj_desc'];
@@ -83,7 +83,7 @@ $sub_img = "";
                     <form method="POST" action="../actions/update.php" enctype='multipart/form-data'> 
                         <table class="add_course">
                             <tr>
-                                <center><?php echo $sub_id; echo $sub_code; ?></center>
+                                <th colspan=3><input type="text" name="sub_id" value="<?php echo $id; echo $sub_code; ?>" style="font-family: Consolas; height: 30px;"></th>
                             </tr>
                             <tr>
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;" value="<?php echo $sub_code; ?>" > </th>
@@ -117,11 +117,10 @@ $sub_img = "";
                         </table>
                     </form>
 
-                    <?php
-
-                    
+                    <?php            
 
                         if(isset($_POST['upd'])) {
+                            $c_id = $_POST['sub_id'];
                             $c_name = $_POST['course_name'];
                             $c_code = $_POST['course_code'];
                             $c_desc = $_POST['course_desc'];
@@ -130,19 +129,22 @@ $sub_img = "";
                             $department = $_POST['department'];
                             
 
-                            
-                            $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', unit = '$c_unit', 
-                                                        assignedto = '$c_assign', dept = '$department' WHERE subj_id = '$sub_id' OR subj_code ='$sub_code'";
-                            $conn->query($upd);               
-                            
-                            mysqli_close($conn);
-                            ?>
-                                <script>
-                                    window.location.href = "../admin/course_management.php";
-                                    alert("Record Updated!");
-                                </script>
-                            <?php
-                           
+                            try {
+                                $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', unit = '$c_unit', 
+                                                            assignedto = '$c_assign', dept = '$department' WHERE subj_id = '$id' AND archive = 0 ";
+                                $conn->query($upd);
+
+
+                                ?>
+                                    <script>
+                                        window.location.href = "../admin/course_management.php";
+                                        alert("Record Updated!");
+                                    </script>
+                                <?php
+                            } catch (mysqli_sql_exception $e) {
+                                var_dump($e);
+                                exit;
+                            }
                         }
                     
                     ?>

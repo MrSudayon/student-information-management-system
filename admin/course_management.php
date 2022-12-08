@@ -29,10 +29,11 @@
 <div class="side-menu" id="mySidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <ul>
-        <a href="admin_dashboard.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
+    <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
+        <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Course Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <a href="#"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
+        <a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
         <a href="../index.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
@@ -92,7 +93,13 @@
                     </form>
 
                     <?php
-                    
+                     $sub_code = '';
+                     $sub_name = '';
+                     $sub_unit = '';
+                     $sub_desc = '';
+                     $sub_prof = '';
+                     $dept = '';
+                     $sub_img = '';
 
                         if(isset($_POST['add'])) {
                             $c_name = $_POST['course_name'];
@@ -125,7 +132,6 @@
                                 
                                 
                             
-                            try {
                                 $add = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key, dept, subj_image, archive)
                                 VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image',0)";
                                 $conn->query($add);
@@ -137,10 +143,7 @@
                                 echo "<meta http-equiv='refresh' content='0'>";
                                 mysqli_free_result($add);
 
-                            } catch (mysqli_sql_exception $e) {
-                                var_dump($e);
-                                exit;
-                            }
+                       
                      
 
                         }
