@@ -91,23 +91,18 @@
         <!-- Boxes -->
 
         <!-- Subjects Contents -->
+        <div class="row">
         <?php
-        
         $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 ");
-
     
-
         while($row=mysqli_fetch_array($sql)) {
         ?>
-
-
-        <div class="row">
             <div class="col-3 col-s-12">	
 
                 <a href="../courses/course_view.php?subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
                 <div class="subj-card"style="border-radius:25px">
                     <div class="header" style="border-radius:25px 25px 0px 0px" > 
-                        <h1><?php echo strtoupper ($row['subj_name']); ?></h1>
+                        <h1><?php echo strtoupper ($row['subj_code']); ?></h1>
                     <p><input type="hidden" value="<?php echo ($row['subj_id']); ?>" name="subj_id"></p>
                     <p><font color="black"><?php echo ($row['subj_desc']); ?></font></p>
                     </div>
@@ -124,6 +119,8 @@
         } 
         ?>
         </div>
+
+       
         <!-- Subjects Contents -->
 
 

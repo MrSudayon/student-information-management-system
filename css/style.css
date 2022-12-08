@@ -1,6 +1,6 @@
 :root {
-    --main-color: #60b8ff;
-    /*--main-color: #5ef286; Green Theme*/ 
+    --main-color:#35CEFF;
+    /*--main-color:  #60b8ff; */ 
     --dark-color: #11152a;
     --light-color: #d0d4ed;
 }
@@ -41,7 +41,7 @@ h2 {
     height: 100%;
     width: 0;
     position: fixed;
-    background-color: var(--main-color);
+    background: linear-gradient(0.25turn, #1C96D8, #0076B5, #35CEFF);
     z-index: 1;
     top: 0;
     left: 0;
