@@ -8,7 +8,6 @@ $sub_desc = "";
 $sub_unit = "";
 $sub_prof = "";
 $dept = "";
-$sub_img = "";
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -78,7 +77,7 @@ $sub_img = "";
                     <form method="POST" action="../actions/update.php" enctype='multipart/form-data'> 
                         <table class="add_course">
                             <tr>
-                                <th colspan=3><input type="text" name="sub_id" value="<?php echo $id; echo $sub_code; ?>" style="font-family: Consolas; height: 30px;"></th>
+                                <th colspan=3><input type="text" name="sub_id" value="<?php echo $id; ?>" style="font-family: Consolas; height: 30px;"></th>
                             </tr>
                             <tr>
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;" value="<?php echo $sub_code; ?>" > </th>
@@ -114,6 +113,13 @@ $sub_img = "";
 
                     <?php            
 
+                        $sub_code = '';
+                        $sub_name = '';
+                        $sub_desc = '';
+                        $sub_unit = '';
+                        $sub_prof = '';
+                        $dept = '';
+
                         if(isset($_POST['upd'])) {
                             $c_id = $_POST['sub_id'];
                             $c_name = $_POST['course_name'];
@@ -125,8 +131,7 @@ $sub_img = "";
                             
 
                             try {
-                                $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', unit = '$c_unit', 
-                                                            assignedto = '$c_assign', dept = '$department' WHERE subj_id = '$id' AND archive = 0 ";
+                                $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', unit = '$c_unit', assignedto = '$c_assign', dept = '$department' WHERE subj_id = '$c_id' AND archive = 0 ";
                                 $conn->query($upd);
 
 
