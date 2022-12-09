@@ -51,7 +51,6 @@ header {
 }
 .portal-nav-collapse a {
     text-decoration: none;
-    margin-top: 10px;
 }
 .nav-tabs {
     margin: 0 10px 0;
@@ -216,6 +215,12 @@ footer {
 .footer-logo {
     padding: 20px 0 50px 120px;
     width: 50%;
+    display: flex;
+}
+#address {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1em;
+    padding: 50px 50px 50px 20px;
 }
 .footer-links {
     padding: 20px 120px 50px 0;

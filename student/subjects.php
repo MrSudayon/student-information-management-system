@@ -89,40 +89,37 @@
         <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
     <div class="dashb_content">
-        <br><hr class="line">
-        <!-- Boxes -->
+        <hr class="line">
 
         <!-- Subjects Contents -->
         <div class="row">
-        <?php
-        $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 ");
-    
-        while($row=mysqli_fetch_array($sql)) {
-        ?>
-            <div class="col-3 col-s-12">	
-            <form method="GET">
-                <a href="../courses/course_view.php?subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
-                <div class="subj-card"style="border-radius:25px">
-                    <div class="header" style="border-radius:25px 25px 0px 0px" > 
-                        <h1><?php echo strtoupper ($row['subj_code']); ?></h1>
-                    <p><input type="hidden" value="<?php echo ($row['subj_id']); ?>" name="subj_id"></p>
-                    
-                    </div>
-                    <div class="subj" style="border-radius: 0px 0px 25px 25px">
-                        <center>
-                        <img src="../images/subj_imgs/<?php echo ($row['subj_image']); ?>">
-                        </center>
-                    </div>
-                </div> 
-                </a>
-            </form>
-            </div>
-        <?php
-        } 
-        ?>
+            <?php
+            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 ");
+        
+            while($row=mysqli_fetch_array($sql)) {
+            ?>
+                <div class="col-3 col-s-12">	
+                <form method="GET">
+                    <a href="../courses/course_view.php?subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
+                    <div class="subj-card"style="border-radius:25px">
+                        <div class="header" style="border-radius:25px 25px 0px 0px" > 
+                            <h1><?php echo strtoupper ($row['subj_code']); ?></h1>
+                        <p><input type="hidden" value="<?php echo ($row['subj_id']); ?>" name="subj_id"></p>
+                        
+                        </div>
+                        <div class="subj" style="border-radius: 0px 0px 25px 25px">
+                            <center>
+                            <img src="../images/subj_imgs/<?php echo ($row['subj_image']); ?>">
+                            </center>
+                        </div>
+                    </div> 
+                    </a>
+                </form>
+                </div>
+            <?php
+            } 
+            ?>
         </div>
-
-       
         <!-- Subjects Contents -->
 
 

@@ -36,7 +36,7 @@
     <button class="openbtn1" onclick="openNav1()">☰</button> 
     <!-- Contents -->
     <div class="dashb_content">
-        <br><hr class="line">       
+        <hr class="line">       
 
         <div class="right">
             <div class="compose-msg">

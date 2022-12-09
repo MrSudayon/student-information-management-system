@@ -36,7 +36,7 @@
     <!-- Contents -->
     <div class="dashb_content">
 
-        <br><hr class="line">       
+        <hr class="line">       
         <h1> Account Settings </h1>
         <div class="profile">
             
