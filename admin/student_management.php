@@ -1,5 +1,5 @@
 <?php 
-    include "../dbase/db_connect.php";
+    include "../php/dbase_config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
         <title>Student Management</title>
@@ -17,6 +18,9 @@
 <!-- sidebar -->
 <div class="side-menu" id="mySidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="smateo-logo">
+        <img src="../images/smateo-shs.png" style="width: 70%;">
+    </div>
     <ul>
         <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
         <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
@@ -34,11 +38,25 @@
     <button class="openbtn1" onclick="openNav1()">☰</button>
    <!-- Contents -->
    <div class="dashb_content">
-            <div class="smateo-logo">
-                <img src="../images/smateo-shs.png">
-            </div>
-            <br><hr class="line">       
-    
+            
+            <br><hr class="line">     
+            <center>
+
+            <form method="POST" action="../admin/code_generator.php">
+                <?php                       
+                $qry = mysqli_query($conn,"SELECT * FROM tbl_code order by ID DESC LIMIT 1");
+                while($row=mysqli_fetch_assoc($qry)) {
+                ?>        
+                    <center>
+                    <label class="ccode">Current Code: </label>
+                    <input class="txtcode" name="current_code" value="<?php echo $row['ACCESSCODE'];?>">
+                    </center>
+                <?php    
+                }
+                ?>
+                <button type="submit" class="gencode" name="gencode">Generate New Code</button>
+                </center>
+            <br>
             <h3>Students Lists</h3>
             <?php
                 $ins =  "SELECT * FROM user 

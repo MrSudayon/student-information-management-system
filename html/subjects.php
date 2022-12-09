@@ -1,5 +1,5 @@
 <?php
-    include "../dbase/db_connect.php";
+    include "../php/dbase_config.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/smateo-shs.png">
     <title>Subjects</title>
 
 <style type="text/css">
@@ -66,6 +67,9 @@
 <!-- sidebar -->
 <div class="side-menu" id="mySidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="smateo-logo">
+        <img src="../images/smateo-shs.png" style="width: 70%;">
+    </div>
     <ul >
         <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
         <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
@@ -98,7 +102,7 @@
         while($row=mysqli_fetch_array($sql)) {
         ?>
             <div class="col-3 col-s-12">	
-
+            <form method="GET">
                 <a href="../courses/course_view.php?subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
                 <div class="subj-card"style="border-radius:25px">
                     <div class="header" style="border-radius:25px 25px 0px 0px" > 
@@ -113,7 +117,7 @@
                     </div>
                 </div> 
                 </a>
-
+            </form>
             </div>
         <?php
         } 

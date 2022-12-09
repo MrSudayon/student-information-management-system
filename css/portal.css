@@ -7,9 +7,10 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
-    height: 100%;
-    width: 99%;
     background-color: rgb(233, 252, 255);
+    margin: 0 0;
+    display: flex;
+    flex-direction: column;
 }
 
 h2 {
@@ -23,23 +24,14 @@ h1 {
     color: var(--dark-color);
     font-size: 1.7rem;
 }
-
-.dashb_content {
+header {
+    display: block;
     position: relative;
     width: 100%;
 }
-.content_header {
-    height: 5.5em;
-}
 .header-nav {
-    padding: 0 10px 0;
-    margin-left: 0;
-    background-color: var(--main-color);
-    border: 1px yellow solid;
-    border-radius: 8px;
-
+    padding: 10px 50px;
 }
-
 .header-nav img {
     margin-top: 10px;
 }
@@ -52,8 +44,6 @@ h1 {
 
 .portal-nav-collapse {
     margin-top: -20px;
-    position: relative;
-    height: 3em;
 }
 .portal-nav-collapse ul {
     list-style: none;
@@ -64,15 +54,13 @@ h1 {
     margin-top: 10px;
 }
 .nav-tabs {
-    columns: 3;
-    padding: 0 10px 0;
+    margin: 0 10px 0;
+    display: flex;
+    justify-content: center;
     float: left;
     width: 8%;
-    margin-right: 5px;
-    margin-bottom: 1.5em;
     border-radius: 5px;
     color: black;
-    background-color: aliceblue;
     transition: .3s;
 }
 .nav-tabs:hover {
@@ -100,61 +88,50 @@ h1 {
 
 
 @media screen and (min-width: 450px)  {
-    
-    .content_header {
+    header {
         left: 0;
-        width: 100%;
     }
-
     .smshs {
         margin-top: -75px;
     }
     .portal-wallp {
         padding: 0;
     }
-    .dashb_content {
-        width: 99%;
-        padding: 0;
-        margin: 0 auto;
-    }
-    .dashb_content .row {
+    .row {
         margin-top: 0%;
         height: 100%;
         width: 99%;
         padding: 0;
     }
     .program-offered {
-        width: 99%;
         padding: 0;
     }
     .program-card {
         width: 80%;
     }
-    
 }
-
 
 .header-nav, .portal-nav-collapse a {
     font-family: 'Tw Cen MT';
 }
-.news {
-    width: 100%;
-    margin-top: 5em;
+
+main {
+    display: block;
+    overflow: hidden;
+    flex: 1 0 auto;
 }
-.news, .portal-wallp img { 
+.portal-wallp {
+    width: 100%;
     display: flex;
-    background-color: rgba(216, 216, 216, 0.116);
-    height: 30vw;
     justify-content: center;
-    align-content: center;
+}
+.portal-wallp img { 
+    height: 30vw;
 }
 
 
 /* Program Offered */
 .row {
-    position: relative;
-    width: 140vh;
-    padding: 0 120px 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -187,23 +164,15 @@ h1 {
     background-color:var(--main-color);
 }
 .a2 {
-    background-color: lightcyan;
+    background-color: lightblue;
 }
 .a3 {
-    background-color: lightslategray;
+    background-color: lightcoral;
 }
 .a4 {
     background-color: lightseagreen;
 }
-.a5 {
-    background-color: lightsalmon;
-}
-.a6 {
-    background-color: lightblue;
-}
-.a7 {
-    background-color: lightcoral;
-}
+
 .aside img {
     margin-top: 5px;
 }
@@ -234,4 +203,45 @@ h1 {
     margin-bottom: 1em;
   }
 
-
+footer {
+    margin: 0;
+    display: block;
+    background-color: #ccc;
+}
+.footer-content {
+    margin: 0;
+    justify-content: center;
+    display: flex; 
+}
+.footer-logo {
+    padding: 20px 0 50px 120px;
+    width: 50%;
+}
+.footer-links {
+    padding: 20px 120px 50px 0;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+.footer-links ul {
+    padding: 0 40px 0 120px;
+    list-style: none;
+}
+.footer-links li {
+    padding: 5px 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+    white-space: nowrap;
+}
+.footer-links a {
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: .9em;
+    color: black;
+    transition: .5s;
+}
+.footer-links a:hover {
+    color: var(--main-color);
+    transition: .5s;
+}

@@ -1,5 +1,5 @@
 <?php 
-include ("../dbase/db_connect.php");
+include "../php/dbase_config.php";
 
 $subj_code = $_GET ['id'];
 

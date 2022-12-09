@@ -1,5 +1,5 @@
 <?php
-    include ("../dbase/db_connect.php");
+    include "../php/dbase_config.php";
     
     $id = '';
     $sub_code = '';
@@ -18,6 +18,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
         <title>Course Management</title>
@@ -28,6 +29,9 @@
 <!-- sidebar -->
 <div class="side-menu" id="mySidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="smateo-logo">
+        <img src="../images/smateo-shs.png" style="width: 70%;">
+    </div>
     <ul>
     <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
         <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
@@ -111,7 +115,7 @@
                             $department = $_POST['department'];
 
                             $c_image = $_FILES['file']['name'];
-							$target_dir = "/images/subj_imgs/";
+							$target_dir = "./images/subj_imgs/";
 
 							// Select file type
 							$imageFileType = pathinfo($target_dir,PATHINFO_EXTENSION);

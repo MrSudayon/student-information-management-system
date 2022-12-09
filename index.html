@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/portal.css">
+        <link rel="icon" href="images/smateo-shs.png">
         <title>San Mateo SHS Portal</title>
     </head>
 
@@ -52,30 +53,27 @@
 </style>
 
     <!-- Contents -->
-    <div class="dashb_content">
-        <div class="content_header">
-            <div class="header-nav">
-                <img src="images/smateo-shs.png" style="height:70px; width:70px; margin-right: 8px;"><h2 class="smshs">San Mateo Senior High School Portal (SM SHS)</h2>
-            </div>    
-            <div class="portal-nav-collapse">
-                <ul>
-                    <li><a class="nav-tabs" href="index.html">Home</a></li>
-                    <li><a class="nav-tabs" href="#" style="white-space: nowrap;">About Us</a></li>
-                    <!-- <li><a href="#"> Academics </a></li> -->
-                    <li><a class="nav-tabs" href="#">Contact</a></li>
-                    <li><a class="student-portal" href="login.php"> Student Portal </a></li>
-                </ul>
-            </div>
+    <header>
+        <div class="header-nav">
+            <img src="images/smateo-shs.png" style="height:70px; width:70px; margin-right: 8px;"><h2 class="smshs">San Mateo Senior High School Portal (SM SHS)</h2>
+        </div>    
+        <div class="portal-nav-collapse">
+            <ul>
+                <li><a class="nav-tabs" href="index.html">Home</a></li>
+                <li><a class="nav-tabs" href="#" style="white-space: nowrap;">About Us</a></li>
+                <!-- <li><a href="#"> Academics </a></li> -->
+                <li><a class="nav-tabs" href="#">Contact</a></li>
+                <li><a class="student-portal" href="login.php"> Student Portal </a></li>
+            </ul>
         </div>
-       
-        
-        <br>
-        <div class="news">
-            <div class="portal-wallp">
-                <img src="images/smateo-wallpaper.jpg">
-            </div>
+    </header>
+    
+    
+    <br>
+    <main>
+        <div class="portal-wallp">
+            <img src="images/smateo-wallpaper.jpg">
         </div>
-
         
         <!-- Program Offered -->
         <div class="program-offered">
@@ -140,7 +138,7 @@
                     <div class="program-card"style="border-radius:25px">
                         <div class="aside a4" style="border-radius: 25px 25px 25px 25px">
                             <center>
-                                <h1>TECHVOC</h1>
+                                <h1>TVL</h1>
                                 <p><input type="hidden" value="STEM" name="subj_id"></p>
                             </center>
                             <img style="width:120px;height:120px" src="images/notebook.png">
@@ -152,85 +150,56 @@
                                 information technology and preparation in health, social and other community development services, business, hotel, and 
                                 restaurant services.</p>
                         </div>
-                </div>
-
-                <div class="col-3 col-s-12"> 
-                    <div class="program-card"style="border-radius:25px">
-                        <div class="aside a5" style="border-radius: 25px 25px 25px 25px">
-                            <center>
-                                <h1>COMP PROG</h1>
-                                <p><input type="hidden" value="STEM" name="subj_id"></p>
-                            </center>
-                            <img style="width:120px;height:120px" src="images/notebook.png">
-                        </div>
-                    </div> 
-                    <button type="button" class="collapsible">Computer Programming</button>
-                        <div class="content">
-                            <p>The course will include designing, coding, debugging, testing, and documenting programs using a high level programming language. 
-                                The course is intended to prepare students for a programming-oriented academic path. 
-                                This course is included in the Field of Study Curriculum for Computer Science.</p>
-                        </div>
-                </div>
-
-                <div class="col-3 col-s-12"> 
-                    <div class="program-card"style="border-radius:25px">
-                        <div class="aside a6" style="border-radius: 25px 25px 25px 25px">
-                            <center>
-                                <h1>COOKERY</h1>
-                                <p><input type="hidden" value="STEM" name="subj_id"></p>
-                            </center>
-                            <img style="width:120px;height:120px" src="images/notebook.png">
-                        </div>
-                    </div> 
-                    <button type="button" class="collapsible">Culinary Arts</button>
-                        <div class="content">
-                            <p>A Culinary Arts course trains aspirants to prepare, cook as well as present food/ meals in an effective and attractive manner. 
-                                Pursuing courses in the field of Culinary Arts is an ideal choice for aspirants who want to make a career in the field of food and 
-                                beverage management, kitchen management as well as other hospitality and food related job profiles.</p>
-                        </div>
-                </div>
-
-                <div class="col-3 col-s-12"> 
-                    <div class="program-card"style="border-radius:25px">
-                        <div class="aside a7" style="border-radius: 25px 25px 25px 25px">
-                            <center>
-                                <h1>ANIMATION</h1>
-                                <p><input type="hidden" value="STEM" name="subj_id"></p>
-                            </center>
-                            <img style="width:120px;height:120px" src="images/notebook.png">
-                        </div>
-                    </div> 
-                    <button type="button" class="collapsible">Animation</button>
-                        <div class="content">
-                            <p>Study of designing, drawing and making the illusion of motion pictures just by changing their static images which are not similar to each other.</p>
-                        </div>
-                </div>
+                </div>               
 
             </div>
             </center>
         </div>
         <!-- Program Offered -->   
-    </div>
+    </main>
     <!-- Contents -->
-        
-        
-        <script>
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
 
-            for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.maxHeight){
-                content.style.maxHeight = null;
-                } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                } 
-            });
-            }
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/smateo-shs.png" style="width: 15%;">
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li>San Mateo SHS</li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="https://www.facebook.com/sanmateoshs">Facebook</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul>
+                    <li>Developers</li>
+                    <li><a href="#">Dev 1</a></li>
+                    <li><a href="#">Dev 2</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
         
-        </script>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+            content.style.maxHeight = null;
+            } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            } 
+        });
+        }
+    
+    </script>
   
 </body>
 </html>
