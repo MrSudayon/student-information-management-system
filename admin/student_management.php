@@ -39,7 +39,7 @@
    <!-- Contents -->
    <div class="dashb_content">
             
-            <br><hr class="line">     
+            <hr class="line">     
             <center>
 
             <form method="POST" action="../admin/code_generator.php">
@@ -93,7 +93,7 @@
                                 echo "<td width=7%;>" . $row['MID'];
                                 echo "<td> Jr. </td>";
                                 echo "<td width=5%;> 3 </td>";
-                                echo "<td>12-23-2022</td>";
+                                echo "<td width=15%;>12-23-2022</td>";
                                 echo "<td width=10%;> .pdf .docx </td>";    
                                 echo "<td>No</td>";
                                 ?> 

@@ -37,7 +37,7 @@
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
-            <br><hr class="line">       
+            <hr class="line">       
             <br>
             <!-- CRUD -->
             <!-- Create User for Admin or Instructor -->

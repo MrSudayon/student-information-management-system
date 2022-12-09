@@ -33,7 +33,7 @@
                     </script>
                 
                 <?php
-                header("refresh:0; url = ../html/dashboard.php");
+                header("refresh:0; url = ../student/dashboard.php");
             }elseif($counter== true && $type=="3" && $stat=="ACTIVE") {
                 ?>
                     <script>
@@ -41,7 +41,7 @@
                     </script>
                 
                 <?php
-                header("refresh:0; url = ../html/dashboard.php");
+                header("refresh:0; url = ../student/dashboard.php");
             } else {
                 ?>
                 <script>

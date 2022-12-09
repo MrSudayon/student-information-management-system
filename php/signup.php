@@ -45,7 +45,7 @@
                 ?>
                 <script>
                     alert("New record created successfully")
-                    window.location.href = "http://localhost/A-web-and-android-based-management-information-system-for-Senior-HS-main/index.php";
+                    window.location.href = "../index.php";
                 </script>
                 <?php
             } else {
