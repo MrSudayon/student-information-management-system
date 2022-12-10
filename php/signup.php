@@ -1,12 +1,12 @@
 <?php  
-    include "../dbase/db_connect.php";
+    include "../php/dbase_config.php";
 
     if(isset($_POST['create_acc'])){
         $lname=$_POST['lnametxt'];
         $lname=$_POST['lnametxt'];
         $fname=$_POST['fnametxt'];
         $midname=$_POST['midtxt'];
-        $sf = $_POST['suftxt'];
+        $sf = $_POST['suffix'];
         $lrn=$_POST['lrntxt'];
         $email=$_POST['emailtxt'];
         $pass=$_POST['passtxt'];
@@ -38,14 +38,14 @@
 			<?php
 		}else{
             
-            $sql = "INSERT INTO user(ID,FIRST,LAST,MID,SF,LRN,EMAIL,PASS,UTYPE,STATUS)
+            $sql = "INSERT INTO user(ID,FIRST,LAST,MID,SUFFIX,LRN,EMAIL,PASS,UTYPE,STATUS)
                     VALUES(null,'$fname','$lname','$midname','$sf','$lrn','$email','$pass',3,'ACTIVE')";				
             
             if (mysqli_query($conn, $sql)) {
                 ?>
                 <script>
                     alert("New record created successfully")
-                    window.location.href = "../index.php";
+                    window.location.href = "../index.html";
                 </script>
                 <?php
             } else {

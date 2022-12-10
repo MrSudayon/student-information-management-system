@@ -1,3 +1,7 @@
+<?php
+    include "../php/dbase_config.php";
+    require_once "../php/auth.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +26,6 @@
         <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
         <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
         <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> <!--Modules?-->
-        <a href="teachers.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teachers</h4></li></a><!--Profs,Instructor..?-->
         <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
         <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
     </ul>
@@ -39,21 +42,27 @@
         <hr class="line">       
         <h1> Account Settings </h1>
         <div class="profile">
-            
+                <?php
+                    $sql = mysqli_query($conn,"SELECT * FROM user WHERE ID = '$sess_id' AND STATUS = 'ACTIVE' ");
+                    $row=mysqli_fetch_array($sql)
+                ?>
             <div class="left-pane">
                 <div class="profile-icon">
                     <center>
                     <img src="../images/user.png">
                     <div class="usern">
-                        <h1>Fernando Sudayon</h1>
+                        <h1><?php echo $sess_name;?>, <?php echo $sess_lname; ?> <?php echo $sess_mid;?></h1>
                     </div>
                     </center>
                 </div>
+                
                 <div class="acc-settings">
-                    <a href="#"><li><h4>View Grades</h4></li></a>
+                    <a href="../actions/view_grades.php?id=<?php echo ($row['ID']); ?>&name=<?php echo ($row['FIRST']); ?>"><li><h4>View Grades</h4></li></a>
+                    <a href="#"><li><h4>Edit Profile</h4></li></a>
                     <a href="#"><li><h4>Settings</h4></li></a>
-                    <a href="../index.html"><li><h4>Logout</h4></li></a>
+                    <a href="../php/logout.php"><li><h4>Logout</h4></li></a>
                 </div>
+                
             </div>
         
             <div class="right-pane">
@@ -74,11 +83,17 @@
                         <td colspan="3"><input type="text" class="rc-text" value="12" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></h4></td>  
                      
                     </tr>
+                        <td><h4>LRN:</td>
+                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo ($row['LRN']); ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></h4></td>
+                    <tr>
+
+                    </tr>
+
                     <tr>
                         <td><h4>Name: </h4></td>
-                        <td><center><input type="text" class="rc-text" value="Sudayon" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></td>
-                        <td><center><input type="text" class="rc-text" value="Fernando" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></td>
-                        <td><center><input type="text" class="rc-text" value="Portas" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></h4></td>
+                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_lname; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></td>
+                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_name;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></td>
+                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_mid;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></h4></td>
                     </tr>
                     
                     <tr>
@@ -109,14 +124,7 @@
                     </tr>
 
                 </table>    
-                        
-                        
-                        
-                    
-                    
-
-                   
-                    
+                                
                 </div>
             </div>
         </div>

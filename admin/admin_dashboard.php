@@ -58,29 +58,29 @@
             ?>
 
             <div class="boxes">
-                <div class="card card-std">
+                <a class="card card-std" href="student_management.php">
                     <img src="../images/male-student.png" style="width: 50%;">
                     <h3><?php echo $stdcount; ?></h3>
                     STUDENT ENROLLED
-                </div>
+                </a>
 
-                <div class="card card-tch">
+                <a class="card card-tch" href="teacher_management.php">
                     <img src="../images/dean.png" style="width: 50%;">
                     <h3><?php echo $tchcount; ?></h3>
                     INSTRUCTORS
-                </div>
+                </a>
 
-                <div class="card card-prg">
+                <a class="card card-prg" href="#">
                     <img src="../images/online-course.png" style="width: 50%;">
                     <h3><?php echo $tchcount; ?></h3>
                     PROGRAMS?
-                </div>
+                </a>
                 
-                <div class="card card-samp">
+                <a class="card card-samp" href="student_management.php">
                     <img src="../images/folder.png" style="width: 50%;">
                     <h3><?php echo $samplecount; ?></h3>
                     SAMPLE
-                </div>
+                </a>
             </div>
          
 

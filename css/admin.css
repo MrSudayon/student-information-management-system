@@ -33,6 +33,33 @@ h3 {
     gap: 50px;
     flex-wrap: wrap;
 }
+.boxes a {
+    color: black;
+}
+.card {
+    transition: .3s;
+}
+.card-std:hover {
+    padding: 20px;
+    transition: .3s;
+    background-color: aquamarine;
+}
+.card-tch:hover {
+    padding: 20px;
+    transition: .3s;
+    background-color: aquamarine;
+}
+.card-prg:hover {
+    padding: 20px;
+    transition: .3s;
+    background-color: aquamarine;
+}
+.card-samp:hover {
+    padding: 20px;
+    transition: .3s;
+    background-color: aquamarine;
+}
+
 .card {
     text-align: center;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

@@ -1,5 +1,8 @@
 <?php
+    include "../php/dbase_config.php";
     require_once "../php/auth.php";
+        $id = $_GET['id'];
+        $name = $_GET['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
-        <title>Dashboard</title>
+        <title>Course View</title>
 </head>
 
 <body>
@@ -22,10 +25,10 @@
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
     <ul>
-        <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-        <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
-        <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
+        <a href="../student/account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
+        <a href="../student/dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
+        <a href="../student/subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
+        <a href="../student/history.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
         <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
     </ul>
 </div>
@@ -33,23 +36,26 @@
   
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Dashboard</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;<?php echo "Hello, ",$name; ?></h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
             <hr class="line">       
-            <div class="news">
-                <h1><img src="../images/announcement.png" style="width: 22px;"> Announcement</h1>
                 <br>
+                <!-- Call Posted Modules by Instructor -->
                 <marquee>
-                    *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
-                    *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
+                    *Viewing/Downloading Grade report   *Viewing/Downloading Grade report    *Viewing/Downloading Grade report
+                    *Viewing/Downloading Grade report   *Viewing/Downloading Grade report    *Viewing/Downloading Grade report
                 </marquee>
             </div>
         </div>
     <!-- Contents -->
 </div>
 <!-- Main -->
+  
+
+
+
 
 
   

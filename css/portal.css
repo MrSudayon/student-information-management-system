@@ -250,3 +250,10 @@ footer {
     color: var(--main-color);
     transition: .5s;
 }
+.footer-rights {
+    display: flex;
+    justify-content: center;
+    margin: 5px 5px 5px 50px;
+    font-size: .8em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

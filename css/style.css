@@ -305,7 +305,6 @@ hr.line {
     background-color: var(--main-color);
     transition: .5s;
 }
-
 .right {
     margin-top: 5px;
     margin-right: 20px;
