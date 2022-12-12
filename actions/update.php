@@ -52,6 +52,7 @@ $sub_image = "";
 <div class="side-menu" id="mySidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <ul>
+        <a href="../admin/admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
         <a href="../admin/admin_dashboard.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
         <a href="../admin/course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Course Management</h4></li></a>
         <a href="../admin/student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
@@ -136,7 +137,6 @@ $sub_image = "";
                             try {
                                 $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', unit = '$c_unit', assignedto = '$c_assign', dept = '$department' WHERE subj_id = '$c_id' AND archive = 0 ";
                                 $conn->query($upd);
-
 
                                 ?>
                                     <script>
