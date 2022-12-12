@@ -73,7 +73,7 @@ h3 {
     border: 2px rgb(0, 136, 129) solid;
     border-radius: 15px;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
     .boxes {
         gap: 30px;
     }

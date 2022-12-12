@@ -9,6 +9,8 @@
     $sub_prof = '';
     $dept = '';
     $sub_img = '';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -51,15 +53,14 @@
         <div class="dashb_content">
             <hr class="line">       
             
-            
             <div class="add_tbl">
                 <h3>Add Course</h3>
                 <div class="content">
                     <form method="POST" action="../admin/course_management.php">
                         <table class="add_course">
                             <tr>   
-                                <th colspan=3> <label for="file" style="font-family: Consolas; height: 30px; font-weight:500;">Select Image:</label>
-                                               <input type="file" name="file" class="course_image" style="font-family: Consolas; height: 30px;" require></th>
+                                <th colspan=3> <label style="font-family: Consolas; height: 30px; font-weight:500;">Course Image:</label>
+                                               <input type='file' name='image' class="course_image" style="font-family: Consolas; height: 30px;"></th>
                             </tr>
                             <tr>
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;" require> </th>
@@ -75,7 +76,7 @@
                                 <th><input type="text" name="course_unit" placeholder="Units" value="3.0" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><label for="assign"></label>
-                                    <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;" require>
+                                    <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;">
                                         <option value="instructor 1">Instructor 1</option>
                                         <option value="instructor 2">Instructor 2</option>
                                         <option value="instructor 3">Instructor 3</option>
@@ -110,43 +111,39 @@
                             $c_dateadd = date("Y-m-d");       
                             $c_assign = $_POST['assign'];
                             $department = $_POST['department'];
+                            
+                            $c_image = $_FILES['image']['file'];
+                            $target_dir = "../uploads/images/";
+                            $target_file = $target_dir . basename($_FILES["image"]["file"]);
 
-                            $c_image = $_FILES['file']['name'];
-							$target_dir = "./images/subj_imgs/";
+                            // Select file type
+                            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-							// Select file type
-							$imageFileType = pathinfo($target_dir,PATHINFO_EXTENSION);
+                            // Valid file extensions
+                            $extensions_arr = array("jpg","jpeg","png","gif");
 
-							// Valid file extensions
-							$extensions_arr = array("jpg","jpeg","png","gif","webp");
-
-							// Check extension
-							if( in_array($imageFileType,$extensions_arr) ){
-								// Upload file
-								if(move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$c_image)){
-									// Convert to base64 
-									$image_base64 = base64_encode(file_get_contents('../images/subj_imgs/'.$c_image) );
-									$image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
-									// Insert record
+                            // Check extension
+                            if( in_array($imageFileType,$extensions_arr) ){
+                                // Upload file
+                                if(move_uploaded_file($_FILES['image']['file'],$target_dir.$c_image)){
+                                    // Convert to base64 
+                                    $image_base64 = base64_encode(file_get_contents('../uploads/images/'.$c_image) );
+                                    $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
+                                    // Insert record
                                 }
                             }
-                                
-                                
-                            
+
                                 $add = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key, dept, subj_image, archive)
-                                VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image',0)";
+                                    VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image',0)";
                                 $conn->query($add);
                                 ?>
                                     <script>
                                         alert("New Record Added!");
                                     </script>
                                 <?php
-                                echo "<meta http-equiv='refresh' content='0'>";
-                                mysqli_free_result($add);
-
-                       
-                     
-
+                           
+                            echo "<meta http-equiv='refresh' content='0'>";
+                            mysqli_free_result($add);
                         }
                     ?>
                 </div>
@@ -182,7 +179,7 @@
                                 echo "<td width=20%;>" . $row["subj_name"];
                                 ?>
                                     <td>
-                                      <img src="<?php echo "../images/subj_imgs/".$row["subj_image"]; ?>" width='50px' height='50px'>
+                                      <img src="<?php echo "../uploads/images/". $row['subj_image']; ?>" width='50px' height='50px'>
                                     </td>
                                 <?php
                                 echo "<td width=30%;>" . $row["subj_desc"];

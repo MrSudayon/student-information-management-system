@@ -19,9 +19,9 @@
         $desc = $_POST['weektxt'];
         $status = $_POST['stat'];
 
-        if (!in_array($extension, ['zip', 'pdf', 'docx','pptx','.xlsx'])) {
+        if (!in_array($extension, ['zip', 'pdf', 'docx', 'pptx','xlsx'])) {
             echo " <script> alert('file extension in not valid'); window.history.back();</script>";
-        } elseif ($_FILES['myfile1']['size'] > 10000000) { // file shouldn't be larger than 1Megabyte
+        } elseif ($_FILES['myfile1']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
             echo " <script> alert('file too large'); window.history.back();</script>";
             } else {
             // move the uploaded (temporary) file to the specified destination
@@ -29,7 +29,6 @@
                 $sql = "INSERT INTO tblfiles (ID,Description,name, size, downloads, status, course_code) VALUES (NULL,'$desc','$filename', $size, 0, '$status','RSCH12')";
                 if (mysqli_query($conn, $sql)) {
                     ?>
-                    
                         <script>
                             alert("File uploaded successfully");
                         </script>	

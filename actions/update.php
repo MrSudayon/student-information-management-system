@@ -8,6 +8,7 @@ $sub_desc = "";
 $sub_unit = "";
 $sub_prof = "";
 $dept = "";
+$sub_image = "";
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -27,6 +28,7 @@ $dept = "";
             $sub_unit = $row['unit'];
             $sub_prof = $row['assignedto'];
             $dept = $row['dept'];
+            $sub_image = $row['subj_image'];
         }
 ?>
 
@@ -119,6 +121,7 @@ $dept = "";
                         $sub_unit = '';
                         $sub_prof = '';
                         $dept = '';
+                        $sub_image = '';
 
                         if(isset($_POST['upd'])) {
                             $c_id = $_POST['sub_id'];
