@@ -120,8 +120,8 @@ h2 {
 }
 /* height < 450px bababa padding and a smaller font size */
 @media screen and (max-height: 450px) {
-    .side-menu {padding-top: 15px;}
-    .side-menu a {font-size: 18px;}
+    .side-menu { padding-top: 15px; }
+    .side-menu a { font-size: 18px; }
 }
 
 .side-menu .menu-text {

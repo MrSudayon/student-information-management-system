@@ -36,17 +36,17 @@
     <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Dashboard</h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
-        <div class="dashb_content">
-            <hr class="line">       
-            <div class="news">
-                <h1><img src="../images/announcement.png" style="width: 22px;"> Announcement</h1>
-                <br>
-                <marquee>
-                    *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
-                    *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
-                </marquee>
-            </div>
+    <div class="dashb_content">
+        <hr class="line">       
+        <div class="news">
+            <h1><img src="../images/announcement.png" style="width: 22px;"> Announcement</h1>
+            <br>
+            <marquee>
+                *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
+                *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
+            </marquee>
         </div>
+    </div>
     <!-- Contents -->
 </div>
 <!-- Main -->
