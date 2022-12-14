@@ -18,7 +18,7 @@
 <body>
     
 <!-- sidebar -->
-<div class="side-menu" id="mySidebar">
+<div class="side-menu side-menu-admin" id="mySidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
@@ -44,6 +44,8 @@
             
 
             <?php 
+            
+            
             /*student count*/
                 $student=mysqli_query($conn,"SELECT * FROM user WHERE UTYPE=3")or die(mysqli_error($conn));
                 $stdcount=mysqli_num_rows($student);
@@ -76,7 +78,7 @@
                     PROGRAMS?
                 </a>
                 
-                <a class="card card-samp" href="student_management.php">
+                <a class="card card-samp" href="course_management.php">
                     <img src="../images/folder.png" style="width: 50%;">
                     <h3><?php echo $samplecount; ?></h3>
                     SAMPLE

@@ -1,4 +1,5 @@
 <?php 
+    require_once "../php/auth.php";
     include "../php/dbase_config.php";
 ?>
 <!DOCTYPE html>
@@ -105,13 +106,13 @@
                             echo "</tbody>";
                         echo "</table>";
                    
-                } else {
+                    } else {
+                                        
+                        echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
                                     
-                    echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
-                                
-                }
+                    }
                 
-                $conn->close();
+                    $conn->close();
             ?>
     <!-- Contents -->
     </div>

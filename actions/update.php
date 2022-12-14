@@ -1,5 +1,7 @@
 <?php 
 include "../php/dbase_config.php";
+require_once "../php/auth.php";
+
 
 $id = "";
 $sub_code = "";
@@ -8,7 +10,6 @@ $sub_desc = "";
 $sub_unit = "";
 $sub_prof = "";
 $dept = "";
-$sub_image = "";
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -28,7 +29,6 @@ $sub_image = "";
             $sub_unit = $row['unit'];
             $sub_prof = $row['assignedto'];
             $dept = $row['dept'];
-            $sub_image = $row['subj_image'];
         }
 ?>
 
@@ -75,7 +75,7 @@ $sub_image = "";
             
             
             <div class="add_tbl">
-                <h3>Add Course</h3>
+                <h3>Update Course</h3>
                 <div class="content">
                     <form method="POST" action="../actions/update.php" enctype='multipart/form-data'> 
                         <table class="add_course">
@@ -122,7 +122,6 @@ $sub_image = "";
                         $sub_unit = '';
                         $sub_prof = '';
                         $dept = '';
-                        $sub_image = '';
 
                         if(isset($_POST['upd'])) {
                             $c_id = $_POST['sub_id'];
@@ -137,6 +136,7 @@ $sub_image = "";
                             try {
                                 $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', unit = '$c_unit', assignedto = '$c_assign', dept = '$department' WHERE subj_id = '$c_id' AND archive = 0 ";
                                 $conn->query($upd);
+
 
                                 ?>
                                     <script>
