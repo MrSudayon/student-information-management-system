@@ -1,5 +1,5 @@
 <?php
-    include "../php/dbase_config.php";
+    include ("../php/dbase_config.php");
 
     $sql = "SELECT * FROM tblfiles";
     $result = mysqli_query($conn, $sql);

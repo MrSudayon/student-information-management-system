@@ -86,16 +86,13 @@
                                 <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
 
                                     <?php
-                                    
                                     if ($file['status']=="Published"){
-                                        
                                     ?>
 
                                 <td bgcolor="lime"><b><?php echo $file['status']; ?></b></td>
 
                                     <?php
                                     } elseif($file['status']=="Unpublished"){
-                                        
                                     ?>
 
                                 <td bgcolor="red"><b><?php echo $file['status']; ?></b></td>
