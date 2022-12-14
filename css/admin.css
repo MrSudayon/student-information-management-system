@@ -143,12 +143,9 @@ h3 {
     text-align: center;
 }
 .course_lists td {
-    background-color: #ddd;
     text-align: center;
 }
-.course_lists td:nth-child(even) {
-    background-color: lightblue;
-}
+
 
 /* --------------------- */
 .add_course {

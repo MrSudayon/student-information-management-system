@@ -61,7 +61,7 @@
             <h3>Students Lists</h3>
             <?php
                 $ins =  "SELECT * FROM user 
-                        WHERE UTYPE = 3";
+                        WHERE UTYPE = 3 AND STATUS = 'ACTIVE'";
                 $res = $conn->query($ins);
 
                 if ($res->num_rows > 0) 
@@ -70,33 +70,25 @@
                             echo "<center>";
                             echo "<tbody>";
                             echo "<tr bgcolor=#363636 style='color:white'>";
-                                echo "<th>Grade</th>";
+                                echo "<th>Student ID</th>";
                                 echo "<th>Department</th>";
-                                echo "<th>LRN</th>";
-                                echo "<th>Last Name</th>";
-                                echo "<th>First Name</th>";
-                                echo "<th>Middle initial</th>";
-                                echo "<th>Suffix</th>";
+                                echo "<th>Name</th>";
+                                echo "<th>Grade</th>";
                                 echo "<th>Section</th>";
                                 echo "<th>Date of Birth</th>";
-                                echo "<th>Download Grades</th>";
-                                echo "<th>Is Enrolled</th>";
+                                echo "<th>Upload Grades</th>";
                                 echo "<th colspan=2>Action</th>";
                             echo "</tr>";
                     while($row = $res->fetch_assoc()) 
 						{   
-                            echo "<tr>";
-                                echo "<td width=5%;>12</td>";
+                            echo "<tr bgcolor = white>";
+                                echo "<td width=15%;>" . $row['LRN'];
                                 echo "<td width=8%;>STEM</td>";
-                                echo "<td width=20%;>" . $row['LRN'];
-                                echo "<td width=15%;>" . $row['LAST']; 
-                                echo "<td width=15%>" . $row['FIRST'];
-                                echo "<td width=7%;>" . $row['MID'];
-                                echo "<td> Jr. </td>";
+                                echo "<td width=25%;>" . strtoupper($row['LAST']),", ". $row['FIRST']," ". $row['MID'], " Jr."; 
+                                echo "<td width=7%;> 12 </td>";
                                 echo "<td width=5%;> 3 </td>";
                                 echo "<td width=15%;>12-23-2022</td>";
                                 echo "<td width=10%;> .pdf .docx </td>";    
-                                echo "<td>No</td>";
                                 ?> 
                                     <td><a href="../actions/update.php?id=<?php echo ($row['LRN']);?>" class="update_btn">UPDATE</a></td>
                                     <td><a href="../actions/remove.php?id=<?php echo ($row['LRN']); ?>" class="delete_btn">REMOVE</a></td>
