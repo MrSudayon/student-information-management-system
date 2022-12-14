@@ -1,4 +1,7 @@
 
+php/dbase_config.php
+.archives
+uploads/.DS_Store
 .vscode/settings.json
-uploads/.DS_Store
-uploads/.DS_Store
+.vscode
+
