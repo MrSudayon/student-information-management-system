@@ -78,10 +78,6 @@
 
                     </tr>
 
-                    <tr>
-                        <td><h4>Grade:</td>
-                        <td colspan="3"><input type="text" class="rc-text" value="12" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></h4></td>  
-                     
                     </tr>
                         <td><h4>LRN:</td>
                         <td colspan="3"><input type="text" class="rc-text" value="<?php echo ($row['LRN']); ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></h4></td>
