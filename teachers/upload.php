@@ -15,6 +15,7 @@
 
         // the physical file on a temporary uploads directory on the server
         $file = $_FILES['myfile1']['tmp_name'];
+        $date =  date("Y-m-d");
         $size = $_FILES['myfile1']['size'];
         $desc = $_POST['weektxt'];
         $status = $_POST['stat'];
@@ -26,7 +27,7 @@
             } else {
             // move the uploaded (temporary) file to the specified destination
             if (move_uploaded_file($file, $destination)) {
-                $sql = "INSERT INTO tblfiles (ID,Description,name, size, downloads, status, course_code) VALUES (NULL,'$desc','$filename', $size, 0, '$status','RSCH12')";
+                $sql = "INSERT INTO tblfiles (ID,Description,name, size, date, downloads, status, course_code) VALUES (NULL,'$desc','$filename', $size, '$date', 0, '$status','RSCH12')";
                 if (mysqli_query($conn, $sql)) {
                     ?>
                         <script>

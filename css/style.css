@@ -12,7 +12,7 @@
 }
 body {
     min-height: 100vh;
-    background-color: white;
+    background: linear-gradient(to bottom, #ffffff, #ececec, #35CEFF);
 }
 a {
     text-decoration: none;
@@ -45,16 +45,17 @@ h2 {
     z-index: 1;
     top: 0;
     left: 0;
+    overflow-y: hidden;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 30px;
 }
 .side-menu .smateo-logo {
     display: flex;
     justify-content: center;
 }
 .side-menu a {
-    padding: 8px 8px 8px 32px;
+    padding: 3px 8px 3px 32px;
     text-decoration: none;
     font-size:1.5em;
     display: block;

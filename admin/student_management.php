@@ -105,13 +105,13 @@
                             echo "</tbody>";
                         echo "</table>";
                    
-                    } else {
-                                        
-                        echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
+                } else {
                                     
-                    }
+                    echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
+                                
+                }
                 
-                    $conn->close();
+                $conn->close();
             ?>
     <!-- Contents -->
     </div>

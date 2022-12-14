@@ -134,10 +134,10 @@ h3 {
     width: 100%;
 }
 .course_lists tr {
-    border: .5px solid black
+    border: .5px solid black;
 }
 .course_lists th, td {
-    padding: 5px 8px;
+    padding: 5px 15px;
 }
 .course_lists th {
     text-align: center;
@@ -146,12 +146,11 @@ h3 {
     background-color: #ddd;
     text-align: center;
 }
-
 .course_lists td:nth-child(even) {
     background-color: lightblue;
 }
-/* --------------------- */
 
+/* --------------------- */
 .add_course {
     display: flex;
     justify-content: center;
@@ -162,7 +161,7 @@ h3 {
 }
 .add_course td {
     text-align: center;
-    padding: 0 5px 15px 5px;
+    padding: 0 10px 15px 10px;
 }
 .btn_add {
     width: 100%; 

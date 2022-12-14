@@ -1,6 +1,6 @@
 :root {
-    --main-color: #60b8ff;
-    /*--main-color: #5ef286; Green Theme*/ 
+    --main-color:#35CEFF;
+    /*--main-color:  #60b8ff; */ 
     --dark-color: #11152a;
     --light-color: #d0d4ed;
 }
@@ -8,6 +8,14 @@
 .side-menu .menu-text {
     font-size: 15px;
 }
+h3 {
+    text-align: center;
+    font-family: 'Trebuchet MS';
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
 
 
 /* Modules */
@@ -17,29 +25,21 @@
 .modulestbl th, td {
     padding: 10px 15px;
 }   
-.tbhead {
-    background-color: yellow;
-}
 .modulestbl th {
     border: 1px solid black;
 }
-tbody {
-    text-align: center;
-}
-
 .trdata a:hover {
     text-decoration: underline black;
 }
+
 /* Upload Files */
 .btnup {
     background-color:#fac700;
-    color:black;
-    width: auto;
+    color:var(--dark-color);
+    width: 8%;
     height:20%;
-    margin: 30px 0;
-    border: 0;
-    font-size: 1em;
-    padding:13px 13px ;
+    margin: 20px 0;
+    padding: 10px 15px ;
     border-radius: 7px;
     font-weight: 700;
     cursor: pointer;
@@ -53,7 +53,7 @@ tbody {
     background-color: var(--dark-color);
     color:white;
 }
-input{
+input[type="file"] {
     border-radius: .4em;
     color:white;
     width:auto;
@@ -73,7 +73,7 @@ input[type="file"]::file-selector-button:hover {
 .txtcode {
     background-color:inherit;
     width: auto;
-    color:white;
+    color:black;
     text-align: center;
     font-weight: 700;
     cursor: pointer;
@@ -84,59 +84,64 @@ input[type="file"]::file-selector-button:hover {
     border: 1px solid white;
     padding:10px 0px;
 }
-
-.dashb_content1 {
-    background-color:#1b47b4;
-    height: 20%;
-    margin:0%;
-
-}
-.dashb_content2 {
-    background-color:white;
-    height: 10%;
-    margin:0%;
+input[type="text"] {
+    height: 20px;
 }
 
-.weektxt {
-    background-color:white;
-    width: auto;
-    text-align: left;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all .3s ease-out;
-    -webkit-transition: all .3s ease-out;
-    border-radius: 7px;
-    font-size: 1em;
-    color:black;
-    padding:10px 0px;
+/* Teacher - Link & Module Table */
+.t-table {
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+}
+.t-table tr {
+    border: 1px solid black;
+}
+.t-table th {
+    padding: 8px;
+    background-color: var(--main-color);
+}
+.t-table td {
+    text-align: center;
+    padding: 10px 15px;
+}
+.t-table a:hover {
+    text-decoration: underline;
+}
+
+/* Add Functions */
+.weektxt1 {
+    padding: 15px 10px;
+    width: 12%;
+    border-radius: 5px;
 }
 .weeklbl {
-    background-color:inherit;
-    width: auto;
-    color:white;
+    margin-right: 1em;
+    color:black;
     text-align: center;
     font-size: 1.2em;
-    margin-left: 0%;
 }
 .hlbl {
     width: auto;
     text-align: center;
     font-weight: 500;
     font-size: 1.3em;
-    color:white;
+    color:black;
 }
-
-.txtcode1 {
-    background-color:inherit;
-    width: 35%;
-    color:white;
+.upload {
+    background-color: var(--light-color);
+    width: auto;
+    color: black;
     text-align: center;
-    font-weight: 700;
     cursor: pointer;
     transition: all .3s ease-out;
     -webkit-transition: all .3s ease-out;
     border-radius: 7px;
     font-size: 1em;
     border: 1px solid rgb(8, 206, 163);
-    padding:10px 0px;
+    padding:10px 5px;
+}
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
 }

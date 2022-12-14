@@ -123,7 +123,7 @@
                             $extensions_arr = array("jpg","jpeg","png","gif");
 
                             // Check extension
-                            if( in_array($imageFileType,$extensions_arr) ){
+                            if( in_array($imageFileType, $extensions_arr) ){
                                 // Upload file
                                 if(move_uploaded_file($_FILES['image']['file'],$target_dir.$c_image)){
                                     // Convert to base64 
@@ -161,17 +161,17 @@
                         echo "<table class=course_lists>";
                             echo "<tbody>";
                             echo "<tr bgcolor=#363636 style='color:white'>";
-                            echo "<th>Course Code</th>";
-                            echo "<th>Course Name</th>";
-                            echo "<th>Image</th>";
-                            echo "<th>Description</th>";
-                            echo "<th>Units</th>";
-                            echo "<th>Department</th>";
-                            echo "<th>Date Added</th>";
-                            echo "<th>Assigned to</th>";
-                            echo "<th>Course Key-Code</th>";
-                            echo "<th colspan=2>Action</th>";
-                        echo "</tr>";
+                                echo "<th>Course Code</th>";
+                                echo "<th>Course Name</th>";
+                                echo "<th>Image</th>";
+                                echo "<th>Description</th>";
+                                echo "<th>Units</th>";
+                                echo "<th>Department</th>";
+                                echo "<th>Date Added</th>";
+                                echo "<th>Assigned to</th>";
+                                echo "<th>Course Key-Code</th>";
+                                echo "<th colspan=2>Action</th>";
+                            echo "</tr>";
                     while($row = $result->fetch_assoc()) 
 						{   
                             echo "<tr>";

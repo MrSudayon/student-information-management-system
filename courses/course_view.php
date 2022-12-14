@@ -52,27 +52,25 @@
             <center>
             <h2>List of Modules</h2><br>
 				<form action="modules.php" method="post" enctype="multipart/form-data" >
-                    <div class="dashb_content2">
-                        <table class="modulestbl">
-                        <thead class="tbhead">
+                    <table class="t-table">
+                    <tbody>
+                        <tr>
                             <th>Description</th>
                             <th>Filename</th>
                             <th>size</th>
                             <th colspan="4">Action</th>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($files as $file): ?>
-                            <tr class="trdata">
+                        </tr>
+                    <?php foreach ($files as $file): ?>
+                        <tr bgcolor="white">
                             <td><?php echo $file['Description']; ?></td>
                             <td><?php echo $file['name']; ?></td>
                             <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
-                            <td><a href="../teachers/download.php?file_id=<?php echo $file['ID'] ?>"> Download </a> </td>
-                           </tr>
-                        <?php endforeach;?>
+                            <td><a href="../teachers/download.php?file_id=<?php echo $file['ID']; ?>"> Download </a> </td>
+                        </tr>
+                    <?php endforeach;?>
 
-                        </tbody>
-                        </table>
-                    </div>
+                    </tbody>
+                    </table>
                 </form>
             </center>
         </div>
