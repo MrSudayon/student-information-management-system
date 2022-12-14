@@ -2,3 +2,4 @@
 dbase/db_connect.php
 php/dbase_config.php
 .archives
+.vscode
