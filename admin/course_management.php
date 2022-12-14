@@ -56,11 +56,11 @@
             <div class="add_tbl">
                 <h3>Add Course</h3>
                 <div class="content">
-                    <form method="POST" action="../admin/course_management.php">
+                    <form method="POST" action="course_management.php">
                         <table class="add_course">
                             <tr>   
                                 <th colspan=3> <label style="font-family: Consolas; height: 30px; font-weight:500;">Course Image:</label>
-                                               <input type='file' name='image' class="course_image" style="font-family: Consolas; height: 30px;"></th>
+                                               <input type='file' name='file' class="course_image" style="font-family: Consolas; height: 30px;" required ></th>
                             </tr>
                             <tr>
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;" require> </th>
@@ -112,40 +112,51 @@
                             $c_assign = $_POST['assign'];
                             $department = $_POST['department'];
                             
-                            $c_image = $_FILES['image']['file'];
-                            $target_dir = "../uploads/images/";
-                            $target_file = $target_dir . basename($_FILES["image"]["file"]);
+							$c_image = $_FILES['file']['name'];
+							$target_dir = "../images/";
+							$target_file = $target_dir . basename($_FILES["file"]["name"]);
 
-                            // Select file type
-                            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+							// Select file type
+							$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-                            // Valid file extensions
-                            $extensions_arr = array("jpg","jpeg","png","gif");
+							// Valid file extensions
+							$extensions_arr = array("jpg","jpeg","png","gif");
 
-                            // Check extension
-                            if( in_array($imageFileType, $extensions_arr) ){
-                                // Upload file
-                                if(move_uploaded_file($_FILES['image']['file'],$target_dir.$c_image)){
-                                    // Convert to base64 
-                                    $image_base64 = base64_encode(file_get_contents('../uploads/images/'.$c_image) );
-                                    $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
-                                    // Insert record
-                                }
-                            }
+							// Check extension
+							if( in_array($imageFileType,$extensions_arr) ){
+								// Upload file
+								if(move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$c_image)){
+									// Convert to base64 
+									$image_base64 = base64_encode(file_get_contents('../images/'.$c_image) );
+									$image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
+									// Insert record
+									
 
                                 $add = "INSERT INTO subject_tbl (subj_id, subj_name, subj_code, subj_desc, unit, date_added, assignedto, subj_key, dept, subj_image, archive)
                                     VALUE (null, '$c_name', '$c_code', '$c_desc', '$c_unit', '$c_dateadd', '$c_assign', 'samplekey', '$department','$c_image',0)";
-                                $conn->query($add);
-                                ?>
-                                    <script>
-                                        alert("New Record Added!");
-                                    </script>
-                                <?php
-                           
-                            echo "<meta http-equiv='refresh' content='0'>";
-                            mysqli_free_result($add);
-                        }
-                    ?>
+                				if ($conn->query($add)) {
+                					?>
+                					
+                						<script>
+                							alert("File uploaded successfully");
+                						
+                						</script>	
+                					<?PHP
+                				}else {
+                				    ?>
+                						<script>
+                    			        	echo "Failed to upload file.";
+                						</script>
+                					<?php
+                    			}
+							}   
+						}
+						
+									header("location: ../admin/course_management.php");
+                    }
+     ?>                       
+                            
+                            
                 </div>
             </div>
             
@@ -161,17 +172,17 @@
                         echo "<table class=course_lists>";
                             echo "<tbody>";
                             echo "<tr bgcolor=#363636 style='color:white'>";
-                                echo "<th>Course Code</th>";
-                                echo "<th>Course Name</th>";
-                                echo "<th>Image</th>";
-                                echo "<th>Description</th>";
-                                echo "<th>Units</th>";
-                                echo "<th>Department</th>";
-                                echo "<th>Date Added</th>";
-                                echo "<th>Assigned to</th>";
-                                echo "<th>Course Key-Code</th>";
-                                echo "<th colspan=2>Action</th>";
-                            echo "</tr>";
+                            echo "<th>Course Code</th>";
+                            echo "<th>Course Name</th>";
+                            echo "<th>Image</th>";
+                            echo "<th>Description</th>";
+                            echo "<th>Units</th>";
+                            echo "<th>Department</th>";
+                            echo "<th>Date Added</th>";
+                            echo "<th>Assigned to</th>";
+                            echo "<th>Course Key-Code</th>";
+                            echo "<th colspan=2>Action</th>";
+                        echo "</tr>";
                     while($row = $result->fetch_assoc()) 
 						{   
                             echo "<tr>";
@@ -190,7 +201,7 @@
                                 echo "<td width=5%;>" . $row["subj_key"];    
                                 ?> 
                                     <td><a href="../actions/update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>" class="update_btn">UPDATE</a></td>
-                                    <td><a href="../actions/remove.php?id=<?php echo ($row['subj_code']); ?>" class="delete_btn">REMOVE</a></td>
+                                    <td><a href="remove.php?id=<?php echo ($row['subj_code']); ?>" class="delete_btn">REMOVE</a></td>
                                 <?php
                         }
                             echo "</tr>";
