@@ -249,7 +249,6 @@ hr.line {
     top: 0;
     /*border: 1px solid black;*/
     width:  58%;
-    justify-content: center;
 }
 .right-pane .right-content {
     padding: 30px;
@@ -266,19 +265,34 @@ hr.line {
     font-size: 15px;
 }
 .student_info {
+    justify-content: center;
     display: flex;
-    flex-direction: flex-start;
 }
 .student_info td {
     padding: 3px 0;
+}
+.student_info input[type="date"] {
+    width: 100%;
+}
+.student_info button[type="submit"] {
+    padding: 5px 0;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all ease-out .3s;
+}
+.student_info button[type="submit"]:hover {
+    background-color: var(--main-color);
     
 }
 .student_info input[type="text"] {
     width: 100%;
     font-weight: 600;
 }
-.student_info h5 {
-    font-weight: 500;
+.student_info h5, .profile h5 {
+    color:rgb(110, 110, 110);
+    font-weight: 700;
     font-style: italic;
 }
 .right-title {

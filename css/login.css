@@ -89,7 +89,7 @@ form input:not(#terms,#remember) {
     font-family: inherit;
     width: 100%;
     outline: 0;
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     padding: 10px 15px;
     border-radius: 7px;
     border: 1px solid var(--light-color);
@@ -97,6 +97,7 @@ form input:not(#terms,#remember) {
 form input::placeholder {
     color: var(--light-color);
 }
+
 form button {
     background-color: var(--main-color);
     color: white;
