@@ -1,5 +1,4 @@
 <?php 
-    require_once "../php/auth.php";
     include "../php/dbase_config.php";
 ?>
 <!DOCTYPE html>
@@ -60,9 +59,8 @@
             <br>
             <h3>Students Lists</h3>
             <?php
-                $ins =  "SELECT * FROM user 
-                        WHERE UTYPE = 3 AND STATUS = 'ACTIVE'";
-                $res = $conn->query($ins);
+                $sql =  "SELECT * FROM students_tbl WHERE std_STATUS = 'ACTIVE' ";
+                $res = $conn->query($sql);
 
                 if ($res->num_rows > 0) 
                 {
@@ -70,11 +68,15 @@
                             echo "<center>";
                             echo "<tbody>";
                             echo "<tr bgcolor=#363636 style='color:white'>";
+                                echo "<th>ID</th>";
                                 echo "<th>Student ID</th>";
                                 echo "<th>Department</th>";
                                 echo "<th>Name</th>";
                                 echo "<th>Grade</th>";
                                 echo "<th>Section</th>";
+                                echo "<th>Email</th>";
+                                echo "<th>Phone #</th>";
+                                echo "<th>Address</th>";
                                 echo "<th>Date of Birth</th>";
                                 echo "<th>Upload Grades</th>";
                                 echo "<th colspan=2>Action</th>";
@@ -82,12 +84,16 @@
                     while($row = $res->fetch_assoc()) 
 						{   
                             echo "<tr bgcolor = white>";
+                                echo "<td width=5%;>" . $row['std_id'];
                                 echo "<td width=15%;>" . $row['LRN'];
-                                echo "<td width=8%;>STEM</td>";
-                                echo "<td width=25%;>" . strtoupper($row['LAST']),", ". $row['FIRST']," ". $row['MID'], " Jr."; 
+                                echo "<td width=10%>" . $row['Department'];
+                                echo "<td width=25%;>" . strtoupper($row['std_LAST']),", ". $row['std_FIRST']," ". $row['std_MID'], " ". $row['std_SUFFIX']; 
                                 echo "<td width=7%;> 12 </td>";
                                 echo "<td width=5%;> 3 </td>";
-                                echo "<td width=15%;>12-23-2022</td>";
+                                echo "<td width=10%;>" . $row['std_EMAIL'];
+                                echo "<td width=7%;>" . $row['std_PHONE'];
+                                echo "<td width=10%;>" . $row['Address'];
+                                echo "<td width=8%;>" . $row['std_DOB'];
                                 echo "<td width=10%;> .pdf .docx </td>";    
                                 ?> 
                                     <td><a href="../actions/update.php?id=<?php echo ($row['LRN']);?>" class="update_btn">UPDATE</a></td>
