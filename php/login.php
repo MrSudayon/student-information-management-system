@@ -8,12 +8,12 @@
 		$usern = $_POST['uemail'];
 		$password = $_POST['upass'];
 		
-		$qry =  mysqli_query($conn, "SELECT * FROM user WHERE EMAIL='$usern' AND PASS='$password'");
+		$qry =  mysqli_query($conn, "SELECT id,STATUS,RoleType,FIRST,LAST,MID FROM users WHERE EMAIL='$usern' AND PASS='$password'");
 		$result = mysqli_fetch_array($qry);
 		
-        $id = $result['ID'];
+        $id = $result['id'];
 		$stat = $result['STATUS'];
-		$type = $result['UTYPE'];
+		$type = $result['RoleType'];
 		$name = $result['FIRST'];
         $lname = $result['LAST'];
         $mid = $result['MID'];
@@ -69,7 +69,6 @@
             ?>
             <script>
                 alert('Invalid username or password!');
-                window.history.back();
             </script>
             <?php 
         }

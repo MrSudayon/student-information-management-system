@@ -77,13 +77,13 @@
                                     <label>First name</label>
                                     <input name="fnametxt" type="text" required placeholder="Enter your firstname">
                                     <label>Middle name</label>
-                                    <input name="midtxt" type="text" required placeholder="Enter your name">
+                                    <input name="midtxt" type="text" id="mid" required placeholder="Enter your name">
                                     <label>Suffix</label>
-                                    <input name="suffix" type="text" placeholder="Suffix (Optional)">
+                                    <input name="suffix" type="text" id="suff" placeholder="Suffix (Optional)">
                                 </p>
                                 <p>
-                                    <label>LRN</label>
-                                    <input name="lrntxt" type="text" required placeholder="Enter your LRN">
+                                    <label>Student ID</label>
+                                    <input name="lrntxt" type="text" required placeholder="Enter your Student ID">
                                 </p>
                                 <p>
                                     <label>Email</label>
