@@ -185,7 +185,7 @@
                         echo "</tr>";
                     while($row = $result->fetch_assoc()) 
 						{   
-                            echo "<tr>";
+                            echo "<tr bgcolor=white>";
                                 echo "<td width=7%;>" . $row["subj_code"];
                                 echo "<td width=20%;>" . $row["subj_name"];
                                 ?>
