@@ -96,7 +96,7 @@
                                 echo "<td width=8%;>" . $row['std_DOB'];
                                 echo "<td width=10%;> .pdf .docx </td>";    
                                 ?> 
-                                    <td><a href="../actions/update.php?id=<?php echo ($row['LRN']);?>" class="update_btn">UPDATE</a></td>
+                                    <td><a href="#?id=<?php echo ($row['LRN']);?>" class="update_btn">UPDATE</a></td>
                                     <td><a href="../actions/remove.php?id=<?php echo ($row['LRN']); ?>" class="delete_btn">REMOVE</a></td>
                                 <?php 
                         }
