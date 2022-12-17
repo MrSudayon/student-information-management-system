@@ -68,7 +68,6 @@
                             echo "<center>";
                             echo "<tbody>";
                             echo "<tr bgcolor=#363636 style='color:white'>";
-                                echo "<th>ID</th>";
                                 echo "<th>Student ID</th>";
                                 echo "<th>Department</th>";
                                 echo "<th>Name</th>";
@@ -78,13 +77,11 @@
                                 echo "<th>Phone #</th>";
                                 echo "<th>Address</th>";
                                 echo "<th>Date of Birth</th>";
-                                echo "<th>Upload Grades</th>";
                                 echo "<th colspan=2>Action</th>";
                             echo "</tr>";
                     while($row = $res->fetch_assoc()) 
 						{   
                             echo "<tr bgcolor = white>";
-                                echo "<td width=5%;>" . $row['std_id'];
                                 echo "<td width=15%;>" . $row['LRN'];
                                 echo "<td width=10%>" . $row['Department'];
                                 echo "<td width=25%;>" . strtoupper($row['std_LAST']),", ". $row['std_FIRST']," ". $row['std_MID'], " ". $row['std_SUFFIX']; 
@@ -94,10 +91,9 @@
                                 echo "<td width=7%;>" . $row['std_PHONE'];
                                 echo "<td width=10%;>" . $row['Address'];
                                 echo "<td width=8%;>" . $row['std_DOB'];
-                                echo "<td width=10%;> .pdf .docx </td>";    
                                 ?> 
                                     <td><a href="#?id=<?php echo ($row['LRN']);?>" class="update_btn">UPDATE</a></td>
-                                    <td><a href="../actions/remove.php?id=<?php echo ($row['LRN']); ?>" class="delete_btn">REMOVE</a></td>
+                                    <td><a href="../actions/remove.php?id=<?php echo ($row['std_id']); ?>" class="delete_btn">REMOVE</a></td>
                                 <?php 
                         }
                             echo "</tr>";
@@ -114,8 +110,8 @@
             ?>
     <!-- Contents -->
     </div>
+</div>
 <!-- Main -->
- </div>
 
 
 <script src="../sidebar_nav.js"></script>

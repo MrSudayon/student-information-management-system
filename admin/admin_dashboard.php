@@ -47,11 +47,11 @@
             
             
             /*student count*/
-                $student=mysqli_query($conn,"SELECT * FROM user WHERE UTYPE=3")or die(mysqli_error($conn));
+                $student=mysqli_query($conn,"SELECT * FROM users WHERE RoleType=3")or die(mysqli_error($conn));
                 $stdcount=mysqli_num_rows($student);
 
             /*teacher count*/
-                $teacher=mysqli_query($conn,"SELECT * FROM user WHERE UTYPE=2")or die(mysqli_error($conn));
+                $teacher=mysqli_query($conn,"SELECT * FROM users WHERE RoleType=2")or die(mysqli_error($conn));
                 $tchcount=mysqli_num_rows($teacher);
 
             /*sample count*/

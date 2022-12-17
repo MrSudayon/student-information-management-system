@@ -1,5 +1,6 @@
 <?php 
     require_once "../php/auth.php";
+    include "../php/dbase_config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-        <title>Dashboard</title>
+        <title>Instructor Management</title>
 
 </head>
 
@@ -42,26 +43,83 @@
         <div class="dashb_content">
             <hr class="line">       
             <br>
-            <table class="instructor_lists">
-                <tr>
-                    <th>Instructor Name</th>
-                    <th>Handled Section</th>
-                    <th>Given Units</th>
-                    <th>Add Section</th>
-                    <th>Add Course</th>
-                    <th>Privelege</th>
-                    <th>Teacher Code</th> 
-                </tr>
-                <tr>
-                    <td>Brimstone Jun</td>
-                    <td>*counts section</td>
-                    <td>*total units count</td>
-                    <td>//button add section</td>
-                    <td>//button add sujects</td>
-                    <td>**what user can do</td>
-                    <td>*generate code</td>
-                </tr>
-            </table>
+                    <table class=course_lists >
+                        <center>
+                        <tbody>
+                        <tr bgcolor=#363636 style='color:white'>
+                            <th>Instructor Name</th>
+                            <th>Department</th>
+                            <th>Advising Section</th>
+                            <th>Phone #</th>
+                            <th>Email</th>
+                            <th>Add Subjects</th>
+                            <th colspan=2>Action</th>
+                        </tr>
+                        <tr bgcolor=white>
+                            <th>June</th>
+                            <th>STEM</th>
+                            <th>G 12 - 2</th>
+                            <th>Phone #</th>
+                            <th>sss@gmail.com</th>
+                            <th>FILP11, MULM12</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </table>
+            <h3>Teachers Lists</h3>
+            <?php
+                $sql =  "SELECT * FROM teachers_tbl WHERE tchr_STATUS = 'ACTIVE' ";
+                $res = $conn->query($sql);
+
+                if ($res->num_rows > 0) 
+                {
+                        echo "<table class=course_lists >";
+                            echo "<center>";
+                            echo "<tbody>";
+                            echo "<tr bgcolor=#363636 style='color:white'>";
+                                echo "<th>Instructor ID</th>";
+                                echo "<th>Instructor Name</th>";
+                                echo "<th>Department</th>";
+                                echo "<th>Advising Section</th>";
+                                echo "<th>Grade</th>";
+                                echo "<th>Add Section</th>";
+                                echo "<th>Add Subject</th>";
+                                echo "<th>Phone #</th>";
+                                echo "<th>Address</th>";
+                                echo "<th>Date of Birth</th>";
+                                echo "<th colspan=2>Action</th>";
+                            echo "</tr>";
+                    while($row = $res->fetch_assoc()) 
+						{   
+                            echo "<tr bgcolor = white>";
+                                echo "<td width=5%;>" . $row['std_id'];
+                                echo "<td width=15%;>" . $row['LRN'];
+                                echo "<td width=10%>" . $row['Department'];
+                                echo "<td width=25%;>" . strtoupper($row['std_LAST']),", ". $row['std_FIRST']," ". $row['std_MID'], " ". $row['std_SUFFIX']; 
+                                echo "<td width=7%;> 12 </td>";
+                                echo "<td width=5%;> 3 </td>";
+                                echo "<td width=10%;>" . $row['std_EMAIL'];
+                                echo "<td width=7%;>" . $row['std_PHONE'];
+                                echo "<td width=10%;>" . $row['Address'];
+                                echo "<td width=8%;>" . $row['std_DOB'];
+                                echo "<td width=10%;> .pdf .docx </td>";    
+                                ?> 
+                                    <td><a href="#" class="update_btn">UPDATE</a></td>
+                                    <td><a href="#" class="delete_btn">REMOVE</a></td>
+                                <?php 
+                        }
+                            echo "</tr>";
+                            echo "</tbody>";
+                        echo "</table>";
+                   
+                    } else {
+                                        
+                        echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
+                                    
+                    }
+                
+                    $conn->close();
+            ?>
         </div>
     <!-- Contents -->
 </div>
