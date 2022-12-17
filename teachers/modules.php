@@ -58,6 +58,13 @@
                         <label class="weeklbl">Description:</label>
                         <input type="text" class="weektxt1" name="weektxt" required placeholder="ex. Week 1">
                             <br><br>
+                        <label class="weeklbl">for Section:</label>
+                            <select name="assign_section" id="assign_section" required class="status">
+                                <option value="1">- 1</option>
+                                <option value="2">- 2</option>
+                                <option value="3">- 3</option>
+                            </select>
+                            <br><br>
                         <label class="weeklbl">Status:</label>
                             <select name="stat" id="stat" required class="status">
                                 <option value="Published">Publish</option>
