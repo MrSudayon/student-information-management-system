@@ -95,7 +95,7 @@
         <!-- Subjects Contents -->
         <div class="row">
             <?php
-            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 ");
+            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0");
         
             while($row=mysqli_fetch_array($sql)) {
             ?>

@@ -44,14 +44,14 @@
         <div class="profile">
                 <?php
                     $sql = mysqli_query($conn,"SELECT * FROM users WHERE id = '$sess_id' AND STATUS = 'ACTIVE' ");
-                    $row=mysqli_fetch_array($sql)
+                    $row=mysqli_fetch_assoc($sql);
                 ?>
             <div class="left-pane">
                 <div class="profile-icon">
                     <center>
                     <img src="../images/user.png">
                     <div class="usern">
-                        <h1><?php echo $sess_name;?>, <?php echo $sess_lname; ?> <?php echo $sess_mid;?></h1>
+                        <h1><?php echo strtoupper($sess_lname);?>, <?php echo ucfirst($sess_name); ?> <?php echo ucfirst($sess_mid);?>.</h1>
                         <h5><?php echo $row['EMAIL']; ?></h5>
                     </div>
                     </center>
@@ -65,13 +65,14 @@
                 </div>
                 
             </div>
-        
-            
+
             <?php
                 $stud_id = $row['stud_id'];
+                   
                 $sql1 = mysqli_query($conn,"SELECT * FROM students_tbl WHERE std_id = '$stud_id' AND std_STATUS = 'ACTIVE' ");
-                $row1 = mysqli_fetch_array($sql1)
+                $row1 = mysqli_fetch_array($sql1);
             ?>
+
             <div class="right-pane">
                 <div class="right-content">
                     <hr><h3><div class="right-title"><img src="../images/personal-info.png" style="height: 19px;"> Personal Information:</div></h3><br>
@@ -83,26 +84,26 @@
                     </tr>
                     <tr>
                         <td><h4>Program:</td>
-                        <td colspan="3"><input type="text" class="rc-text" value="STEM" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" value="STEM" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
 
                     </tr>
 
                     </tr>
                         <td><h4>Student ID:</td>
-                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo ($row['LRN']); ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo $row['LRN']; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
                     <tr>
 
                     <tr>
                         <td><h4>Grade:</h4></td>
-                        <td colspan="3"><input type="text" class="rc-text" value="12" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></td>
+                        <td colspan="3"><input type="text" class="rc-text" value="12" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></td>
                     </tr>
 
                     </tr>
 
                     <tr>
                         <td><h4>Name: </h4></td>
-                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_lname; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></td>
-                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_name;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></td>                   
+                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_lname; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_name;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>                   
                     </tr>
     
                     <tr>
@@ -113,7 +114,7 @@
                     
                     <tr>
                         <td></td>
-                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_mid;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center;"></center></h4></td>
+                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_mid;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></h4></td>
                         <td><center><input type="text" class="rc-text" name="suffix" value="<?php echo $row1['std_SUFFIX'];?>" contenteditable placeholder="ex. Jr, Sr, I, II..." style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; width: 50%;"></center></h4></td>
                     </tr>
 
