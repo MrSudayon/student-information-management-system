@@ -39,23 +39,16 @@
 		}else{
             
             /* INSERT INTO Students_tbl aswell. with constraints stud_id from users table */
-
             $sql = "INSERT INTO students_tbl (std_id,std_FIRST,std_LAST,std_MID,std_SUFFIX,LRN,std_EMAIL,std_STATUS)
                     VALUES(null,'$fname','$lname','$midname','$sf','$lrn','$email','ACTIVE')";
-           
 
             if (mysqli_query($conn, $sql)) {
-                $sql1 = "INSERT INTO users (stud_id,FIRST,LAST,MID,SUFFIX,LRN,EMAIL,PASS,RoleType,STATUS)
-                        SELECT std_id,std_FIRST,std_LAST,std_MID,std_SUFFIX,LRN,std_EMAIL, '$pass', 3, std_STATUS
-                        FROM students_tbl";
-                if (mysqli_query($conn, $sql1)) {
-                    ?>
-                    <script>
-                        alert("New record created successfully")
-                        window.location.href = "../index.html";
-                    </script>
-                    <?php
-                }
+                ?>
+                <script>
+                    alert("New record created successfully")
+                    window.location.href = "../index.html";
+                </script>
+                <?php
             } else {
                 ?>
                 <script>

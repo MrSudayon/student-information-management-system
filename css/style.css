@@ -265,7 +265,6 @@ hr.line {
     font-size: 15px;
 }
 .student_info {
-    justify-content: center;
     display: flex;
 }
 .student_info td {
@@ -284,7 +283,6 @@ hr.line {
 }
 .student_info button[type="submit"]:hover {
     background-color: var(--main-color);
-    
 }
 .student_info input[type="text"] {
     width: 100%;
@@ -401,5 +399,4 @@ hr.line {
         margin-top: 5px;
     }
     /* Subject CSS */
-    
 }
