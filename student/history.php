@@ -1,6 +1,7 @@
 <?php
-    require_once "../php/auth.php";
-
+    include "../php/dbase_config.php";
+    include "../php/auth.php";
+    $sess_name = $_SESSION['SESSION_FNAME'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,11 +24,11 @@
     </div>
     <ul>
         <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-        <!-- Selected -->
         <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> <!--Modules?-->
+        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
         <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
         <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
+        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -41,7 +42,33 @@
         <div class="dashb_content">
             <hr class="line">       
             <div class="news">
-                *User History
+            <?php
+                $sql="SELECT * FROM history_tbl WHERE uName='$sess_name' AND uType=3 ";
+
+                $res = $conn->query($sql);
+                if ($res->num_rows > 0) { ?>
+                
+                <br>
+                <table class="s-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                        <th>Date and Time</th>
+                    </tr>
+            <?php while($row = $res->fetch_assoc()) {  ?>
+                    <tr>
+                        <td><?php echo $row['uName']; ?></td>
+                        <td><?php echo $row['uAction']; ?></td>
+                        <td><?php echo $row['timedate']; ?></td>
+            <?php } ?>
+                    </tr>
+                </table>
+                <?php
+                } else {
+                    echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
+                }
+                $conn->close();
+                ?>
             </div>
         </div>
     <!-- Contents -->

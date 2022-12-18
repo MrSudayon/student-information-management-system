@@ -64,7 +64,9 @@
     }  
 </style>
 </head>
-
+<?php
+    $sess_name = $_SESSION['SESSION_FNAME'];
+?>
 <body>
 
 <!-- sidebar -->
@@ -76,10 +78,10 @@
     <ul >
         <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
         <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <!-- Selected -->
-        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> <!--Modules?-->
+        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
         <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
         <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
+        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -95,13 +97,13 @@
         <!-- Subjects Contents -->
         <div class="row">
             <?php
-            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0");
+            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 ");
         
             while($row=mysqli_fetch_array($sql)) {
             ?>
                 <div class="col-3 col-s-12">	
                 <form method="GET">
-                    <a href="../courses/course_view.php?subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
+                    <a href="../courses/course_view.php?name=<?php echo $sess_name; ?>&subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
                     <div class="subj-card"style="border-radius:25px">
                         <div class="header" style="border-radius:25px 25px 0px 0px" > 
                             <h1><?php echo strtoupper ($row['subj_code']); ?></h1>
@@ -110,7 +112,7 @@
                         </div>
                         <div class="subj" style="border-radius: 0px 0px 25px 25px">
                             <center>
-                            <img src="../images/subj_imgs/<?php echo ($row['subj_image']); ?>">
+                            <img src="../imgsubject/<?php echo ($row['subj_image']); ?>">
                             </center>
                         </div>
                     </div> 
