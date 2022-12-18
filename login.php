@@ -57,7 +57,7 @@
                 <div class="signup">
                     <div class="content-heading">
                         <div class="y-style">
-                            <div class="logo"><a href="portal.html">San Mateo <span>SHS</span></a></div>
+                            <div class="logo"><a href="index.html">San Mateo <span>SHS</span></a></div>
                             <div class="welcome">
                                 <h2>Sign Up<br>Now!</h2>
                                 <p>Learn easy<br>and in Accessible way!</p>
@@ -77,13 +77,13 @@
                                     <label>First name</label>
                                     <input name="fnametxt" type="text" required placeholder="Enter your firstname">
                                     <label>Middle name</label>
-                                    <input name="midtxt" type="text" id="mid" required placeholder="Enter your name">
+                                    <input name="midtxt" type="text" required placeholder="Enter your name">
                                     <label>Suffix</label>
-                                    <input name="suffix" type="text" id="suff" placeholder="Suffix (Optional)">
+                                    <input name="suffix" type="text" placeholder="Suffix (Optional)">
                                 </p>
                                 <p>
-                                    <label>Student ID</label>
-                                    <input name="lrntxt" type="text" required placeholder="Enter your Student ID">
+                                    <label>LRN</label>
+                                    <input name="lrntxt" type="text" required placeholder="Enter your LRN">
                                 </p>
                                 <p>
                                     <label>Email</label>
