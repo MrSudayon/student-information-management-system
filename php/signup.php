@@ -6,7 +6,7 @@
         $lname=$_POST['lnametxt'];
         $fname=$_POST['fnametxt'];
         $midname=$_POST['midtxt'];
-        $sf = $_POST['suffix'];
+        $sf = $_POST['suftxt'];
         $lrn=$_POST['lrntxt'];
         $email=$_POST['emailtxt'];
         $pass=$_POST['passtxt'];
@@ -38,15 +38,14 @@
 			<?php
 		}else{
             
-            /* INSERT INTO Students_tbl aswell. with constraints stud_id from users table */
-            $sql = "INSERT INTO students_tbl (std_id,std_FIRST,std_LAST,std_MID,std_SUFFIX,LRN,std_EMAIL,std_STATUS)
-                    VALUES(null,'$fname','$lname','$midname','$sf','$lrn','$email','ACTIVE')";
-
+            $sql = "INSERT INTO user(ID,FIRST,LAST,MID,SUFFIX,LRN,EMAIL,PASS,UTYPE,STATUS)
+                    VALUES(null,'$fname','$lname','$midname','$sf','$lrn','$email','$pass',3,'ACTIVE')";				
+            
             if (mysqli_query($conn, $sql)) {
                 ?>
                 <script>
                     alert("New record created successfully")
-                    window.location.href = "../index.html";
+                    window.location.href = "../login.php";
                 </script>
                 <?php
             } else {

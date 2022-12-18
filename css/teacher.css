@@ -34,10 +34,10 @@ h3 {
 
 /* Upload Files */
 .btnup {
-    background-color:var(--main-color);
+    background-color:#fac700;
     color:var(--dark-color);
     width: 8%;
-    height:20%;
+    height:5%;
     margin: 20px 0;
     padding: 10px 15px ;
     border-radius: 7px;

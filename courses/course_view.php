@@ -1,10 +1,12 @@
 <?php
     include "../php/dbase_config.php";
-
+    include "../php/auth.php";
+    $sess_name = $_SESSION['SESSION_FNAME'];
+    
     $id = $_GET['subj_id'];
     $sub_code = $_GET['subj_code'];
-
-    $sql = "SELECT * FROM tblfiles where status='Published' && course_code='$sub_code'";
+    
+    $sql = "SELECT * FROM tblfiles WHERE status='Published' AND course_code='$sub_code'";
     $result = mysqli_query($conn, $sql);
     
     $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -32,11 +34,12 @@
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
     <ul>
-        <a href="../student/account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-        <a href="../student/dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="../student/subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
-        <a href="../student/history.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
+        <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
+        <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
+        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
+        <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
         <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
+        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -65,7 +68,7 @@
                             <td><?php echo $file['Description']; ?></td>
                             <td><?php echo $file['name']; ?></td>
                             <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
-                            <td><a href="../teachers/download.php?file_id=<?php echo $file['ID']; ?>"> Download </a> </td>
+                            <td><a href="../teachers/download.php?file_id=<?php echo $file['ID']; ?>&name=<?php echo $sess_name; ?>&sub_code=<?php echo $sub_code; ?>"> Download </a> </td>
                         </tr>
                     <?php endforeach;?>
 

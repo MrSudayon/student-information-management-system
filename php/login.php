@@ -1,23 +1,24 @@
 <?php
-    require "../php/dbase_config.php";
+    include "dbase_config.php";
 
     
     if(isset($_POST['loginbut'])){
     	session_start();
-
+        
+            
 		$usern = $_POST['uemail'];
 		$password = $_POST['upass'];
 		
-		$qry =  mysqli_query($conn, "SELECT * FROM users WHERE EMAIL='$usern' AND PASS='$password'");
+		$qry =  mysqli_query($conn, "SELECT * FROM user WHERE EMAIL='$usern' AND PASS='$password'");
 		$result = mysqli_fetch_array($qry);
 		
-        $id = $result['id'];
+		$id = $result['ID'];
 		$stat = $result['STATUS'];
-		$type = $result['RoleType'];
-		$name = $result['FIRST'];
+		$type = $result['UTYPE'];
+        $name = $result['FIRST'];
         $lname = $result['LAST'];
         $mid = $result['MID'];
-
+        
 		$counter = mysqli_num_rows($qry);
          
 		if($counter > 0) {   
@@ -36,20 +37,20 @@
                         window.location = "../admin/admin_dashboard.php";
                     </script>
                 <?php
-                mysqli_query($conn,"INSERT INTO audit_log(name,utype,action,timedate) VALUES('$name','$type','LOGIN IN SYSTEM AT',NOW())")
+                mysqli_query($conn,"INSERT INTO audit_logs(name,utype,action,timedate) VALUES('$name','$type','LOGIN IN SYSTEM AT',NOW())")
 					or die(mysqli_error($conn));
 					
-            }elseif($counter== true && $type=="2" && $stat=="ACTIVE") {
+            } elseif($counter== true && $type=="2" && $stat=="ACTIVE") {
                 ?>
                     <script>
                         alert("<?php echo "Welcome to San Mateo SHS";?>");
                         window.location = "../teachers/tchr_dashboard.php";
                     </script>
                 <?php
-                mysqli_query($conn,"INSERT INTO audit_log(name,utype,action,timedate) VALUES('$name','$type','LOGIN IN SYSTEM AT',NOW())")
+                mysqli_query($conn,"INSERT INTO audit_logs(name,utype,action,timedate) VALUES('$name','$type','LOGIN IN SYSTEM AT',NOW())")
 					or die(mysqli_error($conn));
 					
-            }elseif($counter== true && $type=="3" && $stat=="ACTIVE") {
+            } elseif($counter== true && $type=="3" && $stat=="ACTIVE") {
                 ?>
                     <script> 
                         alert("<?php echo "Welcome to San Mateo SHS";?>");
