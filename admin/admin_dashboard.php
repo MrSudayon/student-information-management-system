@@ -1,5 +1,7 @@
 <?php
     include "../php/dbase_config.php";
+    require_once "../php/auth.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +31,7 @@
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Course Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
         <a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
-        <a href="../index.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
+        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -47,11 +49,11 @@
             
             
             /*student count*/
-                $student=mysqli_query($conn,"SELECT * FROM users WHERE RoleType=3")or die(mysqli_error($conn));
+                $student=mysqli_query($conn,"SELECT * FROM user WHERE UTYPE=3 AND STATUS='ACTIVE'")or die(mysqli_error($conn));
                 $stdcount=mysqli_num_rows($student);
 
             /*teacher count*/
-                $teacher=mysqli_query($conn,"SELECT * FROM users WHERE RoleType=2")or die(mysqli_error($conn));
+                $teacher=mysqli_query($conn,"SELECT * FROM user WHERE UTYPE=2 AND STATUS='ACTIVE'")or die(mysqli_error($conn));
                 $tchcount=mysqli_num_rows($teacher);
 
             /*sample count*/
@@ -74,14 +76,14 @@
 
                 <a class="card card-prg" href="#">
                     <img src="../images/online-course.png" style="width: 50%;">
-                    <h3><?php echo $tchcount; ?></h3>
-                    PROGRAMS?
+                    <h3><?php echo "4"; ?></h3>
+                    DEPARTMENTS
                 </a>
                 
                 <a class="card card-samp" href="course_management.php">
                     <img src="../images/folder.png" style="width: 50%;">
                     <h3><?php echo $samplecount; ?></h3>
-                    SAMPLE
+                    SUBJECTS
                 </a>
             </div>
          

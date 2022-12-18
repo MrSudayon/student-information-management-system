@@ -1,6 +1,5 @@
 <?php 
     require_once "../php/auth.php";
-    include "../php/dbase_config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +29,7 @@
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Course Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
         <a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
-        <a href="../index.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
+        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -43,6 +42,7 @@
         <div class="dashb_content">
             <hr class="line">       
             <br>
+                <h3>Teachers Lists</h3>
                     <table class=course_lists >
                         <center>
                         <tbody>
@@ -62,64 +62,10 @@
                             <th>Phone #</th>
                             <th>sss@gmail.com</th>
                             <th>FILP11, MULM12</th>
-                            <th>Update</th>
-                            <th>Delete</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </table>
-            <h3>Teachers Lists</h3>
-            <?php
-                $sql =  "SELECT * FROM teachers_tbl WHERE tchr_STATUS = 'ACTIVE' ";
-                $res = $conn->query($sql);
-
-                if ($res->num_rows > 0) 
-                {
-                        echo "<table class=course_lists >";
-                            echo "<center>";
-                            echo "<tbody>";
-                            echo "<tr bgcolor=#363636 style='color:white'>";
-                                echo "<th>Instructor ID</th>";
-                                echo "<th>Instructor Name</th>";
-                                echo "<th>Department</th>";
-                                echo "<th>Advising Section</th>";
-                                echo "<th>Grade</th>";
-                                echo "<th>Add Section</th>";
-                                echo "<th>Add Subject</th>";
-                                echo "<th>Phone #</th>";
-                                echo "<th>Address</th>";
-                                echo "<th>Date of Birth</th>";
-                                echo "<th colspan=2>Action</th>";
-                            echo "</tr>";
-                    while($row = $res->fetch_assoc()) 
-						{   
-                            echo "<tr bgcolor = white>";
-                                echo "<td width=5%;>" . $row['std_id'];
-                                echo "<td width=15%;>" . $row['LRN'];
-                                echo "<td width=10%>" . $row['Department'];
-                                echo "<td width=25%;>" . strtoupper($row['std_LAST']),", ". $row['std_FIRST']," ". $row['std_MID'], " ". $row['std_SUFFIX']; 
-                                echo "<td width=7%;> 12 </td>";
-                                echo "<td width=5%;> 3 </td>";
-                                echo "<td width=10%;>" . $row['std_EMAIL'];
-                                echo "<td width=7%;>" . $row['std_PHONE'];
-                                echo "<td width=10%;>" . $row['Address'];
-                                echo "<td width=8%;>" . $row['std_DOB'];
-                                echo "<td width=10%;> .pdf .docx </td>";    
-                                ?> 
-                                    <td><a href="#" class="update_btn">UPDATE</a></td>
-                                    <td><a href="#" class="delete_btn">REMOVE</a></td>
-                                <?php 
-                        }
-                            echo "</tr>";
-                            echo "</tbody>";
-                        echo "</table>";
-                   
-                    } else {
-                                        
-                        echo "<CENTER><p style='color:red' font-size='3em'> 0 results </p></CENTER>";
-                                    
-                    }
-                
-                    $conn->close();
-            ?>
         </div>
     <!-- Contents -->
 </div>
