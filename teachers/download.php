@@ -1,17 +1,23 @@
 <?php
     include ("../php/dbase_config.php");
-
+    include "../php/auth.php";
+    
     $sql = "SELECT * FROM tblfiles";
     $result = mysqli_query($conn, $sql);
+    
 
     $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+    $sess_name = $_SESSION['SESSION_FNAME'];
+    
     if (isset($_GET['file_id'])) {
         $id = $_GET['file_id'];
-
+        $sub_code = $_GET['sub_code'];
+        
         // fetch file to download from database
         $sql = "SELECT * FROM tblfiles WHERE id=$id";
         $result = mysqli_query($conn, $sql);
+
         $file = mysqli_fetch_assoc($result);
         $filepath = '../uploads/modules/'.$file['name'];
 
@@ -30,10 +36,11 @@
             $newCount = $file['downloads'] + 1;
             $updateQuery = "UPDATE tblfiles SET downloads=$newCount WHERE id=$id";
             mysqli_query($conn, $updateQuery);
-
-            mysqli_query($conn,"INSERT INTO history_tbl(std_id,std_no,std_Action,timedate)
-                                SELECT std_id, '$LRN', 'Downloaded Module for (Identify & fetch subj ID)',NOW()
-                                FROM students_tbl") or die(mysqli_error($conn));
+            
+            $his = "INSERT INTO history_tbl (id,uName,uType,uAction,timedate)
+                    VALUES (null,'$sess_name',3,'Downloads modules from $sub_code',NOW())";
+            mysqli_query($conn,$his);        
+            
             
             exit;
         }

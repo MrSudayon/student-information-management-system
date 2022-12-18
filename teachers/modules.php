@@ -1,6 +1,8 @@
 <?php
+    include "../php/auth.php";
     include "../teachers/upload.php";
     include "../php/dbase_config.php";
+    
 
     $sql = "SELECT * FROM tblfiles where status='Published' || status='Unpublished' ORDER BY status ASC, date ASC";
     $result = mysqli_query($conn, $sql);
@@ -37,7 +39,7 @@
         <a href="links.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Links</h4></li></a>
         <a href="#"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">List of Sections</h4></li></a>
         <a href="#"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Students Grades</h4></li></a>
-        <a href="../portal.html"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
+        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -57,13 +59,6 @@
                             <br><br>
                         <label class="weeklbl">Description:</label>
                         <input type="text" class="weektxt1" name="weektxt" required placeholder="ex. Week 1">
-                            <br><br>
-                        <label class="weeklbl">for Section:</label>
-                            <select name="assign_section" id="assign_section" required class="status">
-                                <option value="1">- 1</option>
-                                <option value="2">- 2</option>
-                                <option value="3">- 3</option>
-                            </select>
                             <br><br>
                         <label class="weeklbl">Status:</label>
                             <select name="stat" id="stat" required class="status">
