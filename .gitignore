@@ -1,10 +1,10 @@
 
 php/dbase_config.php
+dbase_config.php
 .archives
 uploads/.DS_Store
 .vscode/settings.json
 .vscode
-
 courses/course1_view.php
 admin/admin_dashboard.html
 admin/student_management.html
