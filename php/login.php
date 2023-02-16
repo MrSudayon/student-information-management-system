@@ -9,23 +9,19 @@
 		$usern = $_POST['uemail'];
 		$password = $_POST['upass'];
 		
-		$qry =  mysqli_query($conn, "SELECT * FROM user WHERE EMAIL='$usern' AND PASS='$password'");
+		$qry =  mysqli_query($conn, "SELECT * FROM user WHERE user='$usern' AND pass='$password'");
 		$result = mysqli_fetch_array($qry);
 		
-		$id = $result['ID'];
-		$stat = $result['STATUS'];
-		$type = $result['UTYPE'];
-        $name = $result['FIRST'];
-        $lname = $result['LAST'];
-        $mid = $result['MID'];
+		$id = $result['id'];
+        $user = $result['user'];
+		$type = $result['type'];
+        $stat = $result['status'];
         
 		$counter = mysqli_num_rows($qry);
          
 		if($counter > 0) {   
             $_SESSION['SESSION_ID'] = $id;
-			$_SESSION['SESSION_FNAME'] = $name;
-            $_SESSION['SESSION_LNAME'] = $lname;
-            $_SESSION['SESSION_MID'] = $mid;
+			$_SESSION['SESSION_USER'] = $user;
 			date_default_timezone_set('Asia/Manila');
 			$date = date('Y-m-d');
 			$time = date('H:i:s');

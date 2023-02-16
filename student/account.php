@@ -39,13 +39,12 @@
 
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Accounts</h2>
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Account Settings</h2>
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
     <div class="dashb_content">
 
         <hr class="line">       
-        <h1> Account Settings </h1>
         <div class="profile">
                 
             <div class="left-pane">
@@ -60,8 +59,8 @@
                 </div>
                 
                 <div class="acc-settings">
-                    <a href="../actions/view_grades.php?id=<?php echo ($row['id']); ?>&name=<?php echo ($row['FIRST']); ?>"><li><h4>View Grades</h4></li></a>
-                    <a href="#"><li><h4>Settings</h4></li></a>
+                    <a href="../actions/view_grades.php?id=<?php echo ($row['ID']); ?>&name=<?php echo ($row['FIRST']); ?>"><li><h4>View Grades</h4></li></a>
+                    <a href="../actions/settings.php"><li><h4>Settings</h4></li></a>
                     <a href="../php/logout.php"><li><h4>Logout</h4></li></a>
                 </div>
             </div>

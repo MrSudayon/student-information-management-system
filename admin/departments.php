@@ -13,7 +13,7 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-        <title>Dashboard</title>
+        <title>Departments</title>
 
 </head>
 
@@ -38,7 +38,7 @@
   
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Dashboard</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Departments</h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
@@ -48,43 +48,45 @@
             <?php 
             
             
-            /*student count*/
-                $student=mysqli_query($conn,"SELECT * FROM user WHERE type=3 AND STATUS='ACTIVE'")or die(mysqli_error($conn));
-                $stdcount=mysqli_num_rows($student);
+            /*students count*/
+                $STEM=mysqli_query($conn,"SELECT * FROM student_tbl WHERE dept='STEM' AND status='ACTIVE'")or die(mysqli_error($conn));
+                $stemcount=mysqli_num_rows($STEM);
 
-            /*teacher count*/
-                $teacher=mysqli_query($conn,"SELECT * FROM user WHERE type=2 AND STATUS='ACTIVE'")or die(mysqli_error($conn));
-                $tchcount=mysqli_num_rows($teacher);
+                $ABM=mysqli_query($conn,"SELECT * FROM student_tbl WHERE dept='ABM' AND status='ACTIVE'")or die(mysqli_error($conn));
+                $abmcount=mysqli_num_rows($ABM);
 
-            /*sample count*/
-                $subj=mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0")or die(mysqli_error($conn));
-                $samplecount=mysqli_num_rows($subj);
+                $HUMSS=mysqli_query($conn,"SELECT * FROM student_tbl WHERE dept='HUMSS' AND status='ACTIVE'")or die(mysqli_error($conn));
+                $humsscount=mysqli_num_rows($HUMSS);
+
+                $TVL=mysqli_query($conn,"SELECT * FROM student_tbl WHERE dept='HUMSS' AND status='ACTIVE'")or die(mysqli_error($conn));
+                $tvlcount=mysqli_num_rows($TVL);
             ?>
 
             <div class="boxes">
                 <a class="card card-std" href="student_management.php">
                     <img src="../images/male-student.png" style="width: 50%;">
-                    <h3><?php echo $stdcount; ?></h3>
-                    STUDENTS
+                    <h3><?php echo $stemcount; ?></h3>
+                    STEM
                 </a>
 
-                <a class="card card-tch" href="teacher_management.php">
-                    <img src="../images/dean.png" style="width: 50%;">
-                    <h3><?php echo $tchcount; ?></h3>
-                    INSTRUCTORS
+                <a class="card card-tch" href="student_management.php">
+                    <img src="../images/male-student.png" style="width: 50%;">
+                    <h3><?php echo $abmcount; ?></h3>
+                    ABM
                 </a>
 
-                <a class="card card-prg" href="departments.php">
-                    <img src="../images/online-course.png" style="width: 50%;">
-                    <h3><?php echo "4"; ?></h3>
-                    DEPARTMENTS
+                <a class="card card-prg" href="student_management.php">
+                    <img src="../images/male-student.png" style="width: 50%;">
+                    <h3><?php echo $humsscount; ?></h3>
+                    HUMSS
                 </a>
                 
                 <a class="card card-samp" href="course_management.php">
-                    <img src="../images/folder.png" style="width: 50%;">
-                    <h3><?php echo $samplecount; ?></h3>
-                    SUBJECTS
+                    <img src="../images/male-student.png" style="width: 50%;">
+                    <h3><?php echo $tvlcount; ?></h3>
+                    TECHVOC
                 </a>
+
             </div>
          
 

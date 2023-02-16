@@ -207,6 +207,7 @@ hr.line {
     border-radius: 0px 0px 25px 25px;
     height: 100%;
 }
+
 .s-table {
     display: flex;
     justify-content: center;
@@ -220,14 +221,12 @@ hr.line {
     background-color: var(--main-color);
 }
 .s-table td {
-    background-color: white;
     text-align: center;
     padding: 10px 15px;
 }
 .s-table a:hover {
     text-decoration: underline;
 }
-
 
 /* Accounts CSS */
 .profile {
@@ -285,7 +284,6 @@ hr.line {
     font-size: 15px;
 }
 .student_info {
-    justify-content: center;
     display: flex;
 }
 .student_info td {
@@ -304,7 +302,6 @@ hr.line {
 }
 .student_info button[type="submit"]:hover {
     background-color: var(--main-color);
-    
 }
 .student_info input[type="text"] {
     width: 100%;

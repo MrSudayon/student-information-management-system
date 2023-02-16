@@ -45,15 +45,14 @@
                                 <p><button type="submit" name="loginbut">Login</button></p>
                             </form>
                             <div class="afterform">
-                                <p>Don't have an account?</p>
-                                <a href="#" class="t-signup">Register</a>
+                            
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- login form -->
 
-                <!-- signup form -->
+                <!-- signup form 
                 <div class="signup">
                     <div class="content-heading">
                         <div class="y-style">
@@ -110,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- signup form -->
+                -->
             </div>
         </div>
     </div>
