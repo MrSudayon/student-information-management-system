@@ -30,7 +30,7 @@
         <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>-->
+        <a href="eventlists.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
         <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
@@ -85,11 +85,66 @@
                     <h3><?php echo $samplecount; ?></h3>
                     SUBJECTS
                 </a>
+
+                <a class="card card-samp" href="eventlists.php">
+                    <img src="../images/notifications.png" style="width: 50%;">
+                    <h3><?php echo 0; ?></h3>
+                    ANNOUNCEMENT
+                </a>
             </div>
-         
+        
+
+            <br>
+            <div class="news_posting">
+                <div class="announcement">
+                    <h1> Create Announcement </h1><br>
+                    <form method="POST" action="">
+                        <label for="title">Announcement Title</label><br>
+                        <input type="text" name="title" id="title" placeholder="Subject Title"/><br>
+                        <label for="desc">Description</label><br>
+                        <input type="text" name="desc" id="desc"/><br>
+                        <label for="date">Date time</label><br>
+                        <input type="date" name="date" id="date"/>
+                        <input type="time" name="date" id="date"/><br>
+                        <input type="submit" class="create" name="create" value="Create">
+                    </form>
+                </div>
+                
+            </div>
 
         </div>
     <!-- Contents -->
+
+    <style>
+        .news_posting {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+            align-content: center;
+        }
+        .announcement {
+            width: 100%;
+        }
+        .announcemet input["text"] {
+            width: 500px;
+        }
+        .create {
+            background-color: yellow;
+            padding: 5px 15px;
+            margin-top: 5px;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: ease-in-out .3s;
+        }
+        .create:hover{
+            background-color: white;
+            color: red;
+        }
+    </style>
+
 </div>
 <!-- Main -->
 

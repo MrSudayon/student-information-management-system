@@ -13,6 +13,23 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <title>Dashboard</title>
+
+<style>
+    .field {
+        min-width: 100%;
+        height: 10dvh;
+        display: flex;
+        border: 1px solid black;
+        align-items: center;
+        cursor: default;
+    }
+    .datetime {
+        color: black;
+    }
+    .chck {
+        padding: 10px 25px;
+    }
+</style>
 </head>
 
 <body>
@@ -44,10 +61,23 @@
             <div class="news">
                 <h1><img src="../images/announcement.png" style="width: 22px;"> Announcement</h1>
                 <br>
-                <marquee>
-                    *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
-                    *Posting News/Announcement/Events    *Posting News/Announcement/Events     *Posting News/Announcement/Events
-                </marquee>
+
+                <div class="announcements">
+
+                    <div class="field">
+                        <div class="chck">
+                            <input type="checkbox" name="chck" class="chck" />
+                        </div>
+                        <div class="eventinfo">
+                            <h4 class="title">Sample Subject Title</h4>
+                            <p class="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti qui voluptate autem fugit, delectus eveniet veniam incidunt beatae fugiat, velit, distinctio quo aperiam! Quae voluptate enim minima quia officia est!</p>
+                            <p class="datetime">Feb 20 9:30PM</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
             </div>
         </div>
     <!-- Contents -->

@@ -21,7 +21,7 @@
             $stat = $result['enabled'];
 
             $_SESSION['SESSION_ID'] = $id;
-			$_SESSION['SESSION_NAME'] = $name;
+			$_SESSION['SESSION_USER'] = $name;
 			date_default_timezone_set('Asia/Manila');
 			$date = date('Y-m-d');
 			$time = date('H:i:s');
