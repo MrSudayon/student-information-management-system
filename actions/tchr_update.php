@@ -26,7 +26,7 @@ $subjects = "";
             $mn = $row['tchr_MID'];
             $department = $row['department'];
             $section = $row['section'];
-            $user = $row['t_user'];
+            $user = $row['user'];
             $pass = $row['pass'];
             $phone = $row['tchr_PHONE'];
             $subjects = $row['subjects'];
@@ -148,7 +148,6 @@ $subjects = "";
                         $pass = '';
                         $phone = '';
                         $subjects = '';
-                        $status = '';
 
                         if(isset($_POST['update'])) {
                             $section = $_POST['section'];
@@ -169,15 +168,7 @@ $subjects = "";
                                             alert("Record Updated!");
                                         </script>
                                     <?php
-                                    if($status == 'ACTIVE') {
 
-                                        mysqli_query($conn, "INSERT INTO user(user,pass,type,status)
-                                                    SELECT t_user, pass, role, tchr_STATUS
-                                                    FROM teachers_tbl");
-
-                                    } else {
-                                    $conn -> close();
-                                    }
                                 } catch (mysqli_sql_exception $e) {
                                     var_dump($e);
                                     exit;

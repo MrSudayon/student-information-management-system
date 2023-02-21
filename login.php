@@ -30,7 +30,7 @@
                         <div class="y-style">
                             <form method="POST" action="php/login.php">
                                 <p>
-                                    <label>Email</label>
+                                    <label>User</label>
                                     <input type="text" name="uemail" placeholder="Enter User">
                                 </p>
                                 <p>

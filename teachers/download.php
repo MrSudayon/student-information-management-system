@@ -38,7 +38,7 @@
             mysqli_query($conn, $updateQuery);
             
             $his = "INSERT INTO history_tbl (id,uName,uType,uAction,timedate)
-                    VALUES (null,'$sess_name',3,'Downloads modules from $sub_code',NOW())";
+                    VALUES (null,'$sess_name','Student','Downloads modules from $sub_code',NOW())";
             mysqli_query($conn,$his);        
             
             

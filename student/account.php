@@ -2,7 +2,7 @@
     require_once "../php/auth.php";
     include "../php/dbase_config.php";
     
-    $sql = mysqli_query($conn,"SELECT * FROM user WHERE id = '$sess_id' AND STATUS = 'ACTIVE' ");
+    $sql = mysqli_query($conn,"SELECT * FROM student_tbl WHERE id = '$sess_id' AND enabled = 1 ");
     $row = mysqli_fetch_assoc($sql);
             
 ?>
@@ -52,23 +52,19 @@
                     <center>
                     <img src="../images/user.png">
                     <div class="usern">
-                        <h1><?php echo strtoupper($sess_lname);?>, <?php echo ucfirst($sess_name); ?> <?php echo ucfirst($sess_mid);?>.<?php echo strtoupper($row['SUFFIX']); ?></h1>
-                        <h5><?php echo $row['EMAIL']; ?></h5>
+                        <h1><?php echo ucfirst($sess_name); ?></h1>
+                        <h5><?php echo $row['user']; ?></h5>
                     </div>
                     </center>
                 </div>
                 
                 <div class="acc-settings">
-                    <a href="../actions/view_grades.php?id=<?php echo ($row['ID']); ?>&name=<?php echo ($row['FIRST']); ?>"><li><h4>View Grades</h4></li></a>
+                    <a href="../actions/view_grades.php?id=<?php echo ($row['id']); ?>&name=<?php echo ($row['name']); ?>"><li><h4>View Grades</h4></li></a>
                     <a href="../actions/settings.php"><li><h4>Settings</h4></li></a>
                     <a href="../php/logout.php"><li><h4>Logout</h4></li></a>
                 </div>
             </div>
-            <?php
-                $LRN = $row['LRN'];
-                $sql1 = mysqli_query($conn,"SELECT * FROM students_tbl WHERE LRN='$LRN' AND std_STATUS= 'ACTIVE'");
-                $row1 = mysqli_fetch_assoc($sql1);
-            ?>
+            
             <div class="right-pane">
                 <div class="right-content">
                     <hr><h3><div class="right-title"><img src="../images/personal-info.png" style="height: 19px;"> Personal Information:</div></h3><br>
@@ -79,14 +75,14 @@
                         <th colspan=4 style="text-align: left;"></th>
                     </tr>
                     <tr>
-                        <td><h4>Program:</td>
+                        <td><h4>Strand:</td>
                         <td colspan="3"><input type="text" class="rc-text" value="STEM" name="dept" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
 
                     </tr>
 
                     </tr>
-                        <td><h4>Student ID:</td>
-                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo $LRN; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
+                        <td><h4>LRN:</td>
+                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo $row['LRN']; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
                     <tr>
 
                     <tr>
@@ -98,42 +94,29 @@
 
                     <tr>
                         <td><h4>Name: </h4></td>
-                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_lname; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
-                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_name;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>                   
+                        <td colspan=2><center><input type="text" class="rc-text" value="<?php echo $sess_name; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                        
                     </tr>
     
                     <tr>
                         <td style="width: 18%"></td>
-                        <td style="text-align: center;"><h5>Last Name</h5></td>
-                        <td style="text-align: center;"><h5>First Name</h5></td>
-                    </tr>
-                    
-                    <tr>
-                        <td></td>
-                        <td><center><input type="text" class="rc-text" value="<?php echo $sess_mid;?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></h4></td>
-                        <td><center><input type="text" class="rc-text" name="suffix" value="<?php echo $row1['std_SUFFIX'];?>" contenteditable placeholder="ex. Jr, Sr, I, II..." style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; width: 50%;"></center></h4></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td style="text-align: center;"><h5>Middle Name</h5></td>
-                        <td style="text-align: center;"><h5>Suffix</h5></td>
+                        <td colspan=2 style="text-align: center;"><h5>Full Name</h5></td>
                     </tr>
 
                     <tr>
                         
                         <td><h4>Date of Birth:</td>
-                        <td colspan="3"><input type="date" class="rc-text" name="dob" value="<?php echo $row1['std_DOB']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                        <td colspan="3"><input type="date" class="rc-text" name="dob" value="<?php echo $row['dob']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr>
                         
                     <tr>
                         <td><h4>Address:</h4></td>
-                        <td colspan="3"><input type="text" class="rc-text" name="address" value="<?php echo $row1['Address']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                        <td colspan="3"><input type="text" class="rc-text" name="address" value="<?php echo $row['address']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr>
 
                     <tr>
                         <td><h4>Contact no:</h4></td>
-                        <td colspan="3"><input type="text" class="rc-text" name="phone" value="<?php echo $row1['std_PHONE']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                        <td colspan="3"><input type="text" class="rc-text" name="phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr>        
                     
                     <tr>
@@ -156,9 +139,7 @@
 </html>
 <?php
   
-    
-    $suff = $row['SUFFIX'];
-    $email = $row['EMAIL'];
+
     $LRN = $row['LRN'];
     if(isset($_POST['sub'])) {
         $dob = date($_POST['dob']);

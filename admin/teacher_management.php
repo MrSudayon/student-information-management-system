@@ -1,6 +1,7 @@
 <?php 
     include "../php/dbase_config.php";
-    require_once "../php/auth.php";
+    /*require_once "../php/auth.php";
+    */
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +30,7 @@
         <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
+        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>-->
         <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
@@ -77,7 +78,7 @@
                             <?php echo "<td>" .$row['tchr_LAST'],', ' .$row['tchr_FIRST'],' ' .$row['tchr_MID']; ?>
                             <td><?php echo $row['department']; ?></td>
                             <td><?php echo $row['section']; ?></td>
-                            <td><?php echo $row['t_user']; ?></td>
+                            <td><?php echo $row['user']; ?></td>
                             <td><?php echo $row['tchr_PHONE']; ?></td>
                             <td><?php echo $row['subjects']; ?></td>
                             <td><a href="../actions/tchr_update.php?id=<?php echo ($row['id']); ?>" class="update_btn">UPDATE</a></td>

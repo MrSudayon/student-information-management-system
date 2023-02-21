@@ -82,7 +82,7 @@
         <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
+        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>-->
         <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
@@ -154,7 +154,6 @@
                             echo "<th>Image</th>";
                             echo "<th>Description</th>";
                             echo "<th>Date Added</th>";
-                            echo "<th>Assigned to</th>";
                             echo "<th colspan=2>Action</th>";
                         echo "</tr>";
                     while($row = $result->fetch_assoc()) 
@@ -168,7 +167,6 @@
                                 <?php
                                 echo "<td width=30%;>" . $row["subj_desc"];
                                 echo "<td width=8%;>" . $row["date_added"];
-                                echo "<td width=14%;>" . $row["assignedto"];
                                 ?> 
                                     <td><a href="../actions/subj_update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_id']); ?>" class="update_btn">UPDATE</a></td>
                                     <td><a href="remove.php?id=<?php echo ($row['subj_id']); ?>" class="delete_btn">REMOVE</a></td>
@@ -202,7 +200,6 @@
                             echo "<th>Image</th>";
                             echo "<th>Description</th>";
                             echo "<th>Date Added</th>";
-                            echo "<th>Assigned to</th>";
                             echo "<th colspan=2>Action</th>";
                         echo "</tr>";
                     while($row = $result->fetch_assoc()) 
@@ -216,7 +213,6 @@
                                 <?php
                                 echo "<td width=30%;>" . $row["subj_desc"];
                                 echo "<td width=8%;>" . $row["date_added"];
-                                echo "<td width=14%;>" . $row["assignedto"];
                                 ?> 
                                     <td><a href="../actions/subj_update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_id']); ?>" class="update_btn">UPDATE</a></td>
                                     <td><a href="remove.php?id=<?php echo ($row['subj_id']); ?>" class="delete_btn">REMOVE</a></td>
@@ -251,7 +247,6 @@
                             echo "<th>Image</th>";
                             echo "<th>Description</th>";
                             echo "<th>Date Added</th>";
-                            echo "<th>Assigned to</th>";
                             echo "<th colspan=2>Action</th>";
                         echo "</tr>";
                     while($row = $result->fetch_assoc()) 
@@ -265,7 +260,6 @@
                                 <?php
                                 echo "<td width=30%;>" . $row["subj_desc"];
                                 echo "<td width=8%;>" . $row["date_added"];
-                                echo "<td width=14%;>" . $row["assignedto"];
                                 ?> 
                                     <td><a href="../actions/subj_update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_id']); ?>" class="update_btn">UPDATE</a></td>
                                     <td><a href="remove.php?id=<?php echo ($row['subj_id']); ?>" class="delete_btn">REMOVE</a></td>

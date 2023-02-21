@@ -3,6 +3,9 @@
     require_once "../php/auth.php";
         $id = $_GET['id'];
         $name = $_GET['name'];
+
+        mysqli_query($conn, "INSERT INTO history_tbl (uName, uType, uAction, timedate) VALUES('$sess_name', 'Student', 'View Grades', NOW())")
+        or die(mysqli_error($conn));
 ?>
 <!DOCTYPE html>
 <html lang="en">

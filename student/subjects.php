@@ -64,9 +64,6 @@
     }  
 </style>
 </head>
-<?php
-    $sess_name = $_SESSION['SESSION_FNAME'];
-?>
 <body>
 
 <!-- sidebar -->

@@ -30,7 +30,7 @@
         <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
+        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>-->
         <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
@@ -49,11 +49,11 @@
             
             
             /*student count*/
-                $student=mysqli_query($conn,"SELECT * FROM user WHERE type=3 AND STATUS='ACTIVE'")or die(mysqli_error($conn));
+                $student=mysqli_query($conn,"SELECT * FROM student_tbl WHERE enabled=1")or die(mysqli_error($conn));
                 $stdcount=mysqli_num_rows($student);
 
             /*teacher count*/
-                $teacher=mysqli_query($conn,"SELECT * FROM user WHERE type=2 AND STATUS='ACTIVE'")or die(mysqli_error($conn));
+                $teacher=mysqli_query($conn,"SELECT * FROM teachers_tbl WHERE tchr_STATUS='ACTIVE'")or die(mysqli_error($conn));
                 $tchcount=mysqli_num_rows($teacher);
 
             /*sample count*/

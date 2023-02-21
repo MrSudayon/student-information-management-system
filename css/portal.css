@@ -5,6 +5,7 @@
 }
 * {
     font-family: 'Poppins', sans-serif;
+
 }
 body {
     background-image: radial-gradient(
@@ -16,6 +17,7 @@ body {
     margin: 0 0;
     display: flex;
     flex-direction: column;
+    max-width: 100%;
 }
 
 h2 {
@@ -37,9 +39,7 @@ header {
     display: flex;
 }  
 #smateo-shs {
-    height:90px;
-    width:90px; 
-    margin-top: 0px;
+    width:350px;
 }
 #header-title {
     padding: 20px 0 0 10px;
@@ -49,52 +49,93 @@ header {
     color: black;
 }
 
-.portal-nav-collapse {
-    margin-top: -20px;
+.logo { 
+    margin: 0;
 }
-.portal-nav-collapse ul {
+.main-nav li {
     list-style: none;
-    font-size: 1.2em;
 }
-.portal-nav-collapse a {
+.logo a,
+.main-nav a {
+	padding: 10px 15px;
+	text-transform: uppercase;
+	text-align: center;
     text-decoration: none;
-}
-.nav-tabs {
-    margin: 0 20px 0;
-    display: flex;
-    justify-content: center;
-    float: left;
-    width: 8%;
-    border-radius: 5px;
-    color: black;
-    transition: .3s;
-}
-.nav-tabs:hover {
-    background-color: var(--main-color);
-    color: antiquewhite;
-    transition: .3s;
-    border: 1px black solid;
-}
-.student-portal {
-    float: right;
-    background-color: transparent;
-    white-space: nowrap;
-    border-radius: 5px;
-    padding: 0 20px 0;
-    margin-right: 8%;
-    color: white;
-    transition: .3s;
-}
-.student-portal:hover {
-    background-color: var(--main-color);
-    color: antiquewhite;
-    transition: .3s;
-    border: 1px black solid;
+	display: block;
 }
 
-.header-nav, .portal-nav-collapse a {
-    font-family: 'Tw Cen MT';
+.main-nav a {
+    font-family: 'Bahnschrift Condensed';
+    padding: 10px 20px;
+	color: white;
+	font-size: 1em;
+    transition: ease-in-out .3s;
 }
+
+.main-nav a:hover {
+	color: black;
+    background-color: var(--light-color);
+}
+
+  
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: ease-in-out .3s;
+
+}
+
+.dropdown-content a:hover {
+    background-color: var(--main-color);
+    color: black;
+    font-size: 1em;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media (min-width: 769px) {
+	header,
+	.main-nav {
+		display: flex;
+	}
+    #smateo-shs {
+        width:600px;
+    }
+	header {
+		flex-direction: column;
+		align-items: center;
+		width: 80%;
+		margin: 0 auto;
+		max-width: 1150px;
+	
+	}
+
+}
+
+@media (min-width: 1025px) {
+	header {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+}
+
 
 main {
     display: block;
@@ -274,6 +315,7 @@ footer {
 }
 
 @media screen and (max-width: 1080px) {
+ 
     .footer-content {
         display: flex;
         flex-direction: column;

@@ -288,6 +288,7 @@ hr.line {
 }
 .student_info td {
     padding: 3px 0;
+    width: 350px;
 }
 .student_info input[type="date"] {
     width: 100%;

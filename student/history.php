@@ -1,7 +1,6 @@
 <?php
     include "../php/dbase_config.php";
     include "../php/auth.php";
-    $sess_name = $_SESSION['SESSION_FNAME'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +42,7 @@
             <hr class="line">       
             <div class="news">
             <?php
-                $sql="SELECT * FROM history_tbl WHERE uName='$sess_name' AND uType=3 ";
+                $sql="SELECT * FROM history_tbl WHERE uName='$sess_name'";
 
                 $res = $conn->query($sql);
                 if ($res->num_rows > 0) { ?>

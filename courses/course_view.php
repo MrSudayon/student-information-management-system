@@ -1,7 +1,6 @@
 <?php
     include "../php/dbase_config.php";
     include "../php/auth.php";
-    $sess_name = $_SESSION['SESSION_FNAME'];
     
     $id = $_GET['subj_id'];
     $sub_code = $_GET['subj_code'];

@@ -14,7 +14,7 @@ include "../php/dbase_config.php";
         
 
 
-            $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$user', '$lname', '$fname', '$mn', '$section', '$subjects', '$dept', '$phone', '2', '$pass', 'INACTIVE')");
+            $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$subjects', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
             
             ?>
                 <script>
@@ -105,7 +105,7 @@ include "../php/dbase_config.php";
                             <td>Phone</td>
                         </tr>
                         <tr>
-                            <th colspan=2><select multiple id="subjects" onclick="myFunction()" name="subjects" style="font-family: Consolas; height: 50px; width: 100%;">
+                            <th colspan=2><select multiple id="subjects" onclick="myFunction()" required name="subjects" style="font-family: Consolas; height: 50px; width: 100%;">
                                     <option value="Subject 1">sub 1</option>
                                     <option value="Subject 2">sub 2</option>
                                     <option value="Subject 3">sub 3</option>
