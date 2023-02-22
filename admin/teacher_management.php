@@ -50,25 +50,10 @@
                 
                 <h3>Teachers Lists 
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <input type="text" name="srch"/>
+                    <input type="text" name="search"/>
                     <button type="submit" name="srch" style="cursor: pointer;">Search</button>
-                </form>
+                
                 </h3>
-
-                <?php
-                   
-                    if(isset($_POST['srch'])) {
-                        $search = $_POST['srch'];
-                        $search = preg_replace("#[^0-9a-z]i#","", $search);
-
-                        $query = mysqli_query($conn, "SELECT * FROM teachers_tbl WHERE tchr_LAST LIKE '%".$search."%'") or die ("Could not search"); 
-
-                    }else {    
-                        $query = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY department");
-                    }
-                    
-                    
-                ?>
                     <table class=course_lists >
                         <tbody>
                         <tr bgcolor=#363636 style='color:white'>
@@ -82,10 +67,21 @@
                         </tr>
 
                         <?php 
-                    while ($row = mysqli_fetch_array($query)) {
-                            $sql = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY tchr_STATUS ASC, id ASC");
-                            foreach($sql as $row) :
+                           
+
+                            if(isset($_POST['srch'])) {
+                                $search = $_POST['search'];
+                                $search = preg_replace("#[^0-9a-z]i#","", $search);
+
+                                $query = mysqli_query($conn, "SELECT * FROM teachers_tbl WHERE tchr_LAST LIKE '%".$search."%'") or die ("Could not search"); 
+                                
+                            } else {    
+                                $query = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY tchr_STATUS ASC");
+                            }
                             
+                            while ($row = mysqli_fetch_array($query)) {
+
+                                   
                                 $status = $row['tchr_STATUS'];
                                 if($status=='INACTIVE') {
                                     ?>
@@ -96,6 +92,7 @@
                                         <tr bgcolor=white>
                                     <?php
                                 }
+                                
                         ?>
                             <?php echo "<td>" .$row['tchr_LAST'],', ' .$row['tchr_FIRST'],' ' .$row['tchr_MID']; ?>
                             <td><?php echo $row['department']; ?></td>
@@ -105,10 +102,8 @@
                             <td><?php echo $row['subjects']; ?></td>
                             <td><a href="../actions/tchr_update.php?id=<?php echo ($row['id']); ?>" class="update_btn">UPDATE</a></td>
                         </tr>
-                 
+                        </form>           
                         <?php 
-                     
-                            endforeach; 
                         }
                         ?>
                     </table>

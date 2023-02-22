@@ -1,4 +1,5 @@
 <?php 
+    include "../php/dbase_config.php";
     require_once "../php/auth.php";
 ?>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-        <title>Student Management</title>
+        <title>Announcement Management</title>
 
 </head>
 
@@ -48,19 +49,37 @@
             <div class="news_posting">
                 <div class="announcement">
                     <h1> Create Announcement </h1><br>
-                    <form method="POST" action="">
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <label for="title">Announcement Title</label><br>
                         <input type="text" name="title" id="title" placeholder="Subject Title"/><br>
                         <label for="desc">Description</label><br>
                         <textarea name="desc" id="desc"></textarea><br>
                         <label for="date">Date time</label><br>
                         <input type="date" name="date" id="date"/>
-                        <input type="time" name="date" id="date"/><br>
-                        <input type="submit" class="create" name="create" value="Create">
+                        <input type="time" name="time" id="date"/><br>
+                        <input type="submit" class="btn_crt" name="create" value="Create">
                     </form>
                 </div>
             </div>
-            
+            <?php 
+                if(isset($_POST['create'])) {
+                    $title = $_POST['title'];
+                    $desc = $_POST['desc'];
+                    $date = $_POST['date'].' '.$_POST['time'];
+
+                    $sql = mysqli_query($conn, "INSERT INTO announcement_tbl (title, description, date, archive) VALUES ('$title', '$desc', '$date', 1)");
+                    
+                    ?>
+                        <script>
+                            alert('Announcement/Event Successfully added!');
+                            window.location.href = "../admin/eventlists.php";
+                        </script>
+                    <?php
+
+                    $conn -> close();
+
+                }
+            ?>
             </center>
         </div>
     <!-- Contents -->
@@ -68,10 +87,6 @@
 <!-- Main -->
   
            
-
-
-
-
   
 <script src="../sidebar_nav.js"></script>
 

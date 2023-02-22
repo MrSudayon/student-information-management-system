@@ -10,7 +10,7 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-
+        <script src="../sidebar_nav.js"></script>
         <title>Student Management</title>
 </head>
 
@@ -40,14 +40,14 @@
     <button class="openbtn1" onclick="openNav1()">☰</button>
    <!-- Contents -->
    <div class="dashb_content">
-            
-            <hr class="line">     
-            <center>
-            <br>
+        
+        <hr class="line">     
+        <center>
+        <br>
  
         <h1>Upload Excel File</h1>
         <br>
-            <form method="POST" action="../action/import.php" enctype="multipart/form-data">
+            <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data">
                 <div class="">
                     <label>Upload Excel File</label>
                     <input type="file" name="import_file" class="form-control">
@@ -56,29 +56,65 @@
                     <button type="submit" name="save_excel_data" class="btn btn-success">Upload</button>
                 </div>
             </form>
-        
-        </form>
-<br><br><br>
-    </div>
-    <div id="response" class="<?php 
-    if(!empty($type)) { 
-        echo $type . " display-block"; 
-    } ?>">
-    <?php if(!empty($message)) { 
-        echo $message; 
-        } ?>
-    </div>
-    
-          </div>
-        </div>
-     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-            <br>
-            <h3>Students Lists</h3>
+        <?php
+            require_once 'vendor/autoload.php';
 
-            <table class=course_lists >
-                <center>
-                <tbody>
+            use PhpOffice\PhpSpreadsheet\IOFactory;
+          
+          // Set the upload directory and file name
+          $uploadDir = '../uploads/stddata';
+          $uploadFile = $uploadDir . basename($_FILES['import_file']['name']);
+          if(isset($_POST['save_excel_data'])) {
+          // Check if the file was uploaded successfully
+          if (move_uploaded_file($_FILES['import_file']['tmp_name'], $uploadFile)) {
+              // Create a new PhpSpreadsheet object
+              $spreadsheet = IOFactory::load($uploadFile);
+              
+              // Get the active worksheet
+              $worksheet = $spreadsheet->getActiveSheet();
+              
+              // Get the highest row number and column letter
+              $highestRow = $worksheet->getHighestDataRow();
+              $highestColumn = $worksheet->getHighestDataColumn();
+              
+              // Convert the column letter to a number
+              $highestColumnIndex = PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
+              
+                
+         
+                // Loop through each row in the worksheet and insert the data into the database
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $rowData = array();
+                    
+                    for ($col = 0; $col < $highestColumnIndex; $col++) {
+                        $cellValue = $worksheet->getCellByColumnAndRow($col, $row)->getValue();
+                        $rowData[] = $cellValue;
+                    }
+                    
+                    $sql = "INSERT INTO student_tbl(id,name, LRN, grade,gender,enrolleddate,phone,address,dob) VALUES ('$rowData[0]',$rowData[1], $rowData[2],$rowData[3],$rowData[4],$rowData[5],$rowData[6],$rowData[7],$rowData[8])";
+                    
+                    if ($conn->query($sql) === false) {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
+                }
+                
+                // Close the database connection
+                $conn->close();
+                
+                // Delete the uploaded file
+                unlink($uploadFile);
+                
+                echo "File uploaded and data inserted successfully.";
+            } else {
+                echo "Error uploading file.";
+                
+            }
+        }
+        ?>
+
+        <h3>Students Lists</h3>
+        <table class=course_lists >
+            <tbody>
                 <tr bgcolor=#363636 style='color:white'>
                     <th>Name</th>
                     <th>LRN</th>
@@ -90,12 +126,12 @@
                     <th>Date of Birth</th>
                     <th colspan=2>Action</th>
                 </tr>
-                <?php 
-                    $sqlst = "SELECT * FROM student_tbl";
-                    $row1 = $conn->query($sqlst);
+            <?php 
+                $sqlst = "SELECT * FROM student_tbl";
+                $row1 = $conn->query($sqlst);
 
-                    if ($row1->num_rows > 0){
-                ?>
+                if ($row1->num_rows > 0){
+            ?>
                 <tr bgcolor = white>
                     <td> <?php echo $row1['name']; ?> </td>
                     <td> <?php echo $row1['LRN']; ?> </td>
@@ -109,18 +145,18 @@
                     <td><a href="#?id=<?php echo ($row1['LRN']);?>" class="update_btn">UPDATE</a></td>
                     <td><a href="../actions/remove.php?id=<?php echo ($row1['id']); ?>" class="delete_btn">REMOVE</a></td>
                 </tr>
-                <?php
-                    }
-                ?>
-                </tbody>
-            </table>
+            <?php
+                }
+            ?>
+            </tbody>
+        </table>
     
     </div>
 </div>
 <!-- Main -->
 
 
-<script src="../sidebar_nav.js"></script>
+
 
 </body>
 </html>

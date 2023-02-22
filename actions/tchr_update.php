@@ -2,7 +2,6 @@
 include "../php/dbase_config.php";
 require_once "../php/auth.php";
 
-
 $id = "";
 $section = "";
 $pass = "";
@@ -121,7 +120,7 @@ $subjects = "";
                                     
                                 </th>
                                 <th>
-                                    <p id="x"></p>
+                                    <p id="x" name="subjects" style="border: 1px solid black; height: 80px;"></p>
                                 </th>
                                 <script>
                                     function myFunction() {
@@ -182,7 +181,6 @@ $subjects = "";
                                     window.location.href = "../admin/teacher_management.php";
                                 </script>
                             <?php
-                            $conn -> close();
                         }
                     
                     ?>

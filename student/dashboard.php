@@ -64,18 +64,30 @@
                 <br>
 
                 <div class="announcements">
+                <?php
+                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE archive = 1 ORDER BY date asc") or die ("No events listed!");
+                    
+                    while($row=mysqli_fetch_array($sql)) {  
+                        
+                        $date = $row['date']; // Numeric date in YYYY-MM-DD format
+                        $date_to_letters = date("M j, Y", strtotime($date)); // Converts numeric date to shorter letter format
 
+                         
+                ?>
                     <div class="field">
                         <div class="chck">
                             <input type="checkbox" name="chck" class="chck" />
                         </div>
                         <div class="eventinfo">
-                            <h4 class="title">Sample Subject Title</h4>
-                            <p class="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti qui voluptate autem fugit, delectus eveniet veniam incidunt beatae fugiat, velit, distinctio quo aperiam! Quae voluptate enim minima quia officia est!</p>
-                            <p class="datetime">Feb 20 9:30PM</p>
+                            <h4 class="title"><?php echo $row['title']; ?></h4>
+                            <p class="desc"><?php echo $row['description']; ?></p>
+                            <p class="datetime"><?php echo $date_to_letters; ?></p>
                         </div>
                     </div>
-
+                    <br>
+                <?php
+                }
+                ?>
 
                 </div>
 

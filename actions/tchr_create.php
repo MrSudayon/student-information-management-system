@@ -10,7 +10,7 @@ include "../php/dbase_config.php";
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $phone = $_POST['phone'];
-        $subjects = $_POST['assign'];
+        $subjects = $_POST['subjects'];
         
 
 
@@ -113,7 +113,7 @@ include "../php/dbase_config.php";
                                 
                             </th>
                             <th>
-                                <p id="x" style="border: 1px solid black; height: 80px;"></p>
+                                <p id="x" name="subjects" style="border: 1px solid black; height: 80px;"></p>
                             </th>
                             <script>
                                 function myFunction() {

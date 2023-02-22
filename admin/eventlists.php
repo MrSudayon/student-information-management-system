@@ -1,4 +1,5 @@
 <?php 
+    include "../php/dbase_config.php";
     require_once "../php/auth.php";
 ?>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-        <title>Student Management</title>
+        <title>Announcement Management</title>
 
 </head>
 
@@ -48,29 +49,44 @@
             <center>
             <a name="create" class="btn_crt" href="newevent.php">Create Announcement</a>
             <h3>Announcement Lists</h3>
-            <table>
+            <table class=course_lists>
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Date & Time</th>
-                    <th>Archive</th>
+                    <th>Remove</th>
                 </tr>
-                <tr>
-                    <td>Sample Title</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut in architecto ipsum nisi, distinctio minima natus illum quae obcaecati omnis cum nemo dolorem mollitia, officiis non magnam iure enim quod!</td>
-                    <td>Feb 21 9:30PM</td>
-                    <td>0</td>
+
+                <?php
+                    
+                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl ORDER BY date asc");
+                    while($row=mysqli_fetch_array($sql)) {
+                        $arch = $row['archive'];
+                        if($arch == 0) {
+                            ?>
+                                <tr bgcolor='red'>
+                            <?php
+                        }else {
+                            ?>
+                                <tr bgcolor=white>
+                            <?php
+                        }
+                ?>
+
+                    <td><?php echo $row['title']; ?></td>
+                    <td><?php echo $row['description']; ?> </td>
+                    <td><?php echo $row['date']; ?></td>
+                    <td><a href="eventremove.php?id=<?php echo $row['id']; ?>" name="rem" class="btn_can" style="padding:2px 10px; color: black;">Remove</a></td>
                 </tr>
+                <?php
+                    }
+                ?>
             </table>
             </center>
         </div>
     <!-- Contents -->
 </div>
 <!-- Main -->
-  
-
-
-
   
 <script src="../sidebar_nav.js"></script>
 
