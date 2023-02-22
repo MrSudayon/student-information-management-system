@@ -46,7 +46,7 @@
             ?>
                 <script>
                     alert('Invalid username or password!');
-                    window.location = "../login.php";
+                    window.location = "../emp_login.php";
                 </script>
             <?php 
         }

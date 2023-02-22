@@ -1,7 +1,6 @@
 <?php 
     include "../php/dbase_config.php";
-    /*require_once "../php/auth.php";
-    */
+    require_once "../php/auth.php";
 
 ?>
 <!DOCTYPE html>
@@ -48,13 +47,34 @@
                 <br>
                 <center>
                 <a name="create" class="btn_crt" href="../actions/tchr_create.php">Create User</a>
-                <h3>Teachers Lists</h3>
+                
+                <h3>Teachers Lists 
+                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <input type="text" name="srch"/>
+                    <button type="submit" name="srch" style="cursor: pointer;">Search</button>
+                </form>
+                </h3>
+
+                <?php
+                   
+                    if(isset($_POST['srch'])) {
+                        $search = $_POST['srch'];
+                        $search = preg_replace("#[^0-9a-z]i#","", $search);
+
+                        $query = mysqli_query($conn, "SELECT * FROM teachers_tbl WHERE tchr_LAST LIKE '%".$search."%'") or die ("Could not search"); 
+
+                    }else {    
+                        $query = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY department");
+                    }
+                    
+                    
+                ?>
                     <table class=course_lists >
                         <tbody>
                         <tr bgcolor=#363636 style='color:white'>
                             <th>Instructor Name</th>
-                            <th>Strand/Department</th>
-                            <th>Advising Section</th>
+                            <th>Strand</th>
+                            <th>Section</th>
                             <th>User</th>
                             <th>Phone #</th>
                             <th>Subjects</th>
@@ -62,6 +82,7 @@
                         </tr>
 
                         <?php 
+                    while ($row = mysqli_fetch_array($query)) {
                             $sql = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY tchr_STATUS ASC, id ASC");
                             foreach($sql as $row) :
                             
@@ -84,8 +105,11 @@
                             <td><?php echo $row['subjects']; ?></td>
                             <td><a href="../actions/tchr_update.php?id=<?php echo ($row['id']); ?>" class="update_btn">UPDATE</a></td>
                         </tr>
-                        <?php
-                            endforeach 
+                 
+                        <?php 
+                     
+                            endforeach; 
+                        }
                         ?>
                     </table>
                 </center>

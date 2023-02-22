@@ -93,24 +93,9 @@
                 </a>
             </div>
         
-
-            <br>
-            <div class="news_posting">
-                <div class="announcement">
-                    <h1> Create Announcement </h1><br>
-                    <form method="POST" action="">
-                        <label for="title">Announcement Title</label><br>
-                        <input type="text" name="title" id="title" placeholder="Subject Title"/><br>
-                        <label for="desc">Description</label><br>
-                        <input type="text" name="desc" id="desc"/><br>
-                        <label for="date">Date time</label><br>
-                        <input type="date" name="date" id="date"/>
-                        <input type="time" name="date" id="date"/><br>
-                        <input type="submit" class="create" name="create" value="Create">
-                    </form>
-                </div>
-                
-            </div>
+           
+            
+           
 
         </div>
     <!-- Contents -->
@@ -129,6 +114,10 @@
         }
         .announcemet input["text"] {
             width: 500px;
+        }
+        #desc {
+            width: 300px;
+            height: 6dvh;
         }
         .create {
             background-color: yellow;

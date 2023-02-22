@@ -37,37 +37,38 @@
   
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Announcement Management</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Announcement Lists</h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content"> 
             <hr class="line">       
             <br>
-            <!-- CRUD -->
-           
             <center>
-            <a name="create" class="btn_crt" href="newevent.php">Create Announcement</a>
-            <h3>Announcement Lists</h3>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date & Time</th>
-                    <th>Archive</th>
-                </tr>
-                <tr>
-                    <td>Sample Title</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut in architecto ipsum nisi, distinctio minima natus illum quae obcaecati omnis cum nemo dolorem mollitia, officiis non magnam iure enim quod!</td>
-                    <td>Feb 21 9:30PM</td>
-                    <td>0</td>
-                </tr>
-            </table>
+
+            <div class="news_posting">
+                <div class="announcement">
+                    <h1> Create Announcement </h1><br>
+                    <form method="POST" action="">
+                        <label for="title">Announcement Title</label><br>
+                        <input type="text" name="title" id="title" placeholder="Subject Title"/><br>
+                        <label for="desc">Description</label><br>
+                        <textarea name="desc" id="desc"></textarea><br>
+                        <label for="date">Date time</label><br>
+                        <input type="date" name="date" id="date"/>
+                        <input type="time" name="date" id="date"/><br>
+                        <input type="submit" class="create" name="create" value="Create">
+                    </form>
+                </div>
+            </div>
+            
             </center>
         </div>
     <!-- Contents -->
 </div>
 <!-- Main -->
   
+           
+
 
 
 

@@ -20,6 +20,7 @@
         height: 10dvh;
         display: flex;
         border: 1px solid black;
+        border-radius: 10px;
         align-items: center;
         cursor: default;
     }
