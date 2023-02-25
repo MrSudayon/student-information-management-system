@@ -143,7 +143,7 @@
                     <td> <?php echo $row1['dob']; ?> </td>
                     
                     <td><a href="#?id=<?php echo ($row1['LRN']);?>" class="update_btn">UPDATE</a></td>
-                    <td><a href="../actions/remove.php?id=<?php echo ($row1['id']); ?>" class="delete_btn">REMOVE</a></td>
+                    <td><a href="../actions/std_remove.php?id=<?php echo ($row1['id']); ?>" class="delete_btn">REMOVE</a></td>
                 </tr>
             <?php
                 }
