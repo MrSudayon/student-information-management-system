@@ -7,7 +7,6 @@ $id = "";
 $sub_code = "";
 $sub_name = "";
 $sub_desc = "";
-$sub_unit = "";
 $sub_prof = "";
 $dept = "";
 
@@ -95,8 +94,7 @@ $dept = "";
                                 <td>Description</td>
                             </tr>
                             <tr>
-                                <th><input type="text" name="course_unit" placeholder="Units" value="<?php echo $sub_unit; ?>" style="font-family: Consolas; height: 30px;"> </th>
-                                <th><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;" value="<?php echo $dept; ?>" > </th>
+                                <th colspan=2><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;" value="<?php echo $dept; ?>" > </th>
                                 <th><label for="assign" ></label>
                                     <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;" >
                                         <option value="<?php echo $sub_prof; ?>"><?php echo $sub_prof; ?></option>
@@ -106,8 +104,7 @@ $dept = "";
                                 </th>
                             </tr>
                             <tr>
-                                <td>Unit</td>
-                                <td>Department</td>
+                                <td colspan=2>Department</td>
                                 <td>Assign to:</td>
                             </tr>
                             <tr>
@@ -124,7 +121,6 @@ $dept = "";
                         $sub_code = '';
                         $sub_name = '';
                         $sub_desc = '';
-                        $sub_unit = '';
                         $sub_prof = '';
                         $dept = '';
 
@@ -133,7 +129,6 @@ $dept = "";
                             $c_name = $_POST['course_name'];
                             $c_code = $_POST['course_code'];
                             $c_desc = $_POST['course_desc'];
-                            $c_unit = $_POST['course_unit'];      
                             $c_assign = $_POST['assign'];
                             $department = $_POST['department'];
                             

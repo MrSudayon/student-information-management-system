@@ -3,8 +3,7 @@
     include "../php/dbase_config.php";
     
     $sql = mysqli_query($conn,"SELECT * FROM student_tbl WHERE id = '$sess_id' AND enabled = 1 ");
-    $row = mysqli_fetch_assoc($sql);
-            
+    $row = mysqli_fetch_assoc($sql);          
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +59,7 @@
                 
                 <div class="acc-settings">
                     <a href="../actions/view_grades.php?id=<?php echo ($row['id']); ?>&name=<?php echo ($row['name']); ?>"><li><h4>View Grades</h4></li></a>
-                    <a href="../actions/settings.php"><li><h4>Settings</h4></li></a>
+                    <a href="../actions/report.php?id = <?php echo $sess_id; ?>"><li><h4>Report Bugs</h4></li></a>
                     <a href="../php/logout.php"><li><h4>Logout</h4></li></a>
                 </div>
             </div>
@@ -94,7 +93,7 @@
 
                     <tr>
                         <td><h4>Name: </h4></td>
-                        <td colspan=2><center><input type="text" class="rc-text" value="<?php echo $sess_name; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                        <td colspan=2><center><input type="text" class="rc-text" value="<?php echo $row['name'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
                         
                     </tr>
     
