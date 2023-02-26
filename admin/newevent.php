@@ -67,7 +67,7 @@
                     $desc = $_POST['desc'];
                     $date = $_POST['date'].' '.$_POST['time'];
 
-                    $sql = mysqli_query($conn, "INSERT INTO announcement_tbl (title, description, date, archive) VALUES ('$title', '$desc', '$date', 1)");
+                    $sql = mysqli_query($conn, "INSERT INTO announcement_tbl (title, description, date, enabled) VALUES ('$title', '$desc', '$date', 1)");
                     
                     ?>
                         <script>

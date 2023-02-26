@@ -59,12 +59,12 @@
 
                 <?php
                     
-                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl ORDER BY date asc");
+                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl ORDER BY enabled DESC, date ASC");
                     while($row=mysqli_fetch_array($sql)) {
-                        $arch = $row['archive'];
-                        if($arch == 0) {
+                        $en = $row['enabled'];
+                        if($en == 0) {
                             ?>
-                                <tr bgcolor='red'>
+                                <tr bgcolor='#ffcccb'>
                             <?php
                         }else {
                             ?>

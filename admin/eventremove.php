@@ -3,7 +3,7 @@
 
     $id = $_GET ['id'];
 
-    $sql = mysqli_query($conn, "UPDATE announcement_tbl SET archive=0 WHERE id='$id'");
+    $sql = mysqli_query($conn, "UPDATE announcement_tbl SET enabled=0 WHERE id='$id'");
 
 
     header("location: eventlists.php");
