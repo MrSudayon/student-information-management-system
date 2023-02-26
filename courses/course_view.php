@@ -5,7 +5,7 @@
     $id = $_GET['subj_id'];
     $sub_code = $_GET['subj_code'];
     
-    $sql = "SELECT * FROM tblfiles WHERE status='Published' AND course_code='$sub_code'";
+    $sql = "SELECT * FROM tblfiles WHERE uploadedto LIKE '%".$sub_code."%' ";
     $result = mysqli_query($conn, $sql);
     
     $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -52,28 +52,50 @@
             <hr class="line">       
             <br>
             <center>
-            <h2>List of Modules</h2><br>
-				<form action="modules.php" method="post" enctype="multipart/form-data" >
-                    <table class="t-table">
-                    <tbody>
-                        <tr>
-                            <th>Description</th>
-                            <th>Filename</th>
-                            <th>size</th>
-                            <th colspan="4">Action</th>
-                        </tr>
-                    <?php foreach ($files as $file): ?>
-                        <tr bgcolor="white">
-                            <td><?php echo $file['Description']; ?></td>
-                            <td><?php echo $file['name']; ?></td>
-                            <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
-                            <td><a href="../teachers/download.php?file_id=<?php echo $file['ID']; ?>&name=<?php echo $sess_name; ?>&sub_code=<?php echo $sub_code; ?>"> Download </a> </td>
-                        </tr>
-                    <?php endforeach;?>
+            <h3>List of Modules</h3><br>
+                <table class="t-table">
+                <tbody>
+                    <tr>
+                        <th>Description</th>
+                        <th>Filename</th>
+                        <th>size</th>
+                        <th>Action</th>
+                    </tr>
+                <?php foreach ($files as $file): ?>
+                    <tr bgcolor="white">
+                        <td><?php echo $file['Description']; ?></td>
+                        <td><?php echo $file['name']; ?></td>
+                        <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
+                        <td><a href="../teachers/download.php?file_id=<?php echo $file['ID']; ?>&name=<?php echo $sess_name; ?>&sub_code=<?php echo $sub_code; ?>"> Download </a> </td>
+                    </tr>
+                <?php endforeach;?>
 
-                    </tbody>
-                    </table>
-                </form>
+                </tbody>
+                </table>
+            <!-- LINKS!! -->
+            <br><br><hr>
+                <h3>List of Links</h3>
+                <table class="t-table">
+                <tbody>
+                    <tr>
+                        <th>Description</th>
+                        <th>Link</th>
+                    </tr>
+                        
+                        <?php 
+                        
+                        $sql1 = "SELECT * FROM tbllinks WHERE uploadedto LIKE '%".$sub_code."%'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        $files1 = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+                        
+                        foreach ($files1 as $file1): ?>
+                    <tr bgcolor="white">
+                        <td><?php echo $file1['description']; ?></td>
+                        <td><a href="<?php echo $file['links']; ?>" target="_blank"><?php echo $file1['links']; ?></a></td>
+                    </tr>
+                        <?php endforeach;?>
+                </tbody>
+                </table>
             </center>
         </div>
     <!-- Contents -->
