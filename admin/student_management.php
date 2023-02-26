@@ -1,7 +1,7 @@
 <?php 
     include "../php/dbase_config.php";
-    /*require_once "../php/auth.php";
-    */
+    require_once "../php/auth.php";
+    
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
                 <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
                 <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
                 <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-                <a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>
+                <a href="eventlists.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
                 <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
             </ul>
         </div>
@@ -61,6 +61,9 @@
                                     <th>Name</th>
                                     <th>LRN</th>
                                     <th>Grade</th>
+                                    <th>Section</th>
+                                    <th>Strand</th>
+                                    <th>Originating Section</th>
                                     <th>Gender</th>
                                     <th>Enrolled Date</th>
                                     <th>Address</th>
@@ -69,13 +72,13 @@
                                     <th colspan=2>Action</th>
                                 </tr>
                                 <?php
-                                    $sql = mysqli_query($conn, "SELECT * FROM student_tbl");
+                                    $sql = mysqli_query($conn, "SELECT * FROM student_tbl ORDER BY enabled DESC");
                                     foreach($sql as $row) :
                                         
                                         $en = $row['enabled'];
                                     if($en=='0') {
                                         ?>
-                                            <tr bgcolor='red'>
+                                            <tr bgcolor='#ffcccb'>
                                         <?php
                                     }else {
                                         ?>
@@ -83,18 +86,21 @@
                                         <?php
                                     }
                                 ?>
-                                <tr bgcolor = white>
+                                
                                     <td> <?php echo $row['name']; ?> </td>
                                     <td> <?php echo $row['LRN']; ?> </td>
                                     <td> <?php echo $row['grade']; ?> </td>
+                                    <td> <?php echo $row['section']; ?> </td>
+                                    <td> <?php echo $row['strand']; ?> </td>
+                                    <td> <?php echo $row['originating_sec']; ?> </td>
                                     <td> <?php echo $row['gender']; ?> </td>
                                     <td> <?php echo $row['enrolleddate']; ?> </td>
                                     <td> <?php echo $row['address']; ?> </td>
                                     <td> <?php echo $row['phone']; ?> </td>
                                     <td> <?php echo $row['dob']; ?> </td>
                                     
-                                    <td><a href="#?id=<?php echo ($row['id']);?>" class="update_btn">UPDATE</a></td>
-                                    <td><a href="../actions/remove.php?id=<?php echo ($row['id']); ?>" class="delete_btn">REMOVE</a></td>
+                                    <td><a href="../actions/std_update.php?id=<?php echo ($row['id']);?>" class="update_btn">UPDATE</a></td>
+                                    <td><a href="../actions/std_remove.php?id=<?php echo ($row['id']); ?>" class="delete_btn">REMOVE</a></td>
                                 </tr>
                                 <?php
                                     endforeach 

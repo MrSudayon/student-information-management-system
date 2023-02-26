@@ -56,9 +56,19 @@
                 $teacher=mysqli_query($conn,"SELECT * FROM teachers_tbl WHERE tchr_STATUS='ACTIVE'")or die(mysqli_error($conn));
                 $tchcount=mysqli_num_rows($teacher);
 
-            /*sample count*/
+            /*subject count*/
                 $subj=mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0")or die(mysqli_error($conn));
-                $samplecount=mysqli_num_rows($subj);
+                $subjcount=mysqli_num_rows($subj);
+
+            /*announcement count*/
+                $announcement=mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled=1")or die(mysqli_error($conn));
+                $activeannouncementcount=mysqli_num_rows($announcement);
+
+            /*departments count
+                $dept=mysqli_query($conn,"");
+                $deptcount=mysqli_num_rows($dept);
+            */
+            
             ?>
 
             <div class="boxes">
@@ -82,13 +92,13 @@
                 
                 <a class="card card-samp" href="course_management.php">
                     <img src="../images/folder.png" style="width: 50%;">
-                    <h3><?php echo $samplecount; ?></h3>
+                    <h3><?php echo $subjcount; ?></h3>
                     SUBJECTS
                 </a>
 
                 <a class="card card-samp" href="eventlists.php">
                     <img src="../images/notifications.png" style="width: 50%;">
-                    <h3><?php echo 0; ?></h3>
+                    <h3><?php echo $activeannouncementcount; ?></h3>
                     ANNOUNCEMENT
                 </a>
             </div>

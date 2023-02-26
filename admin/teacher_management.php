@@ -30,7 +30,7 @@
         <a href="course_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
         <a href="eventlists.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
-        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>-->
+        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Settings</h4></li></a>-->
         <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
@@ -71,9 +71,10 @@
 
                             if(isset($_POST['srch'])) {
                                 $search = $_POST['search'];
-                                $search = preg_replace("#[^0-9a-z]i#","", $search);
+                               
 
-                                $query = mysqli_query($conn, "SELECT * FROM teachers_tbl WHERE tchr_LAST LIKE '%".$search."%'") or die ("Could not search"); 
+                                $query = mysqli_query($conn, "SELECT * FROM teachers_tbl WHERE tchr_LAST LIKE '%".$search."%' OR tchr_FIRST LIKE '%".$search."%' OR tchr_MID LIKE '%".$search."%' 
+                                OR section LIKE '%".$search."%' OR department LIKE '%".$search."%' OR user LIKE '%".$search."%' OR subjects LIKE '%".$search."%'") or die ("Could not search"); 
                                 
                             } else {    
                                 $query = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY tchr_STATUS ASC");
@@ -85,7 +86,7 @@
                                 $status = $row['tchr_STATUS'];
                                 if($status=='INACTIVE') {
                                     ?>
-                                        <tr bgcolor='red'>
+                                        <tr bgcolor='#ffcccb'>
                                     <?php
                                 }else {
                                     ?>
