@@ -18,8 +18,11 @@
             $id = $result['id'];
             $stat = $result['tchr_STATUS'];
             $name = ucfirst($result['tchr_LAST']).", ".$result['tchr_FIRST'];
+            $user = $result['user'];
+
             $_SESSION['SESSION_ID'] = $id;
-			$_SESSION['SESSION_USER'] = $name;
+			$_SESSION['SESSION_NAME'] = $name;
+            $_SESSION['SESSION_USER'] = $user;
 			date_default_timezone_set('Asia/Manila');
 			$date = date('Y-m-d');
 			$time = date('H:i:s');

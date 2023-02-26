@@ -51,65 +51,6 @@
                     </div>
                 </div>
                 <!-- login form -->
-
-                <!-- signup form 
-                <div class="signup">
-                    <div class="content-heading">
-                        <div class="y-style">
-                            <div class="logo"><a href="index.html">San Mateo <span>SHS</span></a></div>
-                            <div class="welcome">
-                                <h2>Sign Up<br>Now!</h2>
-                                <p>Learn easy<br>and in Accessible way!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-form">
-                        <div class="y-style">
-                            <form method="POST" action="php/signup.php">
-                                <p>
-                                    <label>Code</label>
-                                    <input type="text" name=regcode placeholder="Enter your code give by registrar">
-                                </p>
-                                <p>
-                                    <label>Last name</label>
-                                    <input name="lnametxt" type="text" required placeholder="Enter your lastname">
-                                    <label>First name</label>
-                                    <input name="fnametxt" type="text" required placeholder="Enter your firstname">
-                                    <label>Middle name</label>
-                                    <input name="midtxt" type="text" required placeholder="Enter your name">
-                                    <label>Suffix</label>
-                                    <input name="suffix" type="text" placeholder="Suffix (Optional)">
-                                </p>
-                                <p>
-                                    <label>LRN</label>
-                                    <input name="lrntxt" type="text" required placeholder="Enter your LRN">
-                                </p>
-                                <p>
-                                    <label>Email</label>
-                                    <input name="emailtxt" type="text" required placeholder="Enter your email">
-                                </p>
-                                <p>
-                                    <label>Password</label>
-                                    <input name="passtxt" type="password" required placeholder="Enter password">
-                                </p>
-                                <p>
-                                    <label>Confirm Password</label>
-                                    <input name="conpasstxt" type="password" required placeholder="confirm password">
-                                </p>
-                                <p class="check">
-                                    <input type="checkbox" id="terms" required>
-                                    <label for="terms">I agree to the terms and condition.</label>
-                                </p>
-                                <p><button name="create_acc" type="submit">Sign Up</button></p>
-                            </form>
-                            <div class="afterform">
-                                <p>Already have an account?</p>
-                                <a href="#" class="t-login">Sign In</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
             </div>
         </div>
     </div>
