@@ -47,7 +47,7 @@
         <a href="tchr_attendance.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Attendance</h4></li></a>
         <a href="modules.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Modules</h4></li></a>
         <a href="links.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Links</h4></li></a>
-        <a href="#"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">List of Sections</h4></li></a>
+        <a href="handled_subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">List of Sections</h4></li></a>
         <a href="#"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Students Grades</h4></li></a>
         <a href="settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Settings</h4></li></a>
     </ul>
@@ -61,10 +61,13 @@
     <!-- Contents -->
         <div class="dashb_content">
             <hr class="line">
+            <?php
+                $sql1 = mysqli_query($conn, "SELECT tchr_FIRST FROM teachers_tbl WHERE id=$sess_id ");
+                $res = mysqli_fetch_array($sql1); 
+            ?>
+            <h1> Hello Teacher, <?php echo ucfirst($res['tchr_FIRST']); ?> </h1><br>
             <div class="news">
-                <h1><img src="../images/announcement.png" style="width: 22px;"> Announcement</h1>
-                <br>
-
+                <h3><img src="../images/announcement.png" style="width: 22px;"> Announcement</h3>
                 <div class="announcements">
                 <?php
                     $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1 ORDER BY date asc") or die ("No events listed!");

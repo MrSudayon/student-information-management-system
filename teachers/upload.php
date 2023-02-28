@@ -18,6 +18,7 @@
         $date =  date("Y-m-d");
         $size = $_FILES['myfile1']['size'];
         $desc = $_POST['weektxt'];
+        $uploadedto = $_POST['subj'];
         $status = $_POST['stat'];
 
         if (!in_array($extension, ['zip', 'pdf', 'docx', 'pptx','xlsx'])) {
@@ -27,7 +28,7 @@
             } else {
             // move the uploaded (temporary) file to the specified destination
             if (move_uploaded_file($file, $destination)) {
-                $sql = "INSERT INTO tblfiles (ID,Description,name, size, date, downloads, status, course_code) VALUES (NULL,'$desc','$filename', $size, '$date', 0, '$status','RSCH12')";
+                $sql = "INSERT INTO tblfiles (ID,Description,name,uploadedto, size, date, downloads, status) VALUES (NULL,'$desc','$filename','$uploadedto', $size, '$date', 0, '$status')";
                 if (mysqli_query($conn, $sql)) {
                     ?>
                         <script>
@@ -40,6 +41,7 @@
                 echo "Failed to upload file.";
             }
         }
+        $conn->close();
     }
 ?>
                     

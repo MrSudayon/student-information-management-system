@@ -1,6 +1,5 @@
 <?php
     include "../php/auth.php";
-    include "../teachers/upload.php";
     include "../php/dbase_config.php";
     
 
@@ -37,9 +36,9 @@
         <a href="tchr_attendance.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Attendance</h4></li></a>
         <a href="modules.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Modules</h4></li></a>
         <a href="links.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Links</h4></li></a>
-        <a href="#"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">List of Sections</h4></li></a>
+        <a href="section.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">List of Sections</h4></li></a>
         <a href="#"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Students Grades</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
+        <a href="settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Settings</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -53,17 +52,22 @@
         <div class="dashb_content">
             <hr class="line">
 			<center>
-				<form action="modules.php" method="post" enctype="multipart/form-data" >
+				<form action="upload.php" method="post" enctype="multipart/form-data" >
 					    <h3>Upload Files</h3>
                         <input type="file" class="upload" required name="myfile1">
                             <br><br>
-                        <label class="weeklbl">Description:</label>
+                        <label class="weeklbl" for="weektxt1">Description:</label>
                         <input type="text" class="weektxt1" name="weektxt" required placeholder="ex. Week 1">
                             <br><br>
-                        <label class="weeklbl">Status:</label>
+                        <label class="weeklbl" for="stat">Status:</label>
                             <select name="stat" id="stat" required class="status">
                                 <option value="Published">Publish</option>
                                 <option value="Unpublished">Unpublish</option>
+                            </select> &nbsp;&nbsp;
+                        <label class="weeklbl" for="subj">Status:</label>
+                            <select name="subj" id="subj" required class="status">
+                                <option value="FIL111">FILP</option>
+                                <option value="WATP">WATP</option>
                             </select>
                         <br>
                         <button type="submit" name="save" class="btnup">Upload</button>
@@ -75,6 +79,7 @@
                             <tr>
                                 <th>Description</th>
                                 <th>Filename</th>
+                                <th>Uploaded to</th>
                                 <th>Date Upload</th>
                                 <th>size</th>
                                 <th>Status</th>
@@ -84,6 +89,7 @@
                             <tr bgcolor="white">
                                 <td><?php echo $file['Description']; ?></td>
                                 <td><?php echo $file['name']; ?></td>
+                                <td><?php echo $file['uploadedto']; ?></td>
                                 <td><?php echo $file['date']; ?></td>
                                 <td><?php echo floor($file['size'] / 1000) . ' KB'; ?></td>
 

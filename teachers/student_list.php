@@ -2,10 +2,12 @@
     include "../php/dbase_config.php";
     require_once "../php/auth.php";
     
-    $sql = "SELECT * FROM tbllinks";
+    $sec = $_GET['section'];
+    $sql = "SELECT * FROM student_tbl where section ='$sec'";
     $result = mysqli_query($conn, $sql);
     
-    $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,7 @@
         <link rel="stylesheet" href="../css/teacher.css">
         <link rel="icon" href="../images/smateo-shs.png">
        
-        <title>Links</title>
+        <title>Student List</title>
         <script src="../sidebar_nav.js"></script>
 </head>
 
@@ -44,44 +46,23 @@
   
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Link Manager</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student in <?php echo $sec; ?> </h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
     <div class="dashb_content">
         <hr class="line">
 
         <center>
-            <form action="addlink.php" method="post" enctype="multipart/form-data">
-                <h3>Add Links</h3>
-                <label class="weeklbl">Description:</label>
-                <input type="text" class="weektxt1" name="descript" required placeholder="Description"/>
-                    <br><br>
-                <label class="weeklbl">Link:</label>
-                <input type="text" class="weektxt1" name="link" required placeholder="paste link here"/>&nbsp;&nbsp;
-                <label class="weeklbl" for="subj">Status:</label>
-                            <select name="subj" id="subj" required class="status">
-                                <option value="FIL111">FILP</option>
-                                <option value="WATP">WATP</option>
-                            </select>
-                    <br>
-                <input type="submit" class="btnup" name="addbut" value="Add">
-            </form>
-        
-        <hr>
-        <h3>List of Links</h3>
+        <h3>List of Students</h3>
             <table class="t-table">
             <tbody>
                 <tr>
-                    <th>Description</th>
-                    <th>Link</th>
-                    <th>Uploaded to</th>
+                    <th>Student Name</th>
                 </tr>
 
-                    <?php foreach ($files as $file): ?>
+                    <?php foreach ($rows as $row): ?>
                 <tr bgcolor="white">
-                    <td><?php echo $file['description']; ?></td>
-                    <td><a href="<?php echo $file['links']; ?>" target="_blank"><?php echo $file['links']; ?></a></td>
-                    <td><?php echo $file['uploadedto']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
                 </tr>
                     <?php endforeach;?>
             </tbody>
@@ -96,3 +77,6 @@
 
 </body>
 </html>
+
+
+
