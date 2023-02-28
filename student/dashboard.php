@@ -13,23 +13,22 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <title>Dashboard</title>
-
 <style>
-    .field {
-        min-width: 100%;
-        height: 10dvh;
-        display: flex;
-        border: 1px solid black;
-        border-radius: 10px;
-        align-items: center;
-        cursor: default;
-    }
-    .datetime {
-        color: black;
-    }
-    .chck {
-        padding: 10px 25px;
-    }
+.field {
+    min-width: 100%;
+    height: 10dvh;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    cursor: default;
+}
+.datetime {
+    color: black;
+}
+.chck {
+    padding: 10px 25px;
+}
 </style>
 </head>
 
@@ -58,14 +57,18 @@
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
-            <hr class="line">       
+            <hr class="line">
+            <?php 
+                $stdName = mysqli_query($conn, "SELECT name FROM student_tbl WHERE id=$sess_id ");
+                $stdRes = mysqli_fetch_array($stdName);
+            ?>
+            <h1> Welcome, <?php echo ucfirst($stdRes['name']); ?> </h1>
             <div class="news">
-                <h1><img src="../images/announcement.png" style="width: 22px;"> Announcement</h1>
-                <br>
-
+            <br>
+                <h3><img src="../images/announcement.png" style="width: 22px;"> Announcement</h3>
                 <div class="announcements">
                 <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE archive = 1 ORDER BY date asc") or die ("No events listed!");
+                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1 ORDER BY date asc") or die ("No events listed!");
                     
                     while($row=mysqli_fetch_array($sql)) {  
                         
