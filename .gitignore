@@ -5,9 +5,7 @@ dbase_config.php
 uploads/.DS_Store
 .vscode/settings.json
 .vscode
-courses/course1_view.php
-admin/admin_dashboard.html
-admin/student_management.html
-admin/user_settings.html
-courses/course1_view.php
-teachers/tchr_attendance.html
+uploads/stddata
+uploads/modules
+uploads/images
+*.php
