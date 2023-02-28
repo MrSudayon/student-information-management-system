@@ -1,38 +1,5 @@
 <?php
 include "../php/dbase_config.php";
-
-    if(isset($_POST['add'])) {
-        $lname = $_POST['lname'];
-        $fname = $_POST['fname'];
-        $mn = $_POST['m'];
-        $dept = $_POST['department'];
-        $section = $_POST['section'];
-        $user = $_POST['user'];
-        $pass = $_POST['pass'];
-        $phone = $_POST['phone'];
-        $subjects = $_POST['subjects'];
-        
-
-
-            $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$subjects', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
-            
-            ?>
-                <script>
-                    alert("New Record Added!");
-                    window.location.href = "../admin/teacher_management.php";
-                </script>
-            <?php	
-      
-        $conn -> close();
-    }
-    elseif(isset($_POST['can'])) {
-        ?>
-            <script>
-                window.location.href = "../admin/teacher_management.php";
-            </script>
-        <?php
-        $conn -> close();
-    }
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +12,7 @@ include "../php/dbase_config.php";
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
         <title>Instructor Management</title>
+
 </head>
 
 <body>
@@ -105,26 +73,94 @@ include "../php/dbase_config.php";
                             <td>Phone</td>
                         </tr>
                         <tr>
-                            <th colspan=2><select multiple id="subjects" onclick="myFunction()" required name="subjects" style="font-family: Consolas; height: 50px; width: 100%;">
-                                    <option value="Subject 1">sub 1</option>
-                                    <option value="Subject 2">sub 2</option>
-                                    <option value="Subject 3">sub 3</option>
+                            <td>
+                                    <?php  
+                                    $query ="SELECT * FROM subject_tbl";
+                                    $result = $conn->query($query);
+                                    if($result->num_rows> 0){
+                                    $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                    }
+                                    ?>
+                                    <div class="multi-selector">
+
+                                        <div class="select-field">
+                                            <input type="text" placeholder="choose subjects" id="" class="input-select" style="outline: none; border: none;"/>
+                                            <span class="arrow-down">&blacktriangledown;</span>
+                                        </div>
+                                        
+                                        <div class="list">
+                                        <?
+                                            foreach ($subjects as $subject) {
+                                        ?>
+                                            <label class="task">
+                                            <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $subject['subj_code']; ?>" >
+                                                <?php echo $subject['subj_name']; ?>
+                                                <span><?php echo $subject['subj_code']; ?></span>
+                                            </input>
+                                            </label>
+                                        
+                                        <?php 
+                                            }
+                                        ?>
+                                        </div>
+
+                                    </div>
+                            </td>
+                            <td colspan=2>
+                                <p id="subs"></p>
+                            </td>
+                            <script>
+                                /** getting checked value from array */
+                                
+                                var sub = document.querySelectorAll('input[type=checkbox]');
+                                var paraSelectedElement = document.getElementById('subs');                        
+
+                                sub.forEach(function(checkbox) {
+                                    checkbox.addEventListener('change', function() {
+                                        var selectedSub = [];
+                                        
+                                        sub.forEach(function(checkbox) {
+                                            if(checkbox.checked) {
+                                                selectedSub.push(checkbox.value);
+                                            }
+                                        });
+                                            
+                                    paraSelectedElement.innerHTML = selectedSub;
+                                    });
+                                });
+                                
+                                /**
+                                for (var i = 0; i < selectedSub.lenght; i++ ) {
+                                    array.push(selectedSub[i].value);
+                                    document.getElementById("subs").innerHTML = selectedSub;
+                                } 
+                                */
+                                
+                            </script>
+                           
+                        </tr>
+                            <!--
+                            <select multiple id="subjects" onclick="myFunction()" required name="subjects" style="font-family: Consolas; height: 50px; width: 100%;">
+                                        foreach ($options as $option) {
+                           
+                                       
+                                            }
+                                        ?>
                                 </select>
                                 
                             </th>
                             <th>
-                                <p id="x" name="subjects" style="border: 1px solid black; height: 80px;"></p>
-                            </th>
+                                <p id="x" style="border: 1px solid black; height: 80px;"></p>
+                            </th>              
+                        
                             <script>
                                 function myFunction() {
-                                    var x = document.getElementById("subjects").value;
-                                    document.getElementById("x").innerHTML = x; 
+                                    var sub = innerHTML=document.getElementById("subjects").value;
+                                    document.getElementById("x").append(sub,", ");
                                 }
                             </script>
-                        </tr>
-                        <tr>
-                            <td colspan=3>Subjects</td>
-                        </tr>
+                            -->
+                     
                         <tr>
                             <th colspan=3><input type="submit" name="add" class="btn_add" value="Create User"></th>
                         </tr>
@@ -136,6 +172,45 @@ include "../php/dbase_config.php";
             </div>
         </div>
         <script src="../sidebar_nav.js"></script>
-
+        <script>
+            document.querySelector('.select-field').addEventListener('click',()=>{
+                document.querySelector('.list').classList.toggle('show');
+            });
+        </script>
 </body>
 </html>
+
+<?php
+    if(isset($_POST['add'])) {
+        $lname = $_POST['lname'];
+        $fname = $_POST['fname'];
+        $mn = $_POST['m'];
+        $dept = $_POST['department'];
+        $section = $_POST['section'];
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
+        $phone = $_POST['phone'];
+        $subjects = $_POST['subjects'];
+        
+
+
+            $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$subjects', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
+            
+            ?>
+                <script>
+                    alert("New Record Added!");
+                    window.location.href = "../admin/teacher_management.php";
+                </script>
+            <?php	
+      
+        $conn -> close();
+    }
+    elseif(isset($_POST['can'])) {
+        ?>
+            <script>
+                window.location.href = "../admin/teacher_management.php";
+            </script>
+        <?php
+        $conn -> close();
+    }
+?>
