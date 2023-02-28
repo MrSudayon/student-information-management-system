@@ -52,7 +52,7 @@
                     <img src="../images/user.png">
                     <div class="usern">
                         <h1><?php echo ucfirst($sess_name); ?></h1>
-                        <h5><?php echo $row['user']; ?></h5>
+                        <h5><?php echo $sess_user; ?></h5>
                     </div>
                     </center>
                 </div>
@@ -66,16 +66,17 @@
             
             <div class="right-pane">
                 <div class="right-content">
-                    <hr><h3><div class="right-title"><img src="../images/personal-info.png" style="height: 19px;"> Personal Information:</div></h3><br>
-                
+                <hr>
+                <h3><div class="right-title"><img src="../images/personal-info.png" style="height: 19px;"> Personal Information:</div></h3><br>
                 <form method="POST" action="account.php">
                 <table class="student_info">    
+                
                     <tr>
                         <th colspan=4 style="text-align: left;"></th>
                     </tr>
                     <tr>
                         <td><h4>Strand:</td>
-                        <td colspan="3"><input type="text" class="rc-text" value="STEM" name="dept" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" value="STEM" name="dept" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
 
                     </tr>
 
@@ -116,11 +117,23 @@
                     <tr>
                         <td><h4>Contact no:</h4></td>
                         <td colspan="3"><input type="text" class="rc-text" name="phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
-                    </tr>        
-                    
+                    </tr> 
+                    <tr>
+                        <td style="width: 18%"></td>
+                        <td colspan=2 style="text-align: center;"><h5>SMSHS Portal Acccount</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Username: </h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" readonly value="<?php echo $row['user']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center; "></td>        
+                    </tr>
+                    <tr>
+                    <td><h4>Password: </h4></td>
+                        <td colspan="3"><input type="password" class="rc-text" name="newpass" value="<?php echo $row['pass']; ?>" contenteditable style="border: 1px solid black; width: 100%; border-radius: 5px; padding: 5px; text-align: center; "></td>        
+                    </tr>
                     <tr>
                         <td></td>
                         <td colspan=3><button type="submit" name="sub">Apply</button></td>
+                    </tr>
                 </table>    
                 </form>
                 </div>
@@ -138,20 +151,15 @@
 </html>
 <?php
   
-
-    $LRN = $row['LRN'];
     if(isset($_POST['sub'])) {
-        $dob = date($_POST['dob']);
         $addr = $_POST['address'];
         $phone = $_POST['phone'];
-        $suffix = $_POST['suffix'];
-        $dept = $_POST['dept'];
+        $dob = date($_POST['dob']);
+        $newpass = $_POST['newpass'];
         
     
                     
-        $sql = "INSERT INTO students_tbl (id,LRN,std_LAST,std_FIRST,std_MID,std_SUFFIX,std_EMAIL,std_DOB,std_PHONE,Department,Grade,Section,Address,std_STATUS) 
-                VALUES (null, '$LRN','$sess_lname', '$sess_name', '$sess_mid', '$suffix', '$email', '$dob', '$phone', '$dept', '12', '3','$addr','ACTIVE')";
-
+        $sql = "UPDATE student_tbl SET address = '$addr', phone = '$phone', dob = '$dob', pass = '$newpass' WHERE id = $sess_id ";
         
         if(mysqli_query($conn, $sql)) {
             ?>
@@ -161,7 +169,7 @@
                 </script>
             <?php
             mysqli_query($conn,"INSERT INTO history_tbl(uName,uType,uAction,timedate)
-                                VALUES ('$sess_name', 'UPDATED PERSONAL INFORMATION',NOW()") or die(mysqli_error($conn));
+                                VALUES ('$sess_name','Student','UPDATED PERSONAL INFORMATION',NOW()") or die(mysqli_error($conn));
         } else {
             ?>
                 <script>

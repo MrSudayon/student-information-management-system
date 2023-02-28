@@ -42,7 +42,8 @@
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
-            <hr class="line">       
+            <hr class="line">
+            <h1> Hello, <?php echo ucfirst($sess_name); ?></h1>       
             
 
             <?php 
