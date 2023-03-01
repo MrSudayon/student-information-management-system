@@ -29,6 +29,7 @@
                     <div class="content-form">
                         <div class="y-style">
                             <form method="POST" action="php/emp_login.php">
+                                <div class="logo"><a href="emp_login.php">Teacher<span>Portal</span></a></div>
                                 <p>
                                     <label>User</label>
                                     <input type="text" name="uemail" placeholder="Enter User">
