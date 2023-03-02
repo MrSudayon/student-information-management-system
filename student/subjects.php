@@ -27,12 +27,12 @@
     }
     [class*="col-"] {
         float: left;
-        padding: 15px;
+        padding: 20px;
     }
     [class*="col-"] {
         width: 100%;
     }
-    @media only screen and (min-width: 400px) {
+    @media only screen and (min-width: 486px) {
         /* For tablets: */
         .col-s-1 {width: 8.33%;}
         .col-s-2 {width: 16.66%;}
@@ -78,7 +78,7 @@
         <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
         <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
         <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
+        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
 <!-- sidebar -->
@@ -101,15 +101,15 @@
                 <div class="col-3 col-s-12">	
                 <form method="GET">
                     <a href="../courses/course_view.php?name=<?php echo $sess_name; ?>&subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
-                    <div class="subj-card"style="border-radius:25px">
-                        <div class="header" style="border-radius:25px 25px 0px 0px" > 
+                    <div class="subj-card"style="border-radius:25px;">
+                        <div class="header" style="border-radius:25px 25px 0px 0px;" > 
                             <h1><?php echo strtoupper ($row['subj_code']); ?></h1>
                         <p><input type="hidden" value="<?php echo ($row['subj_id']); ?>" name="subj_id"></p>
                         
                         </div>
-                        <div class="subj" style="border-radius: 0px 0px 25px 25px">
+                        <div class="subj" style="border-radius: 0px 0px 25px 25px;">
                             <center>
-                            <img src="../imgsubject/<?php echo ($row['subj_image']); ?>">
+                            <img src="../imgsubject/<?php echo ($row['subj_image']); ?>" style="height: 220px; padding: 0;">
                             </center>
                         </div>
                     </div> 
