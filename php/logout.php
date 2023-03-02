@@ -6,6 +6,6 @@
 ?>
 <!-- Feb 26 -->
         <script>
-            window.location.href="http://sanmateoshs.infinityfreeapp.com/";
+            window.location.href="../index.html";
             alert("logged out")
         </script>
