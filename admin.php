@@ -29,6 +29,7 @@
                     <div class="content-form">
                         <div class="y-style">
                             <form method="POST" action="php/admin_login.php">
+                                <div class="logo"><a href="admin.php">Admin<span>Portal</span></a></div>
                                 <p>
                                     <label>User</label>
                                     <input type="text" name="uemail" placeholder="Enter User">

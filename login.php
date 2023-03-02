@@ -29,6 +29,8 @@
                     <div class="content-form">
                         <div class="y-style">
                             <form method="POST" action="php/login.php">
+
+                                <div class="logo"><a href="login.php">Student<span>Portal</span></a></div>
                                 <p>
                                     <label>User</label>
                                     <input type="text" name="uemail" placeholder="Enter User">
@@ -51,6 +53,7 @@
                     </div>
                 </div>
                 <!-- login form -->
+
             </div>
         </div>
     </div>
