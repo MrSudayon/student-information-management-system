@@ -1,5 +1,6 @@
 <?php
 include "../php/dbase_config.php";
+require_once "../php/auth.php";
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +44,7 @@ include "../php/dbase_config.php";
         <div class="add_tbl">
             <h3>Create Instructor</h3>
             <div class="content">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+                <form id="form" action="tchr_create.php" method="POST" enctype="multipart/form-data">
         
                     <table class="add_course">
                         
@@ -77,9 +78,12 @@ include "../php/dbase_config.php";
                                     <?php  
                                     $query ="SELECT * FROM subject_tbl";
                                     $result = $conn->query($query);
+                                    
                                     if($result->num_rows> 0){
-                                    $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                            
+                                        $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                     }
+
                                     ?>
                                     <div class="multi-selector">
 
@@ -89,9 +93,11 @@ include "../php/dbase_config.php";
                                         </div>
                                         
                                         <div class="list">
-                                        <?
-                                            foreach ($subjects as $subject) {
-                                        ?>
+
+                                    <?php
+                                        foreach ($subjects as $subject) {
+                                    ?>
+
                                             <label class="task">
                                             <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $subject['subj_code']; ?>" >
                                                 <?php echo $subject['subj_name']; ?>
@@ -99,25 +105,27 @@ include "../php/dbase_config.php";
                                             </input>
                                             </label>
                                         
-                                        <?php 
-                                            }
-                                        ?>
+                                    <?php 
+                                        }
+                                    ?>
+
                                         </div>
 
                                     </div>
                             </td>
                             <td colspan=2>
-                                <p id="subs"></p>
+                                <input type="hidden" name="selectedSub" id="val" value=""/>
+                                <p id="subs"> </p>
                             </td>
+
                             <script>
-                                /** getting checked value from array */
-                                
+                                // getting checked value from array
                                 var sub = document.querySelectorAll('input[type=checkbox]');
                                 var paraSelectedElement = document.getElementById('subs');                        
 
                                 sub.forEach(function(checkbox) {
                                     checkbox.addEventListener('change', function() {
-                                        var selectedSub = [];
+                                        const selectedSub = [];
                                         
                                         sub.forEach(function(checkbox) {
                                             if(checkbox.checked) {
@@ -126,41 +134,16 @@ include "../php/dbase_config.php";
                                         });
                                             
                                     paraSelectedElement.innerHTML = selectedSub;
+                                    document.getElementById("val").value = selectedSub;
+
+                                    console.log(selectedSub);
+
                                     });
                                 });
-                                
-                                /**
-                                for (var i = 0; i < selectedSub.lenght; i++ ) {
-                                    array.push(selectedSub[i].value);
-                                    document.getElementById("subs").innerHTML = selectedSub;
-                                } 
-                                */
-                                
                             </script>
                            
                         </tr>
-                            <!--
-                            <select multiple id="subjects" onclick="myFunction()" required name="subjects" style="font-family: Consolas; height: 50px; width: 100%;">
-                                        foreach ($options as $option) {
-                           
-                                       
-                                            }
-                                        ?>
-                                </select>
-                                
-                            </th>
-                            <th>
-                                <p id="x" style="border: 1px solid black; height: 80px;"></p>
-                            </th>              
-                        
-                            <script>
-                                function myFunction() {
-                                    var sub = innerHTML=document.getElementById("subjects").value;
-                                    document.getElementById("x").append(sub,", ");
-                                }
-                            </script>
-                            -->
-                     
+    
                         <tr>
                             <th colspan=3><input type="submit" name="add" class="btn_add" value="Create User"></th>
                         </tr>
@@ -168,12 +151,15 @@ include "../php/dbase_config.php";
                             <th colspan=3><input type="submit" name="can" class="btn_can" value="Back"></th>
                         </tr>
                     </table>
+                
                 </form>
             </div>
         </div>
+
+        
         <script src="../sidebar_nav.js"></script>
         <script>
-            document.querySelector('.select-field').addEventListener('click',()=>{
+                document.querySelector('.select-field').addEventListener('click',()=>{
                 document.querySelector('.list').classList.toggle('show');
             });
         </script>
@@ -190,20 +176,19 @@ include "../php/dbase_config.php";
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $phone = $_POST['phone'];
-        $subjects = $_POST['subjects'];
+        $subjects = $_POST['selectedSub'];
         
+        $selSub = implode(', ',$subjects);
+        $name = $_POST['fname'].' '.$_POST['lname'];
 
-
-            $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$subjects', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
-            
+            $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$selSub', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
+            $audit = mysqli_query($conn, "INSERT INTO audit_logs VALUES ('', '$sess_name', 'Admin', 'Added a teacher account', NOW())");
             ?>
                 <script>
                     alert("New Record Added!");
                     window.location.href = "../admin/teacher_management.php";
                 </script>
             <?php	
-      
-        $conn -> close();
     }
     elseif(isset($_POST['can'])) {
         ?>
@@ -211,6 +196,7 @@ include "../php/dbase_config.php";
                 window.location.href = "../admin/teacher_management.php";
             </script>
         <?php
-        $conn -> close();
+        
     }
+    $conn -> close();
 ?>

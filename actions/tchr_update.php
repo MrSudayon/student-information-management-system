@@ -65,7 +65,7 @@ $subjects = "";
 
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Course Management</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Instructor Account Management</h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
@@ -111,24 +111,41 @@ $subjects = "";
                                 <td colspan=2>Phone</td>
                                 <td>Set STATUS</td>
                             </tr>
+<?php 
+    $sql_sub = mysqli_query($conn,"SELECT * FROM teachers_tbl WHERE id = '$id' ");
+
+
+    while($row=mysqli_fetch_array($sql_sub)) {
+        $subArray = explode(',',$row['subjects']);
+        
+    
+?>
                             <tr>
-                                <th colspan=2><select multiple id="subjects" onclick="myFunction()" name="subjects" style="font-family: Consolas; height: 50px; width: 100%;">
-                                        <option value="Subject 1">sub 1</option>
-                                        <option value="Subject 2">sub 2</option>
-                                        <option value="Subject 3">sub 3</option>
-                                    </select>
-                                    
+                                <th colspan=2>
+
+                                    <div class="multi-selector">
+                                        <div class="select-field">
+                                            <input type="text" placeholder="choose subjects" id="" class="input-select" style="outline: none; border: none;"/>
+                                            <span class="arrow-down">&blacktriangledown;</span>
+                                        </div>
+                                        <div class="list">
+                                            <label class="task">
+                                                <input type="checkbox" name="<?php echo $sqlSubjs['subjects']; ?>" value="<?php echo $sqlSubjs['subjects']; ?>" id="<?php echo $sqlSubjs['subjects']; ?>" class="subjs">
+                                                    <?php echo $subArray; ?>
+                                            </input>
+                                            </label>
+                                        </div>
+                                    </div>
+<?php
+    }
+?>
                                 </th>
                                 <th>
-                                    <p id="x" name="subjects" style="border: 1px solid black; height: 80px;"></p>
+                                    <input type="hidden" name="selectedSub" id="val" value=""/>
+                                    <p id="subs"> </p>
                                 </th>
-                                <script>
-                                    function myFunction() {
-                                        var x = document.getElementById("subjects").value;
-                                        document.getElementById("x").innerHTML = x; 
-                                    }
-                                </script>
                             </tr>
+
                             <tr>
                                 <td colspan=3>Subjects</td>
                             </tr>
@@ -202,6 +219,34 @@ $subjects = "";
 
   
 <script src="../sidebar_nav.js"></script>
+<script>
+    // getting checked value from array
+    var sub = document.querySelectorAll('input[type=checkbox]');
+    var paraSelectedElement = document.getElementById('subs');                        
+
+    sub.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const selectedSub = [];
+            
+            sub.forEach(function(checkbox) {
+                if(checkbox.checked) {
+                    selectedSub.push(checkbox.value);
+                }
+            });
+                
+        paraSelectedElement.innerHTML = selectedSub;
+        document.getElementById("val").value = selectedSub;
+
+        console.log(selectedSub);
+
+        });
+    });
+</script>
+<script>
+    document.querySelector('.select-field').addEventListener('click',()=>{
+    document.querySelector('.list').classList.toggle('show');
+});
+</script>
 
 </body>
 </html>
