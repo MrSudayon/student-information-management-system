@@ -61,7 +61,7 @@ if(isset($_POST['save_excel_data'])){
 
         // Insert into database
         $sql= "INSERT  INTO student_tbl (`id`, `name`, `LRN`, `grade`, `gender`, `enrolleddate`, `address`, `phone`, `dob`, `user`, `pass`, `enabled`)
-         VALUES (null,'$namest', '$LRN','$grade','$gender','$enrolleddate','$address','$phone','$dob','$user','$pass','$en')";
+          VALUES (null,'$namest', '$LRN','$grade','$gender','$enrolleddate','$address','$phone','$dob','$user','$pass','$en')";
         if (mysqli_query($conn, $sql)) {
           echo "New record created successfully";
         } else {
@@ -69,13 +69,16 @@ if(isset($_POST['save_excel_data'])){
         }
 
     }
-    $html.="</table>";
-    echo $html;
-    echo "<br />Data Inserted in dababase";
+      $html.="</table>";
+      echo $html;
+      echo "<br />Data Inserted in dababase";
+    }
+  } catch(Exception $e) {
+      echo 'Message: ' .$e->getMessage();
   }
-  }catch(Exception $e) {
-    echo 'Message: ' .$e->getMessage();
-  }
+} elseif(isset($_POST['add'])) {
+  //Insert functions
+
 }
 ?>
 
