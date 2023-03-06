@@ -14,7 +14,7 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-        <title>Course Management</title>
+        <title>Subject Management</title>
     </head>
 
 <body>
@@ -31,6 +31,7 @@
         <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
         <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
         <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
+        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>-->
         <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
     </ul>
 </div>
@@ -64,12 +65,26 @@
                                 <th><input type="text" name="course_name" placeholder="Course Name" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="course_desc" placeholder="Description" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;" require> </th> 
-                                <th><select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;">
-                                        <option value="instructor 1">Instructor 1</option>
-                                        <option value="instructor 2">Instructor 2</option>
-                                        <option value="instructor 3">Instructor 3</option>
+                                <th>
+                                    <?php  
+                                        $query ="SELECT tchr_FIRST,tchr_MID,tchr_LAST FROM teachers_tbl";
+                                        $result = $conn->query($query);
+                                        if($result->num_rows> 0){
+                                            $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                        }
+                                    ?>
+                                    <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;">
+                                        <option>Select Instructor</option>
+                                        <?php 
+                                        foreach ($options as $option) {
+                                        ?>
+                                            <option><?php echo $option['tchr_FIRST'].", ".$option['tchr_MID'].". ".$option['tchr_LAST']; ?> </option>
+                                        <?php 
+                                            }
+                                        ?>
                                     </select>
                                 </th>
+
                                 <th colspan=3><input type="submit" name="add" class="btn_add" style="width: 180px;" value="ADD"/></th>
                             </tr>
                         </table>
@@ -81,20 +96,36 @@
             <br>    
             <h3>Subjects List</h3>
             <center>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
                     <label for="strand">Filter:</label>
-                    <select name="strand" id="cars">
+                    <select name="strand" id="strand">
+                    <option value="">Select Strand</option>
                     <option value="STEM">STEM</option>
                     <option value="ABM">ABM</option>
                     <option value="HUMSS">HUMSS</option>
                     <option value="Techvoc">Techvoc</option>
                     </select>
-                    <input type="text" name="txtsearch" placeholder="Search" style="font-family: Consolas; height: 30px;">
-                    <input type="submit" name="btnsearch"  value="Search"/>
-
+                    <input type="submit" name="btnsearch"  value="Filter"/>
+                    <input type="submit" name="clear"  value="Clear"/>
+                </form>
             </center>      
             <br>
             <?php
-                $sel = "SELECT * FROM subject_tbl WHERE archive =0 ";
+
+                if(isset($_POST['clear'])){
+                    $sel = "SELECT * FROM subject_tbl WHERE archive =0 ";
+                }
+                if(isset($_POST['btnsearch'])){
+                    if(!empty($_POST['strand'])) {
+                        $strand=$_POST['strand'];
+                    }else{
+                        echo 'Please select the value.';
+                    }
+                    $sel = "SELECT * FROM subject_tbl WHERE dept ='$strand' && archive =0 ";
+                    
+                }else{
+                    $sel = "SELECT * FROM subject_tbl WHERE archive =0 ";
+                }
                 $result = $conn->query($sel);
 
                 if ($result->num_rows > 0) 
@@ -107,6 +138,8 @@
                             echo "<th>Image</th>";
                             echo "<th>Description</th>";
                             echo "<th>Date Added</th>";
+                            echo "<th>Department</th>";
+                            echo "<th>Instructor</th>";
                             echo "<th colspan=2>Action</th>";
                         echo "</tr>";
                     while($row = $result->fetch_assoc()) 
@@ -119,6 +152,8 @@
                                 <?php
                                 echo "<td style='width: 20%;'>" . $row["subj_desc"];
                                 echo "<td>" . $row["date_added"];
+                                echo "<td>" . $row["dept"];
+                                echo "<td>" . $row["Instructor"];
                                 ?> 
                                     <td><a href="../actions/subj_update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_id']); ?>" class="update_btn">UPDATE</a></td>
                                     <td><a href="remove.php?id=<?php echo ($row['subj_id']); ?>" class="delete_btn">REMOVE</a></td>
@@ -167,14 +202,14 @@
 		$extensions_arr = array("jpg","jpeg","png","gif","webp");
 
 			// Check extension
-		if( in_array($imageFileType,$extensions_arr) ){
-			if(!file_exists($target_dir)){					// Upload file
-    			if(move_uploaded_file($tempname,$target_dir)){
+		if (in_array($imageFileType,$extensions_arr)) {
+			if(!file_exists($target_dir)) {					// Upload file
+    			if(move_uploaded_file($tempname,$target_dir)) {
     			    $image_base64 = base64_encode(file_get_contents($target_dir) );
                     $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
                                         
                     try {
-                        $add ="INSERT INTO subject_tbl (`subj_id`, `subj_name`, `subj_code`, `subj_desc`, `date_added`, `dept`, `subj_image`, `archive`) VALUES ('null','$c_name','$c_code',                                                                 '$c_desc','$c_dateadd','$department','$c_image',0)";
+                        $add ="INSERT INTO subject_tbl (`subj_id`, `subj_name`, `subj_code`, `subj_desc`, `date_added`, `dept`, `subj_image`, `Instructor`, `archive`) VALUES ('null','$c_name','$c_code',                                                                 '$c_desc','$c_dateadd','$department','$c_image','$c_assign',0)";
                         if (mysqli_query($conn, $add)) {
                             ?>
                                 <script>
@@ -190,7 +225,7 @@
                         exit; 
                     }
     			}
-			}else{
+			} else {
 			    ?>
 			    <script>
                    alert(<?php echo $cimage;?>" already exist");

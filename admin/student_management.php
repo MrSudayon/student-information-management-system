@@ -21,14 +21,14 @@
             <div class="smateo-logo">
                 <img src="../images/smateo-shs.png" style="width: 70%;">
             </div>
-            <ul>
-                <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-                <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
-                <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
-                <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-                <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
-                <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-            </ul>
+                <ul>
+                    <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
+                    <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
+                    <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
+                    <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
+                    <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
+                    <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
+                </ul>
         </div>
         <div id="main">
                 <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student Management</h2>  
@@ -39,18 +39,35 @@
                         <hr class="line">     
                         <br>
                 <center>
-                    <h1>Upload Excel File</h1>
+                    <h1>Batch Upload</h1>
                     <br>
                         <form method="POST" action="../actions/import.php" enctype="multipart/form-data">
-                            <div class="">
-                                <label>Upload Excel File</label>
-                                <input type="file" name="file" class="form-control">
-                            </div>
-                            <br><br>
-                            <div class="">
-                                <button type="submit" name="save_excel_data" class="btn btn-success">Upload</button>
-                            </div>
+                            <table>
+                            <tr>
+                                <th><label>Upload Excel File</label></th>
+                                <th><input type="file" name="file" class="form-control"></th>
+                                <th><button type="submit" name="save_excel_data" class="btn_add" style="width: 180px;">Upload</button></th>
+                            </tr>
+                            </table>
+                        
+                        <br>
+                        <hr class="line">
+                        <br>
+                    <h1>Individual</h1>
+
+                        <table class="add_course">
+                            <tr>
+                                <th><input type="text" name="name" placeholder="Name" style="font-family: Consolas; height: 30px;" require> </th>
+                                <th><input type="text" name="lrn" placeholder="LRN" style="font-family: Consolas; height: 30px;" require> </th>
+                                <th><input type="text" name="gen" placeholder="Gender" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th>
+                                </th>
+
+                                <th colspan=3><input type="submit" name="add" class="btn_add" style="width: 180px;" value="ADD"/></th>
+                            </tr>
+                        </table>
                         </form>
+                        
                 </center>
                         <br>
                         <h3>Students Lists</h3>
