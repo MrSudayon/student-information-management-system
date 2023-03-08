@@ -114,8 +114,8 @@ require_once "../php/auth.php";
                                     </div>
                             </td>
                             <td colspan=2>
-                                <input type="hidden" name="selectedSub" id="val" value=""/>
-                                <p id="subs"> </p>
+                                <input type="hidden" name="selectedSub" id="val"/>
+                                <p id="subs">  </p>
                             </td>
 
                             <script>
@@ -145,6 +145,7 @@ require_once "../php/auth.php";
                         </tr>
     
                         <tr>
+                        <?php echo $selSub; ?>
                             <th colspan=3><input type="submit" name="add" class="btn_add" value="Create User"></th>
                         </tr>
                         <tr>
@@ -176,19 +177,20 @@ require_once "../php/auth.php";
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $phone = $_POST['phone'];
-        $subjects = $_POST['selectedSub'];
-        
-        $selSub = implode(', ',$subjects);
+
+        $subjectss = $_POST['selectedSub'];
+        $selSub = implode(" ",$subjectss);
+
         $name = $_POST['fname'].' '.$_POST['lname'];
 
-            $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$selSub', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
-            $audit = mysqli_query($conn, "INSERT INTO audit_logs VALUES ('', '$sess_name', 'Admin', 'Added a teacher account', NOW())");
-            ?>
-                <script>
-                    alert("New Record Added!");
-                    window.location.href = "../admin/teacher_management.php";
-                </script>
-            <?php	
+        $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$selSub', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
+        $audit = mysqli_query($conn, "INSERT INTO audit_logs VALUES ('', '$sess_name', 'Admin', 'Added a teacher account', NOW())");
+        ?>
+            <script>
+                alert("New Record Added!");
+                window.location.href = "../admin/teacher_management.php";
+            </script>
+        <?php	
     }
     elseif(isset($_POST['can'])) {
         ?>

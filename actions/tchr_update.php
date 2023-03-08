@@ -30,6 +30,7 @@ $subjects = "";
             $phone = $row['tchr_PHONE'];
             $subjects = $row['subjects'];
             $status = $row['tchr_STATUS'];
+            
         }
 ?>
 
@@ -52,6 +53,9 @@ $subjects = "";
 <!-- sidebar -->
 <div class="side-menu" id="mySidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="smateo-logo">
+        <img src="../images/smateo-shs.png" style="width: 70%;">
+    </div>
     <ul>
         <a href="../admin/admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
         <a href="../admin/admin_dashboard.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
@@ -65,7 +69,7 @@ $subjects = "";
 
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Instructor Account Management</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Instructor Management</h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
@@ -73,8 +77,6 @@ $subjects = "";
                 <img src="../images/smateo-shs.png">
             </div>
             <br><hr class="line">       
-            
-            
             <div class="add_tbl">
                 <h3>Update Course</h3>
                 <div class="content">
@@ -111,41 +113,76 @@ $subjects = "";
                                 <td colspan=2>Phone</td>
                                 <td>Set STATUS</td>
                             </tr>
-<?php 
-    $sql_sub = mysqli_query($conn,"SELECT * FROM teachers_tbl WHERE id = '$id' ");
-
-
-    while($row=mysqli_fetch_array($sql_sub)) {
-        $subArray = explode(',',$row['subjects']);
-        
-    
-?>
                             <tr>
                                 <th colspan=2>
+                                    <?php  
+                                    $query = "SELECT * FROM teachers_tbl WHERE id = '$id'";
+                                    $result = $conn->query($query);
+                                    
+                                    if($result->num_rows> 0){
+                                        $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                        $subjs = $subjects['subjects'];
+                                        $subs = explode(' ',$subs);
+                                    }
 
+                                    ?>
                                     <div class="multi-selector">
+
                                         <div class="select-field">
                                             <input type="text" placeholder="choose subjects" id="" class="input-select" style="outline: none; border: none;"/>
                                             <span class="arrow-down">&blacktriangledown;</span>
                                         </div>
+                                        
                                         <div class="list">
+
+                                    <?php
+                                    foreach($subs as $sub) {
+                                    ?>
+
                                             <label class="task">
-                                                <input type="checkbox" name="<?php echo $sqlSubjs['subjects']; ?>" value="<?php echo $sqlSubjs['subjects']; ?>" id="<?php echo $sqlSubjs['subjects']; ?>" class="subjs">
-                                                    <?php echo $subArray; ?>
+                                            <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $sub; ?>" >
+                                                <?php echo $sub; ?>
                                             </input>
                                             </label>
+                                        
+                                    <?php 
+                                    }
+                                    ?>
+
                                         </div>
+
                                     </div>
-<?php
-    }
-?>
                                 </th>
                                 <th>
-                                    <input type="hidden" name="selectedSub" id="val" value=""/>
-                                    <p id="subs"> </p>
+                                    <input type="hidden" id="val" name="subjs"/>
+                                    <p id="subs" name="subjects" style="border: 1px solid black; height: 80px;"></p>
                                 </th>
-                            </tr>
 
+                            <script>
+                                // getting checked value from array
+                                var sub = document.querySelectorAll('input[type=checkbox]');
+                                var paraSelectedElement = document.getElementById('subs');                        
+
+                                sub.forEach(function(checkbox) {
+                                    checkbox.addEventListener('change', function() {
+                                        const selectedSub = [];
+                                        
+                                        sub.forEach(function(checkbox) {
+                                            if(checkbox.checked) {
+                                                selectedSub.push(checkbox.value);
+                                            }
+                                        });
+                                            
+                                    paraSelectedElement.innerHTML = selectedSub;
+                                    document.getElementById("val").value = selectedSub;
+
+                                    console.log(selectedSub);
+
+                                    });
+                                });
+                            </script>
+
+                            </tr>
                             <tr>
                                 <td colspan=3>Subjects</td>
                             </tr>
@@ -158,49 +195,6 @@ $subjects = "";
                         </table>
                     </form>
 
-                    <?php            
-
-                        $section = '';
-                        $pass = '';
-                        $phone = '';
-                        $subjects = '';
-
-                        if(isset($_POST['update'])) {
-                            $section = $_POST['section'];
-                            $pass = $_POST['pass'];
-                            $phone = $_POST['phone'];
-                            $status = $_POST['status'];
-                            $subjects = $_POST['subjects'];
-                            
-                            
-                            
-                                try {
-                                    $upd = "UPDATE teachers_tbl SET section = '$section', pass = '$pass', tchr_PHONE = '$phone', subjects = '$subjects', tchr_STATUS = '$status' WHERE id = '$id'";
-                                    $conn->query($upd);
-
-                                    ?>
-                                        <script>
-                                            window.location.href = "../admin/teacher_management.php";
-                                            alert("Record Updated!");
-                                        </script>
-                                    <?php
-
-                                } catch (mysqli_sql_exception $e) {
-                                    var_dump($e);
-                                    exit;
-                                }
-                                        
-                            
-                        }
-                        elseif(isset($_POST['cancel'])) {
-                            ?>
-                                <script>
-                                    window.location.href = "../admin/teacher_management.php";
-                                </script>
-                            <?php
-                        }
-                    
-                    ?>
                 </div>
             </div>
             
@@ -212,41 +206,54 @@ $subjects = "";
 </div>
 <!-- Main -->
   
-
-
-
-
-
-  
 <script src="../sidebar_nav.js"></script>
 <script>
-    // getting checked value from array
-    var sub = document.querySelectorAll('input[type=checkbox]');
-    var paraSelectedElement = document.getElementById('subs');                        
-
-    sub.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            const selectedSub = [];
-            
-            sub.forEach(function(checkbox) {
-                if(checkbox.checked) {
-                    selectedSub.push(checkbox.value);
-                }
-            });
-                
-        paraSelectedElement.innerHTML = selectedSub;
-        document.getElementById("val").value = selectedSub;
-
-        console.log(selectedSub);
-
-        });
+    document.querySelector('.select-field').addEventListener('click',()=>{
+        document.querySelector('.list').classList.toggle('show');
     });
 </script>
-<script>
-    document.querySelector('.select-field').addEventListener('click',()=>{
-    document.querySelector('.list').classList.toggle('show');
-});
-</script>
-
 </body>
 </html>
+<?php            
+
+    $section = '';
+    $pass = '';
+    $phone = '';
+    $subjects = '';
+
+    if(isset($_POST['update'])) {
+        $section = $_POST['section'];
+        $pass = $_POST['pass'];
+        $phone = $_POST['phone'];
+        $status = $_POST['status'];
+        $subjects = $_POST['subjects'];
+        
+        
+        
+            try {
+                $upd = "UPDATE teachers_tbl SET section = '$section', pass = '$pass', tchr_PHONE = '$phone', subjects = '$subjects', tchr_STATUS = '$status' WHERE id = '$id'";
+                $conn->query($upd);
+
+                ?>
+                    <script>
+                        window.location.href = "../admin/teacher_management.php";
+                        alert("Record Updated!");
+                    </script>
+                <?php
+
+            } catch (mysqli_sql_exception $e) {
+                var_dump($e);
+                exit;
+            }
+                    
+        
+    }
+    elseif(isset($_POST['cancel'])) {
+        ?>
+            <script>
+                window.location.href = "../admin/teacher_management.php";
+            </script>
+        <?php
+    }
+
+?>
