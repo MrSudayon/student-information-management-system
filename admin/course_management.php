@@ -25,15 +25,7 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul>
-        <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
-        <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
-        <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
-        <!--<a href="user_settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">User Settings</h4></li></a>-->
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./admin_nav.php"; ?>
 </div>
 <!-- sidebar -->
   
@@ -119,7 +111,12 @@
                     if(!empty($_POST['strand'])) {
                         $strand=$_POST['strand'];
                     }else{
-                        echo 'Please select the value.';
+                        ?>
+                        <script>
+                            alert('Please choose a strand to filter');
+                        </script>
+                        <?php
+                        $sel = "SELECT * FROM subject_tbl WHERE archive =0 ";
                     }
                     $sel = "SELECT * FROM subject_tbl WHERE dept ='$strand' && archive =0 ";
                     
@@ -202,20 +199,22 @@
 		$extensions_arr = array("jpg","jpeg","png","gif","webp");
 
 			// Check extension
-		if (in_array($imageFileType,$extensions_arr)) {
-			if(!file_exists($target_dir)) {					// Upload file
-    			if(move_uploaded_file($tempname,$target_dir)) {
+		if( in_array($imageFileType,$extensions_arr) ){
+			if(!file_exists($target_dir)){					// Upload file
+    			if(move_uploaded_file($tempname,$target_dir)){
     			    $image_base64 = base64_encode(file_get_contents($target_dir) );
                     $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
                                         
                     try {
-                        $add ="INSERT INTO subject_tbl (`subj_id`, `subj_name`, `subj_code`, `subj_desc`, `date_added`, `dept`, `subj_image`, `Instructor`, `archive`) VALUES ('null','$c_name','$c_code',                                                                 '$c_desc','$c_dateadd','$department','$c_image','$c_assign',0)";
+                        $add = "INSERT INTO subject_tbl (`subj_id`, `subj_name`, `subj_code`, `subj_desc`, `date_added`, `dept`, `subj_image`, `Instructor`, `archive`) VALUES ('null','$c_name','$c_code',                                                                 '$c_desc','$c_dateadd','$department','$c_image','$c_assign',0)";
                         if (mysqli_query($conn, $add)) {
                             ?>
                                 <script>
                                     alert("New Record Added!");
                                 </script>
                             <?php	
+                            mysqli_query($conn,"INSERT INTO history_tbl(name,utype,action,timedate) VALUES('$sess_name','Admin','Added Subject',NOW())")
+					        or die(mysqli_error($conn));
                         } else {
                         echo "Error: " . $add . "<br>" . mysqli_error($conn);
                         }
@@ -225,7 +224,7 @@
                         exit; 
                     }
     			}
-			} else {
+			}else{
 			    ?>
 			    <script>
                    alert(<?php echo $cimage;?>" already exist");

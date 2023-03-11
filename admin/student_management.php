@@ -24,6 +24,7 @@
             #excel-up, #manual-up {
                 display: none;
             }
+            
            
         </style>
     </head>
@@ -33,7 +34,12 @@
             <div class="smateo-logo">
                 <img src="../images/smateo-shs.png" style="width: 70%;">
             </div>
-            <?php include "./admin_nav.php"; ?>
+            <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
+            <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
+            <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
+            <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
+            <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
+            <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
         </div>
         <div id="main">
                 <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student Management</h2>  
@@ -65,9 +71,9 @@
                 <!-- Manual Upload >> show if active -->
                 <div id="manual-up">
                     <h1>Individual</h1>
-                        <table  class=course_lists>
+                        <table class="indiv">
                             <tr>
-                                <th><input type="text" name="name" placeholder="Name" style="font-family: Consolas; height: 30px;" require> </th>
+                                <th><input type="text" name="name" placeholder="Name (SN, FN, MN)" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="lrn" placeholder="LRN" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="grade" placeholder="Grade" style="font-family: Consolas; height: 30px;" require> </th> 
                                 <th><input type="text" name="sec" placeholder="Section" style="font-family: Consolas; height: 30px;" require> </th> 
@@ -80,8 +86,12 @@
                                 <th><input type="text" name="add" placeholder="Address" style="font-family: Consolas; height: 30px;" require> </th> 
                                 <th><input type="text" name="phone" placeholder="Phone #" style="font-family: Consolas; height: 30px;" require> </th> 
                                 <th><input type="text" name="dob" placeholder="Date of Birth" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th><input type="text" name="m_tounge" placeholder="Mother Tounge" style="font-family: Consolas; height: 30px;" require></th>
+                            </tr>
+                 
+                            <tr>
 
-                                <th colspan=3><input type="submit" name="add" class="btn_add" style="width: 180px;" value="ADD"/></th>
+                                <th colspan=6><input type="submit" name="add" class="btn_add" style="width: 180px;" value="ADD"/></th>
                             </tr>
                         </tbody>
                         </table>
