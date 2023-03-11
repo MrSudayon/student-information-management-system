@@ -19,11 +19,12 @@
             $stat = $result['enabled'];
             $name = ucfirst($result['name']);
             $user = $result['user'];
+            $type = "Admin";
 
             $_SESSION['SESSION_ID'] = $id;
 			$_SESSION['SESSION_NAME'] = $name;
             $_SESSION['SESSION_USER'] = $user;
-			
+			$_SESSION['SESSION_ROLE'] = $type;
             date_default_timezone_set('Asia/Manila');
 			$date = date('Y-m-d');
 			$time = date('H:i:s');
@@ -35,7 +36,7 @@
                         window.location = "../admin/admin_dashboard.php";
                     </script>
                 <?php
-				mysqli_query($conn,"INSERT INTO audit_logs(name,utype,action,timedate) VALUES('$user','Admin','LOGIN IN SYSTEM AT',NOW())")
+				mysqli_query($conn,"INSERT INTO audit_logs(name,utype,action,timedate) VALUES('$user','$type','LOGIN IN SYSTEM AT',NOW())")
 				or die(mysqli_error($conn));
             } else {
                 ?>

@@ -17,13 +17,14 @@
 		if($counter > 0) {   
             $id = $result['id'];
             $name = $result['name'];
-            $type = $result['type'];
+            $type = "Student";
             $stat = $result['enabled'];
             $user = $result['user'];
 
             $_SESSION['SESSION_ID'] = $id;
 			$_SESSION['SESSION_NAME'] = $name;
             $_SESSION['SESSION_USER'] = $user;
+            $_SESSION['SESSION_ROLE'] = $type;
             
 			date_default_timezone_set('Asia/Manila');
 			$date = date('Y-m-d');
@@ -36,7 +37,8 @@
                         window.location = "../student/dashboard.php";
                     </script>
                 <?php
-              
+                mysqli_query($conn,"INSERT INTO audit_logs(name,utype,action,timedate) VALUES('$name','$type','LOGIN IN SYSTEM AT',NOW())")
+                or die(mysqli_error($conn));
             } else { 
                 ?>
                 <script>
