@@ -32,7 +32,7 @@
   
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student in <?php echo $sec; ?> </h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student in <?php //echo $sec; ?> </h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
     <div class="dashb_content">
@@ -83,11 +83,8 @@
                             $selected_sec = $_POST['section'];
 
                             $sql = "SELECT * FROM student_tbl where section='$selected_sec' order by name";
+                            $result = mysqli_query($conn, $sql);
                         }
-
-                        
-                        $result = mysqli_query($conn, $sql);
-                        
                         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     $i = 1;
                     foreach ($rows as $row): ?>
