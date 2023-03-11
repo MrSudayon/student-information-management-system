@@ -7,6 +7,7 @@ $id = "";
 $sub_code = "";
 $sub_name = "";
 $sub_desc = "";
+$sub_unit = "";
 $sub_prof = "";
 $dept = "";
 
@@ -25,7 +26,7 @@ $dept = "";
             $sub_code = $row['subj_code'];
             $sub_name = $row['subj_name'];
             $sub_desc = $row['subj_desc'];
-            $sub_prof = $row['assignedto'];
+            $sub_prof = $row['Instructor'];
             $dept = $row['dept'];
         }
 ?>
@@ -94,19 +95,33 @@ $dept = "";
                                 <td>Description</td>
                             </tr>
                             <tr>
-                                <th colspan=2><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;" value="<?php echo $dept; ?>" > </th>
-                                <th><label for="assign" ></label>
-                                    <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;" >
-                                        <option value="<?php echo $sub_prof; ?>"><?php echo $sub_prof; ?></option>
-                                        <option value="instructor 2">Instructor 2</option>
-                                        <option value="instructor 3">Instructor 3</option>
+                                <td><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;" value="<?php echo $dept; ?>" > </th>
+                                 
+                                <td>
+                                    <?php  
+                                        $query ="SELECT tchr_LAST,tchr_FIRST,tchr_MID FROM teachers_tbl";
+                                        $result = $conn->query($query);
+                                        if($result->num_rows> 0){
+                                            $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                        }
+                                    ?>
+                                    <select id="assign" name="assign" style="font-family: Consolas; height: 30px; width: 100%;">
+                                        <option><?php echo $options['tchr_FIRST']; ?></option>
+                                        <?php 
+                                        foreach ($options as $option) {
+                                        ?>
+                                            <option><?php echo $option['tchr_FIRST'].", ".$option['tchr_MID'].". ".$option['tchr_LAST']; ?> </option>
+                                        <?php 
+                                            }
+                                        ?>
                                     </select>
-                                </th>
+                                </td>
                             </tr>
                             <tr>
-                                <td colspan=2>Department</td>
-                                <td>Assign to:</td>
+                                <td>Department</td>
+                                <td>Assigned to:</td>
                             </tr>
+
                             <tr>
                                 <th colspan=3><button type="submit" name="upd" class="btn_add">UPDATE</button></th>
                             </tr>
@@ -115,12 +130,14 @@ $dept = "";
                             </tr>
                         </table>
                     </form>
+                    
 
                     <?php            
 
                         $sub_code = '';
                         $sub_name = '';
                         $sub_desc = '';
+                        $sub_unit = '';
                         $sub_prof = '';
                         $dept = '';
 
@@ -134,16 +151,23 @@ $dept = "";
                             
 
                             try {
-                                $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', unit = '$c_unit', assignedto = '$c_assign', dept = '$department' WHERE subj_id = '$c_id' AND archive = 0 ";
-                                $conn->query($upd);
-
-
+                                $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', Instructor = '$c_assign', dept = '$department' WHERE subj_id = '$c_id' AND archive = 0 ";
+                            
+                                if(mysqli_query($conn, $upd)){
                                 ?>
                                     <script>
                                         window.location.href = "../admin/course_management.php";
                                         alert("Record Updated!");
                                     </script>
                                 <?php
+                                mysqli_query($conn,"INSERT INTO history_tbl(uName,uType,uAction,timedate) VALUES('$sess_name','Admin','Added Subject',NOW())")
+					            or die(mysqli_error($conn));
+
+                                } else {
+                                    echo "Error: " . $add . "<br>" . mysqli_error($conn);
+                                }
+                                    echo "<meta http-equiv='refresh' content='0'>";
+                                    
                             } catch (mysqli_sql_exception $e) {
                                 var_dump($e);
                                 exit;

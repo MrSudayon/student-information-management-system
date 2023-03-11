@@ -116,15 +116,9 @@ $subjects = "";
                             <tr>
                                 <th colspan=2>
                                     <?php  
-                                    $query = "SELECT * FROM teachers_tbl WHERE id = '$id'";
+                                    $query = "SELECT subjects FROM teachers_tbl WHERE id = '$id'";
                                     $result = $conn->query($query);
-                                    
-                                    if($result->num_rows> 0){
-                                        $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                                        $subjs = $subjects['subjects'];
-                                        $subs = explode(' ',$subs);
-                                    }
-
+                                    $subjs = mysqli_fetch_row($result) ? explode(",", mysqli_fetch_row($result)) : [];
                                     ?>
                                     <div class="multi-selector">
 
@@ -136,14 +130,14 @@ $subjects = "";
                                         <div class="list">
 
                                     <?php
-                                    foreach($subs as $sub) {
+                                    
+                                    foreach($subjs as $sub) {
                                     ?>
-
-                                            <label class="task">
-                                            <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $sub; ?>" >
-                                                <?php echo $sub; ?>
-                                            </input>
-                                            </label>
+                                        <label class="task">
+                                        <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $sub; ?>" >
+                                            <?php echo $sub; ?>
+                                        </input>
+                                        </label>
                                         
                                     <?php 
                                     }

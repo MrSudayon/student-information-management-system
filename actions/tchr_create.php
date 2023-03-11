@@ -114,38 +114,13 @@ require_once "../php/auth.php";
                                     </div>
                             </td>
                             <td colspan=2>
-                                <input type="hidden" name="selectedSub" id="val"/>
+                                <input type="hidden" name="selectedSub" id="selectedSub"/>
                                 <p id="subs">  </p>
                             </td>
-
-                            <script>
-                                // getting checked value from array
-                                var sub = document.querySelectorAll('input[type=checkbox]');
-                                var paraSelectedElement = document.getElementById('subs');                        
-
-                                sub.forEach(function(checkbox) {
-                                    checkbox.addEventListener('change', function() {
-                                        const selectedSub = [];
-                                        
-                                        sub.forEach(function(checkbox) {
-                                            if(checkbox.checked) {
-                                                selectedSub.push(checkbox.value);
-                                            }
-                                        });
-                                            
-                                    paraSelectedElement.innerHTML = selectedSub;
-                                    document.getElementById("val").value = selectedSub;
-
-                                    console.log(selectedSub);
-
-                                    });
-                                });
-                            </script>
                            
                         </tr>
     
                         <tr>
-                        <?php echo $selSub; ?>
                             <th colspan=3><input type="submit" name="add" class="btn_add" value="Create User"></th>
                         </tr>
                         <tr>
@@ -156,7 +131,31 @@ require_once "../php/auth.php";
                 </form>
             </div>
         </div>
-
+        <script>
+            // getting checked value from array
+            var sub = document.querySelectorAll('input[type=checkbox]');
+            var paraSelectedElement = document.getElementById('subs');  
+            const selectedInput = document.getElementById('selectedSub');
+                                    
+            sub.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    const selectedSub = [];
+                    
+                    sub.forEach(function(checkbox) {
+                        if(checkbox.checked) {
+                            selectedSub.push(checkbox.value);
+                            //selectedInput.value = JSON.stringify(selectedSub);
+                            selectedInput.value = selectedSub.join(","); 
+                        }
+                    });
+                        
+                paraSelectedElement.innerHTML = selectedSub;
+                console.log(selectedSub);
+                console.log(selectedInput);
+                });
+            });
+            
+        </script>
         
         <script src="../sidebar_nav.js"></script>
         <script>
@@ -168,6 +167,7 @@ require_once "../php/auth.php";
 </html>
 
 <?php
+    
     if(isset($_POST['add'])) {
         $lname = $_POST['lname'];
         $fname = $_POST['fname'];
@@ -177,14 +177,17 @@ require_once "../php/auth.php";
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $phone = $_POST['phone'];
+        $selSub = isset($_POST['selectedSub']) ? explode(",", $_POST["selectedSub"]) : [];
+        //$selSub = json_decode($_POST["selectedSub"], true);
+        //$selSub = $_POST['selectedSub'];
 
-        $subjectss = $_POST['selectedSub'];
-        $selSub = implode(" ",$subjectss);
 
+        //Convert strings into array
+        $subArray = explode(", ",$selSub);
         $name = $_POST['fname'].' '.$_POST['lname'];
 
         $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$selSub', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
-        $audit = mysqli_query($conn, "INSERT INTO audit_logs VALUES ('', '$sess_name', 'Admin', 'Added a teacher account', NOW())");
+        $audit = mysqli_query($conn, "INSERT INTO history_tbl VALUES ('', '$sess_name', 'Admin', 'Added a teacher account', NOW())");
         ?>
             <script>
                 alert("New Record Added!");
