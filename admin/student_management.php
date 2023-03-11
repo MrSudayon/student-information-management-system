@@ -1,7 +1,6 @@
 <?php 
     include "../php/dbase_config.php";
     require_once "../php/auth.php";
-    
 
 ?>
 <!DOCTYPE html>
@@ -14,6 +13,19 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
         <title>Student Management</title>
+    
+        <style>
+            .btn_Upl {
+                cursor: pointer;
+                border: 1px black solid;
+                margin: 6px;
+                padding: 5px 10px;
+            }
+            #excel-up, #manual-up {
+                display: none;
+            }
+           
+        </style>
     </head>
     <body>
         <div class="side-menu" id="mySidebar">
@@ -21,14 +33,7 @@
             <div class="smateo-logo">
                 <img src="../images/smateo-shs.png" style="width: 70%;">
             </div>
-                <ul>
-                    <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-                    <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
-                    <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
-                    <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-                    <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
-                    <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-                </ul>
+            <?php include "./admin_nav.php"; ?>
         </div>
         <div id="main">
                 <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student Management</h2>  
@@ -36,38 +41,56 @@
                     <!-- Contents -->
                 <div class="dashb_content">
                         
-                        <hr class="line">     
-                        <br>
-                <center>
+                <hr class="line">     
+                    <br>
+                                        
+                <center>  
+                <!-- Excel Upload >> show if active -->
+                <div id="excel-up">
                     <h1>Batch Upload</h1>
                     <br>
                         <form method="POST" action="../actions/import.php" enctype="multipart/form-data">
                             <table>
+                            <tbody>
                             <tr>
                                 <th><label>Upload Excel File</label></th>
                                 <th><input type="file" name="file" class="form-control"></th>
                                 <th><button type="submit" name="save_excel_data" class="btn_add" style="width: 180px;">Upload</button></th>
                             </tr>
                             </table>
-                        
-                        <br>
-                        <hr class="line">
-                        <br>
+                        </form>
+                    <br>
+                    <br>
+                </div>
+                <!-- Manual Upload >> show if active -->
+                <div id="manual-up">
                     <h1>Individual</h1>
-
-                        <table class="add_course">
+                        <table  class=course_lists>
                             <tr>
                                 <th><input type="text" name="name" placeholder="Name" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="lrn" placeholder="LRN" style="font-family: Consolas; height: 30px;" require> </th>
+                                <th><input type="text" name="grade" placeholder="Grade" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th><input type="text" name="sec" placeholder="Section" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th><input type="text" name="strand" placeholder="Strand" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th><input type="text" name="orig_sec" placeholder="Originating Section" style="font-family: Consolas; height: 30px;" require> </th> 
+                            </tr>
+                            <tr>
                                 <th><input type="text" name="gen" placeholder="Gender" style="font-family: Consolas; height: 30px;" require> </th> 
-                                <th>
-                                </th>
+                                <th><input type="text" name="en_date" placeholder="Enrolled Date" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th><input type="text" name="add" placeholder="Address" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th><input type="text" name="phone" placeholder="Phone #" style="font-family: Consolas; height: 30px;" require> </th> 
+                                <th><input type="text" name="dob" placeholder="Date of Birth" style="font-family: Consolas; height: 30px;" require> </th> 
 
                                 <th colspan=3><input type="submit" name="add" class="btn_add" style="width: 180px;" value="ADD"/></th>
                             </tr>
+                        </tbody>
                         </table>
-                        </form>
-                        
+                </div>
+                 <!-- show/hide-->
+                 <br>
+                 <button id="btn_Upload" class="btn_Upl" onclick="toggleVisibility('excel-up','toggleVisibility')">UPLOAD STUDENT DATA</div>
+                    <br><br>
+                    <hr>
                 </center>
                         <br>
                         <h3>Students Lists</h3>
@@ -127,7 +150,7 @@
                 </div>
         </div>
 
-  
+    <script src="../upload_opt.js"></script> 
     <script src="../sidebar_nav.js"></script>
 
     </body>
