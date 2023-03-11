@@ -1,6 +1,7 @@
 <?php
     // connect to the database
     include ("../php/dbase_config.php");
+    require_once "../php/auth.php";
     // Uploads files
     if (isset($_POST['save'])) { // if save button on the form is clicked
         // name of the uploaded file
@@ -34,7 +35,8 @@
                         <script>
                             alert("File uploaded successfully");
                         </script>	
-                    <?PHP
+                    <?php
+                    mysqli_query($conn,"INSERT INTO history_tbl(uName, uType, uAction, timedate) VALUES ('$sess_name', '$sess_role', 'Published a Module File',NOW())")or die(mysqli_error($conn));
                     header("Refresh:0; url=../teachers/modules.php");
                 }
             } else {

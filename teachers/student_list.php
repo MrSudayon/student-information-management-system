@@ -1,12 +1,6 @@
 <?php
     include "../php/dbase_config.php";
     require_once "../php/auth.php";
-    
-    $sec = $_GET['section'];
-    $sql = "SELECT * FROM student_tbl where section ='$sec'";
-    $result = mysqli_query($conn, $sql);
-    
-    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -32,16 +26,7 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul>
-        <a href="tchr_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="tchr_attendance.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Attendance</h4></li></a>
-        <a href="modules.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Modules</h4></li></a>
-        <a href="links.php"><li><img src="../images/link.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Links</h4></li></a>
-        <a href="section.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">List of Sections</h4></li></a>
-        <a href="#"><li><img src="../images/grade.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Students Grades</h4></li></a>
-        <a href="settings.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Settings</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./teacher_nav.php"; ?>
 </div>
 <!-- sidebar -->
   
@@ -52,23 +37,74 @@
     <!-- Contents -->
     <div class="dashb_content">
         <hr class="line">
-
         <center>
         <h3>List of Students</h3>
+        <form method="POST" action="student_list.php">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            <?php  
+                                $query ="SELECT section FROM teachers_tbl where id='$sess_id'";
+                                $result = $conn->query($query);
+                                if($result->num_rows> 0){
+                                    $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                }
+                                ?>
+                                    <select id="section" name="section" style="font-family: Consolas; height: 30px; width: 100%;">
+                                        <option>Select Section</option>
+                                        <?php 
+                                        foreach ($options as $option) {
+                                        ?>
+                                            <option><?php echo $option['section']?> </option>
+                                        <?php 
+                                            }
+                                        ?>
+                                    </select>
+                        </th>
+                        <th>
+                            <button type='submit' name='btnFilter'>Filter</button>
+                        </th> 
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <br>
+        <hr class="line"><br>
             <table class="t-table">
             <tbody>
                 <tr>
+                    <th>No. of Student</th>
                     <th>Student Name</th>
+                    <th>Gender</th>
+                </tr>
+                    <?php
+                        if(isset($_POST['btnFilter'])){
+                            $selected_sec = $_POST['section'];
+
+                            $sql = "SELECT * FROM student_tbl where section='$selected_sec' order by name";
+                        }
+
+                        
+                        $result = mysqli_query($conn, $sql);
+                        
+                        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    $i = 1;
+                    foreach ($rows as $row): ?>
+                <tr bgcolor="white">
+
+                    <td><?php echo $i;  ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['gender']; ?></td>
                 </tr>
 
-                    <?php foreach ($rows as $row): ?>
-                <tr bgcolor="white">
-                    <td><?php echo $row['name']; ?></td>
-                </tr>
-                    <?php endforeach;?>
+                    <?php $i++; 
+                    
+                    endforeach;?>
             </tbody>
             </table>
         </center>
+    </form>
     </div>
     <!-- Contents -->
 </div>
