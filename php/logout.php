@@ -8,6 +8,7 @@ require_once "../php/auth.php";
     unset($_SESSION['SESSION_ID']);
     unset($_SESSION['SESSION_USER']);
     unset($_SESSION['SESSION_NAME']);
+    unset($_SESSION['SESSION_ROLE']);
 ?>
 <!-- Mar -->
         <script>
