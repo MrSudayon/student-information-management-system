@@ -21,14 +21,7 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul>
-        <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-        <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
-        <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
-        <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./student_nav.php"; ?>
 </div>
 <!-- sidebar -->
 
@@ -48,11 +41,11 @@
                 if ($res->num_rows > 0) { ?>
                 
                 <br>
-                <table class="s-table">
+                <table class="s-table" style="overflow: auto; height: 80dvh; width: 100%;">
                     <tr>
-                        <th>Name</th>
-                        <th>Action</th>
-                        <th>Date and Time</th>
+                        <th stlye="width: 30%;">Name</th>
+                        <th style="width: 50%;">  Action  </th>
+                        <th style="width: 20%;">Date and Time</th>
                     </tr>
             <?php while($row = $res->fetch_assoc()) {  ?>
                     <tr>

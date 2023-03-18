@@ -1,6 +1,19 @@
 <?php
     include "../php/dbase_config.php";
     require_once "../php/auth.php";
+    $std_qry = mysqli_query($conn, "SELECT * FROM student_tbl WHERE id = $sess_id ");
+    
+    if($std_qry->num_rows>0) {
+        $strand_row = mysqli_fetch_array($std_qry);
+        $strand = $strand_row['strand'];
+        $grade = $strand_row['grade'];
+    } else {
+        ?>
+            <script>
+                alert ("Subject not existed");
+            </script>
+        <?php
+    }
 
 ?>
 
@@ -72,14 +85,7 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul >
-        <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-        <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
-        <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
-        <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./student_nav.php"; ?>
 </div>
 <!-- sidebar -->
 
@@ -93,8 +99,10 @@
 
         <!-- Subjects Contents -->
         <div class="row">
+
             <?php
-            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 ");
+            
+            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 AND grade='$grade' AND (dept='$strand' OR dept='')");
         
             while($row=mysqli_fetch_array($sql)) {
             ?>
@@ -119,9 +127,41 @@
             <?php
             } 
             ?>
+        <!--
+            <?php
+            //Separate Specialized Subjects for different Strands
+            
+            //$specialized = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 AND grade-'$grade' AND dept='$strand'");
+
+            //while($row1=mysqli_fetch_array($specialized)) {
+            ?>
+                <div class="col-3 col-s-12">	
+                <form method="GET">
+                    <a href="../courses/course_view.php?name=<?php //echo $sess_name; ?>&subj_id=<?php //echo ($row1['subj_id']); ?>&subj_code=<?php //echo ($row1['subj_code']); ?>">
+                    
+                    <div class='subj-card' style='display:none; border-radius:25px;'>
+                        <div class="header" style="border-radius:25px 25px 0px 0px;" > 
+                            <h1><?php //echo strtoupper ($row1['subj_code']); ?></h1>
+                            <p><input type="hidden" value="<?php //echo ($row1['subj_id']); ?>" name="subj_id"></p>
+                        </div>
+                        <div class="subj" style="border-radius: 0px 0px 25px 25px;">
+                            <center>
+                            <img src="../imgsubject/<?php //echo ($row1['subj_image']); ?>" style="height: 220px; padding: 0;">
+                            </center>
+                        </div>
+                    </div> 
+                    
+                    </a>
+                </form>
+                </div>
+            <?php
+            //} 
+            ?> 
+        -->
+
         </div>
         <!-- Subjects Contents -->
-
+        
 
 
     </div>

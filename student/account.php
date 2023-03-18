@@ -25,14 +25,7 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul >
-        <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-        <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
-        <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
-        <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./student_nav.php"; ?>
 </div>
 <!-- sidebar -->
 
@@ -67,7 +60,8 @@
             <div class="right-pane">
                 <div class="right-content">
                 <hr>
-                <h3><div class="right-title"><img src="../images/personal-info.png" style="height: 19px;"> Personal Information:</div></h3><br>
+                <h3><div class="right-title"><img src="../images/personal-info.png" style="height: 19px;"> Personal Information:            </div></h3>
+                <h1 style= "font-weight:100; font-family: 'Courier Sans'">Learners Information:</h1>
                 <form method="POST" action="account.php">
                 <table class="student_info">    
                 
@@ -76,7 +70,7 @@
                     </tr>
                     <tr>
                         <td><h4>Strand:</td>
-                        <td colspan="3"><input type="text" class="rc-text" value="STEM" name="dept" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo $row['strand']; ?>" name="dept" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
 
                     </tr>
 
@@ -87,7 +81,7 @@
 
                     <tr>
                         <td><h4>Grade:</h4></td>
-                        <td colspan="3"><input type="text" class="rc-text" value="12" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></td>
+                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo $row['grade'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></td>
                     </tr>
 
                     </tr>
@@ -130,11 +124,53 @@
                     <td><h4>Password: </h4></td>
                         <td colspan="3"><input type="password" class="rc-text" name="newpass" value="<?php echo $row['pass']; ?>" contenteditable style="border: 1px solid black; width: 100%; border-radius: 5px; padding: 5px; text-align: center; "></td>        
                     </tr>
+               
                     <tr>
+                        <td colspan=3><h1 style= "font-weight:100; font-family: 'Courier Sans'"><br>Parent's/Guardian Details</h1></td>
+                    </tr>
+            
+                    <tr>
+                        <td><h4>Mother's Name:</h4></td>
+                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['name'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                    </tr>
+
+                    <tr>
+                        <td><h4>Contact no:</h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" name="mother_phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                    </tr> 
+
+                    <tr>
+                        <td><h4>Father's Name:</h4></td>
+                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['name'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                    </tr>
+
+                    <tr>
+                        <td><h4>Contact no:</h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" name="father_phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                    </tr> 
+
+                    <tr>
+                        <td><h4>Guardian's Name:</h4></td>
+                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['name'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                    </tr>
+
+                    <tr>
+                        <td><h4>Contact no:</h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" name="guardian_phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                    </tr> 
+
+                    <tr>
+                        <td><h4>Address Name:</h4></td>
+                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['address'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                    </tr>
+
+                     <tr>
                         <td></td>
                         <td colspan=3><button type="submit" name="sub">Apply</button></td>
                     </tr>
-                </table>    
+
+                </table>
+
                 </form>
                 </div>
             </div>
@@ -157,6 +193,10 @@
         $dob = date($_POST['dob']);
         $newpass = $_POST['newpass'];
         
+        //parent/guardian no.
+        $mom_phone = $_POST['mother_phone'];
+        $dad_phone = $_POST['father_phone'];
+        $g_phone = $_POST['guardian_phone'];
     
                     
         $sql = "UPDATE student_tbl SET address = '$addr', phone = '$phone', dob = '$dob', pass = '$newpass' WHERE id = $sess_id ";
@@ -164,12 +204,13 @@
         if(mysqli_query($conn, $sql)) {
             ?>
                 <script>
-                    window.location.href = "../student/account.php";
                     alert("Record Updated!");
                 </script>
             <?php
             mysqli_query($conn,"INSERT INTO history_tbl(uName,uType,uAction,timedate)
-                                VALUES ('$sess_name','Student','UPDATED PERSONAL INFORMATION',NOW()") or die(mysqli_error($conn));
+                                VALUES ('$sess_name','$sess_role','Updated Personal Information',NOW())") or die(mysqli_error($conn));
+            echo "<meta http-equiv='refresh' content='0'>";
+            $conn->close();
         } else {
             ?>
                 <script>
