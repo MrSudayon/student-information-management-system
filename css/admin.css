@@ -125,8 +125,15 @@ h3 {
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,140,95,1) 28%, rgba(255,64,0,1) 100%);
 }
 
+/* Table row styles for individual uplad */
 
-/* Table row styles for all */
+.indiv tr {
+    border: 1px solid black;
+}
+.indiv th {
+    padding: 5px;
+}
+/* Table row stles */
 .course_lists {
     display: flex;
     justify-content: center;
