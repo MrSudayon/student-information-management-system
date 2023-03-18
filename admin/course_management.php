@@ -48,6 +48,7 @@
                                 <th>Subject Code</th>
                                 <th>Subject Name</th>
                                 <th>Description</th>
+                                <th>Grade and Sem</th>
                                 <th>Department</th>
                                 <th>Assign to:</th>
                             </tr>
@@ -56,10 +57,11 @@
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="course_name" placeholder="Course Name" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="course_desc" placeholder="Description" style="font-family: Consolas; height: 30px;" require> </th>
+                                <th><input type="text" name="gradesem" placeholder="Grade-Semester" style="font-family: Consolas; height: 30px;" require> </th>
                                 <th><input type="text" name="department" placeholder="Department" style="font-family: Consolas; height: 30px;" require> </th> 
                                 <th>
                                     <?php  
-                                        $query ="SELECT tchr_FIRST,tchr_MID,tchr_LAST FROM teachers_tbl";
+                                        $query ="SELECT tchr_FIRST,tchr_MID,tchr_LAST FROM teachers_tbl WHERE tchr_STATUS = 'ACTIVE'";
                                         $result = $conn->query($query);
                                         if($result->num_rows> 0){
                                             $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -105,7 +107,7 @@
             <?php
 
                 if(isset($_POST['clear'])){
-                    $sel = "SELECT * FROM subject_tbl WHERE archive =0 ";
+                    $sel = "SELECT * FROM subject_tbl WHERE archive=0 ORDER BY dept DESC";
                 }
                 if(isset($_POST['btnsearch'])){
                     if(!empty($_POST['strand'])) {
@@ -121,7 +123,7 @@
                     $sel = "SELECT * FROM subject_tbl WHERE dept ='$strand' && archive =0 ";
                     
                 }else{
-                    $sel = "SELECT * FROM subject_tbl WHERE archive =0 ";
+                    $sel = "SELECT * FROM subject_tbl WHERE archive=0 ORDER BY dept DESC";
                 }
                 $result = $conn->query($sel);
 
@@ -134,8 +136,11 @@
                             echo "<th>Subject Name</th>";
                             echo "<th>Image</th>";
                             echo "<th>Description</th>";
+                            echo "<th>Grade (Semester)";
                             echo "<th>Date Added</th>";
-                            echo "<th>Department</th>";
+                            //NO NEED TO ADD STRANDS ON 'MINOR' AND 'APPLIED SUBJECTS'
+                            //ALL 'MINOR' AND 'APPLIED SUBJECTS' IS JIVING ON ALL STRANDS!
+                            echo "<th style='display:none;'>Department</th>";
                             echo "<th>Instructor</th>";
                             echo "<th colspan=2>Action</th>";
                         echo "</tr>";
@@ -148,8 +153,9 @@
                                     <td><img src="<?php echo "../imgsubject/".$row['subj_image']; ?>" width='80px' height='80px'></td>
                                 <?php
                                 echo "<td style='width: 20%;'>" . $row["subj_desc"];
+                                echo "<td>" . $row["grade"];
                                 echo "<td>" . $row["date_added"];
-                                echo "<td>" . $row["dept"];
+                                echo "<td style='display:none;'>" . $row["dept"];
                                 echo "<td>" . $row["Instructor"];
                                 ?> 
                                     <td><a href="../actions/subj_update.php?id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_id']); ?>" class="update_btn">UPDATE</a></td>
@@ -185,6 +191,7 @@
         $c_desc = $_POST['course_desc'];
         $c_dateadd = date("Y-m-d");       
         $c_assign = $_POST['assign'];
+        $gradesem = $_POST['gradesem'];
         $department = strtoupper($_POST['department']);
 
         $c_image = basename($_FILES["file"]["name"]);
@@ -200,38 +207,34 @@
 
 			// Check extension
 		if( in_array($imageFileType,$extensions_arr) ){
-			if(!file_exists($target_dir)){					// Upload file
+			//if(!file_exists($target_dir)){					// Upload file
     			if(move_uploaded_file($tempname,$target_dir)){
     			    $image_base64 = base64_encode(file_get_contents($target_dir) );
                     $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
                                         
                     try {
-                        $add = "INSERT INTO subject_tbl (`subj_id`, `subj_name`, `subj_code`, `subj_desc`, `date_added`, `dept`, `subj_image`, `Instructor`, `archive`) VALUES ('null','$c_name','$c_code',                                                                 '$c_desc','$c_dateadd','$department','$c_image','$c_assign',0)";
+                        $add = "INSERT INTO subject_tbl (`subj_id`, `subj_name`, `subj_code`, `subj_desc`, `date_added`, `dept`, `grade`, `subj_image`, `Instructor`, `archive`) VALUES ('null','$c_name','$c_code',                                                                 '$c_desc','$c_dateadd','$department','$gradesem','$c_image','$c_assign',0)";
                         if (mysqli_query($conn, $add)) {
                             ?>
                                 <script>
                                     alert("New Record Added!");
                                 </script>
                             <?php	
-                            mysqli_query($conn,"INSERT INTO history_tbl(name,utype,action,timedate) VALUES('$sess_name','Admin','Added Subject',NOW())")
+                            mysqli_query($conn,"INSERT INTO history_tbl(uName,uType,uAction,timedate) VALUES('$sess_name','$sess_role','Added Subject',NOW())")
 					        or die(mysqli_error($conn));
                         } else {
                         echo "Error: " . $add . "<br>" . mysqli_error($conn);
                         }
                     echo "<meta http-equiv='refresh' content='0'>";
-                    }catch (mysqli_sql_exception $e) {
+                    } catch (mysqli_sql_exception $e) {
+                        ?>
+                            <script> alert ("Please do not use Apostrophe "); </script>
+                        <?php
                         var_dump($e);
                         exit; 
                     }
     			}
-			}else{
-			    ?>
-			    <script>
-                   alert(<?php echo $cimage;?>" already exist");
-                </script>
-			    <?php
-                echo "<meta http-equiv='refresh' content='0'>";
-			}
+			
         }
     }
 ?>

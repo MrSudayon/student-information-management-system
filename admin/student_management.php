@@ -71,6 +71,7 @@
                 <!-- Manual Upload >> show if active -->
                 <div id="manual-up">
                     <h1>Individual</h1>
+                        <form method="POST" action="../student_management.php" enctype="multipart/form-data">
                         <table class="indiv">
                             <tr>
                                 <th><input type="text" name="name" placeholder="Name (SN, FN, MN)" style="font-family: Consolas; height: 30px;" require> </th>
@@ -86,7 +87,7 @@
                                 <th><input type="text" name="add" placeholder="Address" style="font-family: Consolas; height: 30px;" require> </th> 
                                 <th><input type="text" name="phone" placeholder="Phone #" style="font-family: Consolas; height: 30px;" require> </th> 
                                 <th><input type="text" name="dob" placeholder="Date of Birth" style="font-family: Consolas; height: 30px;" require> </th> 
-                                <th><input type="text" name="m_tounge" placeholder="Mother Tounge" style="font-family: Consolas; height: 30px;" require></th>
+                                <th><input type="text" name="m_tongue" placeholder="Mother Tounge" style="font-family: Consolas; height: 30px;" require></th>
                             </tr>
                  
                             <tr>
@@ -95,6 +96,32 @@
                             </tr>
                         </tbody>
                         </table>
+                        </form>
+
+                            <?php
+                            if(isset($_POST['add'])){
+                                $namest = isset($_POST['name']);
+                                $LRN = isset($_POST['lrn']);
+                                $grade = isset($_POST['grade']);
+                                $section = isset($_POST['sec']);
+                                $strand = isset($_POST['starnd']);
+                                $originating_sec = isset($_POST['orig_sec']);
+                                $gender = isset($_POST['gen']);
+                                $enrolleddate = isset($_POST['en_date']);
+                                $address = isset($_POST['add']);
+                                $phone = isset($_POST['phone']);
+                                $dob = isset($_POST['dob']);
+                                $user = isset($_POST['mother_tongue']);
+                                
+                                $sql= "INSERT INTO student_tbl (`id`, `name`, `LRN`, `grade`, `section`, `strand`, `originating_sec`, `gender`, `enrolleddate`, `address`, `phone`, `dob`,`user`, `pass`, `enabled`)
+                                VALUES (null,'$namest', '$LRN','$grade','$section','$strand','$originating_sec','$gender','$enrolleddate','$address','$phone','$dob','$user','$pass',1)";
+                                if (mysqli_query($conn, $sql)) {
+                                echo "New record created successfully";
+                                } else {
+                                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                }
+                            }
+                            ?>
                 </div>
                  <!-- show/hide-->
                  <br>
