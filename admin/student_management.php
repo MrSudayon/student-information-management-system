@@ -130,12 +130,16 @@
                     <hr>
                 </center>
                         <br>
-                        <h3>Students Lists</h3>
+                        <h3>Students Lists
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <input type="text" name="search"/>
+                            <button type="submit" name="srch" style="cursor: pointer;">Search</button>
+                        </h3>
 
-                        <table class=course_lists >
+                        <table class=course_lists style="border: 1px solid black;">
                             <tbody>
-                                <tr bgcolor=#363636 style='color:white'>
-                                    <th>Name</th>
+                                <tr bgcolor=#363636 style='color:white;'>
+                                    <th style="width: 15%;">Name</th>
                                     <th>LRN</th>
                                     <th>Grade</th>
                                     <th>Section</th>

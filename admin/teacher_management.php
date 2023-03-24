@@ -24,14 +24,7 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul>
-        <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
-        <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
-        <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./admin_nav.php"; ?>
 </div>
 <!-- sidebar -->
   
@@ -61,7 +54,6 @@
                             <th>Section</th>
                             <th>User</th>
                             <th>Phone #</th>
-                            <th>Subjects</th>
                             <th>Action</th>
                         </tr>
 
@@ -85,7 +77,7 @@
                                 $status = $row['tchr_STATUS'];
                                 if($status=='INACTIVE') {
                                     ?>
-                                        <tr bgcolor='#ffcccb'>
+                                        <tr bgcolor='#ffcccb' style="display:none;">
                                     <?php
                                 }else {
                                     ?>
@@ -99,7 +91,6 @@
                             <td><?php echo $row['section']; ?></td>
                             <td><?php echo $row['user']; ?></td>
                             <td><?php echo $row['tchr_PHONE']; ?></td>
-                            <td><?php echo $row['subjects']; ?></td>
                             <td><a href="../actions/tchr_update.php?id=<?php echo ($row['id']); ?>" class="update_btn">UPDATE</a></td>
                         </tr>
                         </form>           
