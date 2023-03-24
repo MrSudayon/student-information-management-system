@@ -139,6 +139,7 @@ h3 {
     justify-content: center;
     border-collapse: collapse;
     width: 100%;
+    overflow: auto; height: 70dvh;
 }
 .course_lists tr {
     border: .5px solid black;
