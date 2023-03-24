@@ -85,17 +85,17 @@ $subjects = "";
                         <table class="add_course">
                             
                             <tr>
-                                <th colspan=2><input type="text" name="name" value="<?php echo $lname,', ',$fname,' ',$mn; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" require> </th>
-                                <th><input type="text" name="department" value="<?php echo $department; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" require> </th>
+                                <th colspan=2><input type="text" name="name" value="<?php echo $lname,', ',$fname,' ',$mn; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" > </th>
+                                <th><input type="text" name="department" value="<?php echo $department; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" > </th>
                             </tr>
                             <tr>
                                 <td colspan=2>Teachers Name</td>
                                 <td>Strand/Department</td>
                             </tr>
                             <tr>
-                                <th><input type="text" name="section" value="<?php echo $section; ?>" style="font-family: Consolas; height: 30px;" require> </th>
+                                <th><input type="text" name="section" value="<?php echo $section; ?>" style="font-family: Consolas; height: 30px;" > </th>
                                 <th><input type="text" name="user" value="<?php echo $user; ?>" style="background-color: #ddd; font-family: Consolas; height: 30px;" readonly> </th>
-                                <th><input type="text" name="pass" value="<?php echo $pass; ?>" style="font-family: Consolas; height: 30px;" require> </th>
+                                <th><input type="text" name="pass" value="<?php echo $pass; ?>" style="font-family: Consolas; height: 30px;" > </th>
                             </tr>
                             <tr>
                                 <td>Section</td>
@@ -103,22 +103,31 @@ $subjects = "";
                             </tr>
                             <tr>
                                 <th colspan=2><input type="text" name="phone" value="<?php echo $phone; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" require> </th>
-                                <th><select id="status" name="status" style="font-family: Consolas; height: 30px; width: 100%;">
-                                        <option value="INACTIVE">INACTIVE</option>
-                                        <option value="ACTIVE">ACTIVE</option>
+                                <th><select id="status" class="status" style="font-family: Consolas; height: 30px; width: 100%;">
+                                        <option value="INACTIVE">INACTIVEs</option>
+                                        <option value="ACTIVE">ACTIVEs</option>
                                     </select>
                                 </th>
+                                <th>
+                                    <input type="hidden" id="tchr_status" name="t_status"/>
+                                </th>
                             </tr>
+                            
                             <tr>
                                 <td colspan=2>Phone</td>
                                 <td>Set STATUS</td>
                             </tr>
                             <tr>
-                                <th colspan=2>
+                                <td colspan=2>
                                     <?php  
-                                    $query = "SELECT subjects FROM teachers_tbl WHERE id = '$id'";
+                                    $query ="SELECT * FROM subject_tbl WHERE Instructor LIKE  '%".$lname."%' ";
                                     $result = $conn->query($query);
-                                    $subjs = mysqli_fetch_row($result) ? explode(",", mysqli_fetch_row($result)) : [];
+                                    
+                                    if($result->num_rows> 0){
+                            
+                                        $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                    }
+
                                     ?>
                                     <div class="multi-selector">
 
@@ -128,64 +137,41 @@ $subjects = "";
                                         </div>
                                         
                                         <div class="list">
+                                            <?php
+                                            foreach ($subjects as $subject) {
+                                            ?>
 
-                                    <?php
-                                    
-                                    foreach($subjs as $sub) {
-                                    ?>
-                                        <label class="task">
-                                        <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $sub; ?>" >
-                                            <?php echo $sub; ?>
-                                        </input>
-                                        </label>
-                                        
-                                    <?php 
-                                    }
-                                    ?>
-
-                                        </div>
-
-                                    </div>
-                                </th>
-                                <th>
-                                    <input type="hidden" id="val" name="subjs"/>
-                                    <p id="subs" name="subjects" style="border: 1px solid black; height: 80px;"></p>
-                                </th>
-
-                            <script>
-                                // getting checked value from array
-                                var sub = document.querySelectorAll('input[type=checkbox]');
-                                var paraSelectedElement = document.getElementById('subs');                        
-
-                                sub.forEach(function(checkbox) {
-                                    checkbox.addEventListener('change', function() {
-                                        const selectedSub = [];
-                                        
-                                        sub.forEach(function(checkbox) {
-                                            if(checkbox.checked) {
-                                                selectedSub.push(checkbox.value);
+                                            <label class="task">
+                                            <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $subject['subj_code']; ?>" >
+                                                <?php echo $subject['subj_name']; ?>
+                                                <span><?php echo $subject['subj_code']; ?></span>
+                                            </input>
+                                            </label>
+                                                
+                                            <?php 
                                             }
-                                        });
-                                            
-                                    paraSelectedElement.innerHTML = selectedSub;
-                                    document.getElementById("val").value = selectedSub;
-
-                                    console.log(selectedSub);
-
-                                    });
-                                });
-                            </script>
-
+                                            ?>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td colspan=2>
+                                    <input type="hidden" name="selectedSub" id="selectedSub"/>
+                                    <p id="subs">  </p>
+                                </td>
+                            
                             </tr>
+
                             <tr>
                                 <td colspan=3>Subjects</td>
                             </tr>
+
                             <tr>
                                 <th colspan=3><input type="submit" name="update" class="btn_add" value="Update"></th>
                             </tr>
                             <tr>
                                 <th colspan=3><input type="submit" name="cancel" class="btn_can" value="Cancel"></th>    
                             </tr>
+
                         </table>
                     </form>
 
@@ -202,8 +188,49 @@ $subjects = "";
   
 <script src="../sidebar_nav.js"></script>
 <script>
+    //Status Update
+    
+    const selectStatus = document.getElementById('status');
+    var valHolder = document.getElementById('tchr_status');
+
+    function onChange() {
+        var selVal = selectStatus.options[selectStatus.selectedIndex].value;
+        var selText = selectStatus.options[selectStatus.selectedIndex].text;
+
+        valHolder.value = selVal;
+        console.log(selVal, selText);
+    }
+    selectStatus.onchange = onChange;
+    onChange();
+    
+    
+    // getting checked value from array
+    var sub = document.querySelectorAll('input[type=checkbox]');
+    var paraSelectedElement = document.getElementById('subs');  
+    const selectedInput = document.getElementById('selectedSub');
+                            
+    sub.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const selectedSub = [];
+            
+            sub.forEach(function(checkbox) {
+                if(checkbox.checked) {
+                    selectedSub.push(checkbox.value);
+                    //selectedInput.value = JSON.stringify(selectedSub);
+                    selectedInput.value = selectedSub.join(","); 
+                }
+            });
+                
+        paraSelectedElement.innerHTML = selectedSub;
+        console.log(selectedSub);
+        console.log(selectedInput);
+        });
+    });
+    
+</script>
+<script>
     document.querySelector('.select-field').addEventListener('click',()=>{
-        document.querySelector('.list').classList.toggle('show');
+    document.querySelector('.list').classList.toggle('show');
     });
 </script>
 </body>
@@ -214,40 +241,36 @@ $subjects = "";
     $pass = '';
     $phone = '';
     $subjects = '';
-
+    $status = '';
     if(isset($_POST['update'])) {
         $section = $_POST['section'];
         $pass = $_POST['pass'];
         $phone = $_POST['phone'];
-        $status = $_POST['status'];
+        $status = $_POST['t_status'];
         $subjects = $_POST['subjects'];
-        
-        
-        
-            try {
-                $upd = "UPDATE teachers_tbl SET section = '$section', pass = '$pass', tchr_PHONE = '$phone', subjects = '$subjects', tchr_STATUS = '$status' WHERE id = '$id'";
-                $conn->query($upd);
 
-                ?>
-                    <script>
-                        window.location.href = "../admin/teacher_management.php";
-                        alert("Record Updated!");
-                    </script>
-                <?php
+        try {
+            $upd = mysqli_query($conn,"UPDATE teachers_tbl SET section = '$section', pass = '$pass', tchr_PHONE = '$phone', subjects = '$subjects', tchr_STATUS = '$status' WHERE id = '$id'");
 
-            } catch (mysqli_sql_exception $e) {
-                var_dump($e);
-                exit;
-            }
-                    
-        
-    }
-    elseif(isset($_POST['cancel'])) {
+            ?>
+                <script>
+                    alert("Record Updated!");
+                    window.location.href = "../admin/teacher_management.php";
+                </script>
+            <?php
+            
+
+        } catch (mysqli_sql_exception $e) {
+            var_dump($e);
+            exit;
+        }
+
+    } elseif(isset($_POST['cancel'])) {
         ?>
             <script>
                 window.location.href = "../admin/teacher_management.php";
             </script>
         <?php
     }
-
+    $conn->close();
 ?>

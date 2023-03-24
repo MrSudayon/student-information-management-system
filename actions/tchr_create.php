@@ -64,62 +64,18 @@ require_once "../php/auth.php";
                             <td colspan=2>Strand/Department</td>
                             <td>Section</td>
                         </tr>
+                        
                         <tr>
-                            <th><input type="text" name="user" placeholder="User" style="font-family: Consolas; height: 30px;" require> </th>
-                            <th><input type="text" name="pass" placeholder="pass" style="font-family: Consolas; height: 30px;" require> </th>
-                            <th><input type="text" name="phone" placeholder="Phone" style="font-family: Consolas; height: 30px;" require> </th>
+                            <th><input type="text" name="user" placeholder="User" style="font-family: Consolas; height: 30px;" required> </th>
+                            <th><input type="text" name="pass" placeholder="pass" style="font-family: Consolas; height: 30px;" required> </th>
+                            <th><input type="text" name="phone" placeholder="Phone" style="font-family: Consolas; height: 30px;" required> </th>
                         </tr>
+
                         <tr>
                             <td colspan=2>User</td>
                             <td>Phone</td>
                         </tr>
-                        <tr>
-                            <td>
-                                    <?php  
-                                    $query ="SELECT * FROM subject_tbl";
-                                    $result = $conn->query($query);
-                                    
-                                    if($result->num_rows> 0){
-                            
-                                        $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                                    }
-
-                                    ?>
-                                    <div class="multi-selector">
-
-                                        <div class="select-field">
-                                            <input type="text" placeholder="choose subjects" id="" class="input-select" style="outline: none; border: none;"/>
-                                            <span class="arrow-down">&blacktriangledown;</span>
-                                        </div>
-                                        
-                                        <div class="list">
-
-                                    <?php
-                                        foreach ($subjects as $subject) {
-                                    ?>
-
-                                            <label class="task">
-                                            <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $subject['subj_code']; ?>" >
-                                                <?php echo $subject['subj_name']; ?>
-                                                <span><?php echo $subject['subj_code']; ?></span>
-                                            </input>
-                                            </label>
-                                        
-                                    <?php 
-                                        }
-                                    ?>
-
-                                        </div>
-
-                                    </div>
-                            </td>
-                            <td colspan=2>
-                                <input type="hidden" name="selectedSub" id="selectedSub"/>
-                                <p id="subs">  </p>
-                            </td>
-                           
-                        </tr>
-    
+                       
                         <tr>
                             <th colspan=3><input type="submit" name="add" class="btn_add" value="Create User"></th>
                         </tr>
@@ -131,38 +87,9 @@ require_once "../php/auth.php";
                 </form>
             </div>
         </div>
-        <script>
-            // getting checked value from array
-            var sub = document.querySelectorAll('input[type=checkbox]');
-            var paraSelectedElement = document.getElementById('subs');  
-            const selectedInput = document.getElementById('selectedSub');
-                                    
-            sub.forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    const selectedSub = [];
-                    
-                    sub.forEach(function(checkbox) {
-                        if(checkbox.checked) {
-                            selectedSub.push(checkbox.value);
-                            //selectedInput.value = JSON.stringify(selectedSub);
-                            selectedInput.value = selectedSub.join(","); 
-                        }
-                    });
-                        
-                paraSelectedElement.innerHTML = selectedSub;
-                console.log(selectedSub);
-                console.log(selectedInput);
-                });
-            });
-            
-        </script>
+        
         
         <script src="../sidebar_nav.js"></script>
-        <script>
-                document.querySelector('.select-field').addEventListener('click',()=>{
-                document.querySelector('.list').classList.toggle('show');
-            });
-        </script>
 </body>
 </html>
 
@@ -177,9 +104,9 @@ require_once "../php/auth.php";
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $phone = $_POST['phone'];
-        $selSub = isset($_POST['selectedSub']) ? explode(",", $_POST["selectedSub"]) : [];
+        //$selSub = isset($_POST['selectedSub']) ? explode(",", $_POST["selectedSub"]) : [];
         //$selSub = json_decode($_POST["selectedSub"], true);
-        //$selSub = $_POST['selectedSub'];
+        $selSub = $_POST['selectedSub'];
 
 
         //Convert strings into array
@@ -187,7 +114,7 @@ require_once "../php/auth.php";
         $name = $_POST['fname'].' '.$_POST['lname'];
 
         $teachers = mysqli_query($conn, "INSERT INTO teachers_tbl VALUES('', '$lname', '$fname', '$mn', '$section', '$selSub', '$dept', '$phone', '$user', '$pass', 'INACTIVE')");
-        $audit = mysqli_query($conn, "INSERT INTO history_tbl VALUES ('', '$sess_name', 'Admin', 'Added a teacher account', NOW())");
+        $audit = mysqli_query($conn, "INSERT INTO history_tbl VALUES ('', '$sess_name', '$sess_role', 'Added a teacher account', NOW())");
         ?>
             <script>
                 alert("New Record Added!");
@@ -203,5 +130,5 @@ require_once "../php/auth.php";
         <?php
         
     }
-    $conn -> close();
+    $conn->close();
 ?>
