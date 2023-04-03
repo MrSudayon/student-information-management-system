@@ -1,10 +1,11 @@
 <?php
     include "../php/dbase_config.php";
     require_once "../php/auth.php";
-    $std_qry = mysqli_query($conn, "SELECT * FROM student_tbl WHERE id = $sess_id ");
+    $std_qry = mysqli_query($conn, "SELECT * FROM student_tbl WHERE id = $sess_id AND enabled = 1");
     
     if($std_qry->num_rows>0) {
         $strand_row = mysqli_fetch_array($std_qry);
+        $section = $strand_row['section'];
         $strand = $strand_row['strand'];
         $grade = $strand_row['grade'];
     } else {
@@ -102,13 +103,12 @@
 
             <?php
             
-            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 AND grade='$grade' AND (dept='$strand' OR dept='')");
-        
+            $sql = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 AND grade='$grade' AND (dept='$strand' OR dept='') ORDER BY dept DESC");
             while($row=mysqli_fetch_array($sql)) {
             ?>
                 <div class="col-3 col-s-12">	
                 <form method="GET">
-                    <a href="../courses/course_view.php?name=<?php echo $sess_name; ?>&subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>">
+                    <a href="../courses/course_view.php?name=<?php echo $sess_name; ?>&subj_id=<?php echo ($row['subj_id']); ?>&subj_code=<?php echo ($row['subj_code']); ?>&section=<?php echo $section; ?>">
                     <div class="subj-card"style="border-radius:25px;">
                         <div class="header" style="border-radius:25px 25px 0px 0px;" > 
                             <h1><?php echo strtoupper ($row['subj_code']); ?></h1>
@@ -127,41 +127,10 @@
             <?php
             } 
             ?>
-        <!--
-            <?php
-            //Separate Specialized Subjects for different Strands
-            
-            //$specialized = mysqli_query($conn,"SELECT * FROM subject_tbl WHERE archive=0 AND grade-'$grade' AND dept='$strand'");
-
-            //while($row1=mysqli_fetch_array($specialized)) {
-            ?>
-                <div class="col-3 col-s-12">	
-                <form method="GET">
-                    <a href="../courses/course_view.php?name=<?php //echo $sess_name; ?>&subj_id=<?php //echo ($row1['subj_id']); ?>&subj_code=<?php //echo ($row1['subj_code']); ?>">
-                    
-                    <div class='subj-card' style='display:none; border-radius:25px;'>
-                        <div class="header" style="border-radius:25px 25px 0px 0px;" > 
-                            <h1><?php //echo strtoupper ($row1['subj_code']); ?></h1>
-                            <p><input type="hidden" value="<?php //echo ($row1['subj_id']); ?>" name="subj_id"></p>
-                        </div>
-                        <div class="subj" style="border-radius: 0px 0px 25px 25px;">
-                            <center>
-                            <img src="../imgsubject/<?php //echo ($row1['subj_image']); ?>" style="height: 220px; padding: 0;">
-                            </center>
-                        </div>
-                    </div> 
-                    
-                    </a>
-                </form>
-                </div>
-            <?php
-            //} 
-            ?> 
-        -->
-
+        
         </div>
         <!-- Subjects Contents -->
-        
+
 
 
     </div>
