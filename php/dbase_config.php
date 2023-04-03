@@ -2,7 +2,7 @@
 	$servername="localhost";
 	$username="root";
 	$password="";
-	$dbase="caps_db";
+	$dbase="caps";
 
 	$conn=mysqli_connect($servername,$username,$password,$dbase);
 
