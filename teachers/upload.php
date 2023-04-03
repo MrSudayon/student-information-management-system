@@ -19,7 +19,7 @@
         $date =  date("Y-m-d");
         $size = $_FILES['myfile1']['size'];
         $desc = $_POST['weektxt'];
-        $uploadedto = $_POST['subj'];
+        $uploadedto = $_POST['strand'];
         $status = $_POST['stat'];
 
         if (!in_array($extension, ['zip', 'pdf', 'docx', 'pptx','xlsx'])) {
@@ -36,7 +36,7 @@
                             alert("File uploaded successfully");
                         </script>	
                     <?php
-                    mysqli_query($conn,"INSERT INTO history_tbl(uName, uType, uAction, timedate) VALUES ('$sess_name', '$sess_role', 'Published a Module File',NOW())")or die(mysqli_error($conn));
+                    mysqli_query($conn,"INSERT INTO history_tbl(uName, uType, uAction, timedate) VALUES ('$sess_name', 'Teacher', 'Published a Module File',NOW())")or die(mysqli_error($conn));
                     header("Refresh:0; url=../teachers/modules.php");
                 }
             } else {

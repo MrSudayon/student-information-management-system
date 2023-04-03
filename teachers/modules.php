@@ -56,10 +56,26 @@
                                 <option value="Published">Publish</option>
                                 <option value="Unpublished">Unpublish</option>
                             </select> &nbsp;&nbsp;
-                        <label class="weeklbl" for="subj">Status:</label>
-                            <select name="subj" id="subj" required class="status">
-                                <option value="FIL111">FILP</option>
-                                <option value="WATP">WATP</option>
+                        <label class="weeklbl" for="sec">Section:</label>
+                            <select name="sec" id="sec" required class="status">
+                                <!--
+                                <option value="ABM"> ABM </option>
+                                <option value="STEM"> STEM </option>
+                                <option value="HUMSS"> HUMSS </option>
+                                <option value="GAS"> GAS </option>
+                                <option value="TechVoc"> TechVoc </option>
+                                -->
+                            <?php
+                                $sub = "SELECT DISTINCT section FROM student_tbl";
+                                $res1 = mysqli_query($conn, $sub);
+                               
+
+                                foreach($res1 as $kape):
+                            ?> 
+                                <option value="<?php echo $kape['section']; ?>"><?php echo $kape['section']; ?></option>
+                            <?
+                               endforeach;
+                            ?>
                             </select>
                         <br>
                         <button type="submit" name="save" class="btnup">Upload</button>
@@ -71,7 +87,7 @@
                             <tr>
                                 <th>Description</th>
                                 <th>Filename</th>
-                                <th>Uploaded to</th>
+                                <th>Program</th>
                                 <th>Date Upload</th>
                                 <th>size</th>
                                 <th>Status</th>
