@@ -32,13 +32,12 @@
   
 <!-- Main -->
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Student in <?php //echo $sec; ?> </h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp; List of Students </h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
     <div class="dashb_content">
         <hr class="line">
         <center>
-        <h3>List of Students</h3>
         <form method="POST" action="student_list.php">
             <table>
                 <tbody>
@@ -51,7 +50,7 @@
                                     $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
                                 }
                                 ?>
-                                    <select id="section" name="section" style="font-family: Consolas; height: 30px; width: 100%;">
+                                    <select id="section" name="section" style="font-family: Consolas; height: 30px; width: 50%;">
                                         <option>Select Section</option>
                                         <?php 
                                         foreach ($options as $option) {
@@ -70,7 +69,7 @@
             </table>
         </form>
         <br>
-        <hr class="line"><br>
+        <hr><br>
             <table class="t-table">
             <tbody>
                 <tr>

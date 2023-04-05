@@ -103,7 +103,8 @@ $subjects = "";
                             </tr>
                             <tr>
                                 <th colspan=2><input type="text" name="phone" value="<?php echo $phone; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" require> </th>
-                                <th><select id="status" class="status" style="font-family: Consolas; height: 30px; width: 100%;">
+                                <th><select id="status" name="t_status" class="status" style="font-family: Consolas; height: 30px; width: 100%;">
+                                        <option value="<?php echo $status; ?>"> </option>
                                         <option value="INACTIVE">INACTIVEs</option>
                                         <option value="ACTIVE">ACTIVEs</option>
                                     </select>
