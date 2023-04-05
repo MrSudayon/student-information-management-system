@@ -8,3 +8,4 @@ uploads/.DS_Store
 uploads/stddata
 uploads/modules
 uploads/images
+*.php
