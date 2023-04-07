@@ -25,14 +25,7 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul>
-        <a href="admin_dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="teacher_management.php"><li><img src="../images/teacher2.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Teacher Management</h4></li></a>
-        <a href="course_management.php"><li><img src="../images/subject.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subject Management</h4></li></a>
-        <a href="student_management.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Student Management</h4></li></a>
-        <a href="eventlists.php"><li><img src="../images/announcement1.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Announcement Lists</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./admin_nav.php"; ?>
 </div>
 <!-- sidebar -->
   
@@ -65,10 +58,10 @@
                 $announcement=mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled=1")or die(mysqli_error($conn));
                 $activeannouncementcount=mysqli_num_rows($announcement);
 
-            /*departments count
-                $dept=mysqli_query($conn,"");
+            /*departments count*/
+                $dept=mysqli_query($conn,"SELECT DISTINCT department FROM department_tbl");
                 $deptcount=mysqli_num_rows($dept);
-            */
+            
             
             ?>
 
@@ -87,7 +80,7 @@
 
                 <a class="card card-prg" href="departments.php">
                     <img src="../images/online-course.png" style="width: 50%;">
-                    <h3><?php echo "4"; ?></h3>
+                    <h3><?php echo $deptcount; ?></h3>
                     DEPARTMENTS
                 </a>
                 
@@ -103,48 +96,10 @@
                     ANNOUNCEMENT
                 </a>
             </div>
-        
-           
-            
-           
 
         </div>
     <!-- Contents -->
-
-    <style>
-        .news_posting {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            justify-content: center;
-            text-align: center;
-            align-content: center;
-        }
-        .announcement {
-            width: 100%;
-        }
-        .announcemet input["text"] {
-            width: 500px;
-        }
-        #desc {
-            width: 300px;
-            height: 6dvh;
-        }
-        .create {
-            background-color: yellow;
-            padding: 5px 15px;
-            margin-top: 5px;
-            border: 1px solid black;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: ease-in-out .3s;
-        }
-        .create:hover{
-            background-color: white;
-            color: red;
-        }
-    </style>
-
+   
 </div>
 <!-- Main -->
 

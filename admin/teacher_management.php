@@ -50,9 +50,9 @@
                         <tbody>
                         <tr bgcolor=#363636 style='color:white'>
                             <th>Instructor Name</th>
-                            <th>Strand</th>
                             <th>Section</th>
                             <th>User</th>
+                            <th>Password</th>
                             <th>Phone #</th>
                             <th>Action</th>
                         </tr>
@@ -77,7 +77,7 @@
                                 $status = $row['tchr_STATUS'];
                                 if($status=='INACTIVE') {
                                     ?>
-                                        <tr bgcolor='#ffcccb' style="display:none;">
+                                        <tr bgcolor='#ffcccb'>
                                     <?php
                                 }else {
                                     ?>
@@ -87,11 +87,11 @@
                                 
                         ?>
                             <?php echo "<td>" .$row['tchr_LAST'],', ' .$row['tchr_FIRST'],' ' .$row['tchr_MID']; ?>
-                            <td><?php echo $row['department']; ?></td>
                             <td><?php echo $row['section']; ?></td>
                             <td><?php echo $row['user']; ?></td>
+                            <td><?php echo $row['pass']; ?></td>
                             <td><?php echo $row['tchr_PHONE']; ?></td>
-                            <td><a href="../actions/tchr_update.php?id=<?php echo ($row['id']); ?>" class="update_btn">UPDATE</a></td>
+                            <td><a href="../actions/tchr_update.php?id=<?php echo $row['id']; ?>" class="update_btn">UPDATE</a></td>
                         </tr>
                         </form>           
                         <?php 
@@ -103,13 +103,7 @@
     <!-- Contents -->
 </div>
 <!-- Main -->
-  
 
-
-
-
-
-  
 <script src="../sidebar_nav.js"></script>
 
 </body>
