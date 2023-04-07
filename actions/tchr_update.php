@@ -2,12 +2,16 @@
 include "../php/dbase_config.php";
 require_once "../php/auth.php";
 
-$id = "";
-$section = "";
-$pass = "";
-$phone = "";
-$status = "";
-$subjects = "";
+$id='';
+$section = '';
+$pass = '';
+$phone = '';
+$status = '';
+$lname = '';
+$fname = '';
+$mn = '';
+//$department = '';
+$user = '';
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -23,7 +27,7 @@ $subjects = "";
             $lname = $row['tchr_LAST'];
             $fname = $row['tchr_FIRST'];
             $mn = $row['tchr_MID'];
-            $department = $row['department'];
+            //$department = $row['department'];
             $section = $row['section'];
             $user = $row['user'];
             $pass = $row['pass'];
@@ -78,19 +82,19 @@ $subjects = "";
             </div>
             <br><hr class="line">       
             <div class="add_tbl">
-                <h3>Update Course</h3>
+                <h3>Update Instructor</h3>
                 <div class="content">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
          
                         <table class="add_course">
-                            
                             <tr>
-                                <th colspan=2><input type="text" name="name" value="<?php echo $lname,', ',$fname,' ',$mn; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" > </th>
-                                <th><input type="text" name="department" value="<?php echo $department; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" > </th>
+                                <th colspan=3><input type="hidden" name="t_id" value="<?php echo $id; ?>" style="font-family: Consolas; height: 30px;" readonly></th>
                             </tr>
                             <tr>
-                                <td colspan=2>Teachers Name</td>
-                                <td>Strand/Department</td>
+                                <th colspan=3><input type="text" name="name" value="<?php echo $lname,', ',$fname,' ',$mn; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" readonly> </th>
+                            </tr>
+                            <tr>
+                                <td colspan=3>Teachers Name</td>
                             </tr>
                             <tr>
                                 <th><input type="text" name="section" value="<?php echo $section; ?>" style="font-family: Consolas; height: 30px;" > </th>
@@ -103,8 +107,8 @@ $subjects = "";
                             </tr>
                             <tr>
                                 <th colspan=2><input type="text" name="phone" value="<?php echo $phone; ?>" style="font-family: Consolas; height: 30px; min-width: 100%;" require> </th>
-                                <th><select id="status" name="t_status" class="status" style="font-family: Consolas; height: 30px; width: 100%;">
-                                        <option value="<?php echo $status; ?>"> </option>
+                                <th><select id="status" class="status" style="font-family: Consolas; height: 30px; width: 100%;">
+                                        <option value="<?php echo $status; ?>">SELECT STATUS</option>
                                         <option value="INACTIVE">INACTIVEs</option>
                                         <option value="ACTIVE">ACTIVEs</option>
                                     </select>
@@ -118,9 +122,10 @@ $subjects = "";
                                 <td colspan=2>Phone</td>
                                 <td>Set STATUS</td>
                             </tr>
+                            <!--
                             <tr>
                                 <td colspan=2>
-                                    <?php  
+                                  /**  
                                     $query ="SELECT * FROM subject_tbl WHERE Instructor LIKE  '%".$lname."%' ";
                                     $result = $conn->query($query);
                                     
@@ -138,18 +143,18 @@ $subjects = "";
                                         </div>
                                         
                                         <div class="list">
-                                            <?php
+                                            php
                                             foreach ($subjects as $subject) {
                                             ?>
 
                                             <label class="task">
-                                            <input type="checkbox" class="subjs" name="<?php echo $subject['subj_code']; ?>" id="<?php echo $subject['subj_code']; ?>" value="<?php echo $subject['subj_code']; ?>" >
-                                                <?php echo $subject['subj_name']; ?>
-                                                <span><?php echo $subject['subj_code']; ?></span>
+                                            <input type="checkbox" class="subjs" name="php echo $subject['subj_code']; ?>" id="php echo $subject['subj_code']; ?>" value="php echo $subject['subj_code']; ?>" >
+                                                php echo $subject['subj_name']; ?>
+                                                <span>php echo $subject['subj_code']; ?></span>
                                             </input>
                                             </label>
                                                 
-                                            <?php 
+                                            php 
                                             }
                                             ?>
                                         </div>
@@ -165,12 +170,13 @@ $subjects = "";
                             <tr>
                                 <td colspan=3>Subjects</td>
                             </tr>
+                                        -->
 
                             <tr>
-                                <th colspan=3><input type="submit" name="update" class="btn_add" value="Update"></th>
+                                <th colspan=3><input type="submit" name="update" class="btn_add" value="Update"/></th>
                             </tr>
                             <tr>
-                                <th colspan=3><input type="submit" name="cancel" class="btn_can" value="Cancel"></th>    
+                                <th colspan=3><input type="submit" name="cancel" class="btn_can" value="Cancel"/></th>    
                             </tr>
 
                         </table>
@@ -204,7 +210,7 @@ $subjects = "";
     selectStatus.onchange = onChange;
     onChange();
     
-    
+    /**
     // getting checked value from array
     var sub = document.querySelectorAll('input[type=checkbox]');
     var paraSelectedElement = document.getElementById('subs');  
@@ -227,7 +233,7 @@ $subjects = "";
         console.log(selectedInput);
         });
     });
-    
+     */
 </script>
 <script>
     document.querySelector('.select-field').addEventListener('click',()=>{
@@ -239,28 +245,34 @@ $subjects = "";
 <?php            
 
     $section = '';
+    //$department = '';
     $pass = '';
     $phone = '';
-    $subjects = '';
     $status = '';
     if(isset($_POST['update'])) {
-        $section = $_POST['section'];
-        $pass = $_POST['pass'];
-        $phone = $_POST['phone'];
-        $status = $_POST['t_status'];
-        $subjects = $_POST['subjects'];
+        $tId = $_POST['t_id'];
+        $section1 = $_POST['section'];
+        $pass1 = $_POST['pass'];
+        $phone1 = $_POST['phone'];
+        $status1 = $_POST['t_status'];
+        //$department1 = $_POST['department'];
 
         try {
-            $upd = mysqli_query($conn,"UPDATE teachers_tbl SET section = '$section', pass = '$pass', tchr_PHONE = '$phone', subjects = '$subjects', tchr_STATUS = '$status' WHERE id = '$id'");
+            $upd = "UPDATE teachers_tbl SET section='$section1',pass='$pass1',tchr_PHONE='$phone1',tchr_STATUS='$status1' WHERE id=$tId";
 
-            ?>
-                <script>
-                    alert("Record Updated!");
-                    window.location.href = "../admin/teacher_management.php";
-                </script>
-            <?php
-            
+            if(mysqli_query($conn, $upd)){
+                ?>
+                    <script>
+                        alert("Record Updated!");
+                        window.location.href = "../admin/teacher_management.php";
+                    </script>
+                <?php
+                mysqli_query($conn,"INSERT INTO history_tbl(uName,uType,uAction,timedate) VALUES('$sess_name','$sess_role','Updated an Instructor Account',NOW())")
+                or die(mysqli_error($conn));
 
+                } else {
+                    echo "Error: " . $add . "<br>" . mysqli_error($conn);
+                }
         } catch (mysqli_sql_exception $e) {
             var_dump($e);
             exit;
@@ -272,6 +284,7 @@ $subjects = "";
                 window.location.href = "../admin/teacher_management.php";
             </script>
         <?php
+        $conn->close();
     }
-    $conn->close();
+    
 ?>

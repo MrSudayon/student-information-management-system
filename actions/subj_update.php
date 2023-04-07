@@ -77,12 +77,12 @@ $dept = "";
             
             
             <div class="add_tbl">
-                <h3>Update Course</h3>
+                <h3>Update Subject</h3>
                 <div class="content">
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype='multipart/form-data'> 
                         <table class="add_course">
                             <tr>
-                                <th colspan=3><input type="text" name="sub_id" value="<?php echo $id; ?>" style="font-family: Consolas; height: 30px;"></th>
+                                <th colspan=3><input type="hidden" name="sub_id" value="<?php echo $id; ?>" style="font-family: Consolas; height: 30px;"></th>
                             </tr>
                             <tr>
                                 <th><input type="text" name="course_code" placeholder="Course Code" style="font-family: Consolas; height: 30px;" value="<?php echo $sub_code; ?>" > </th>
@@ -151,22 +151,21 @@ $dept = "";
                             
 
                             try {
-                                $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', Instructor = '$c_assign', dept = '$department' WHERE subj_id = '$c_id' AND archive = 0 ";
+                                $upd = "UPDATE subject_tbl SET subj_name = '$c_name', subj_code = '$c_code', subj_desc = '$c_desc', Instructor = '$c_assign', dept = '$department' WHERE subj_id = '$c_id' AND archive = 0";
                             
                                 if(mysqli_query($conn, $upd)){
                                 ?>
                                     <script>
-                                        window.location.href = "../admin/course_management.php";
                                         alert("Record Updated!");
+                                        window.location.href = "../admin/course_management.php";
                                     </script>
                                 <?php
-                                mysqli_query($conn,"INSERT INTO history_tbl(uName,uType,uAction,timedate) VALUES('$sess_name','Admin','Added Subject',NOW())")
+                                mysqli_query($conn,"INSERT INTO history_tbl(uName,uType,uAction,timedate) VALUES('$sess_name','$sess_role','Added Subject',NOW())")
 					            or die(mysqli_error($conn));
 
                                 } else {
                                     echo "Error: " . $add . "<br>" . mysqli_error($conn);
                                 }
-                                    echo "<meta http-equiv='refresh' content='0'>";
                                     
                             } catch (mysqli_sql_exception $e) {
                                 var_dump($e);
@@ -194,13 +193,7 @@ $dept = "";
     <!-- Contents -->
 </div>
 <!-- Main -->
-  
 
-
-
-
-
-  
 <script src="../sidebar_nav.js"></script>
 
 </body>
