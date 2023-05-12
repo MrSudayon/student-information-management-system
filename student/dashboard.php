@@ -16,7 +16,7 @@
 <style>
 .field {
     min-width: 100%;
-    height: 15dvh;
+    height: 12dvh;
     display: flex;
     border: 1px solid black;
     border-radius: 10px;
@@ -40,33 +40,30 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
-    <ul>
-        <a href="account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
-        <a href="dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
-        <a href="subjects.php"><li><img src="../images/reading-book (1).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Subjects</h4></li></a> 
-        <a href="history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
-        <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
-        <a href="../php/logout.php"><li><img src="../images/logout.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Log Out</h4></li></a>
-    </ul>
+    <?php include "./student_nav.php"; ?>
 </div>
 <!-- sidebar -->
   
 <!-- Main -->
+
+<?php 
+$stdName = mysqli_query($conn, "SELECT name FROM student_tbl WHERE id=$sess_id ");
+$stdRes = mysqli_fetch_array($stdName);
+?>
+
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Dashboard</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Welcome, <?php echo ucfirst($stdRes['name']); ?> </h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
             <hr class="line">
-            <?php 
-                $stdName = mysqli_query($conn, "SELECT name FROM student_tbl WHERE id=$sess_id ");
-                $stdRes = mysqli_fetch_array($stdName);
-            ?>
-            <h1> Welcome, <?php echo ucfirst($stdRes['name']); ?> </h1>
+            
+            
             <div class="news">
             <br>
                 <h3><img src="../images/announcement.png" style="width: 22px;"> Announcement</h3>
                 <div class="announcements">
+                <br>
                 <?php
                     $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1 ORDER BY date asc") or die ("No events listed!");
                     

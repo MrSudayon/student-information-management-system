@@ -30,7 +30,7 @@
         <link rel="icon" href="../images/smateo-shs.png">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
-        <title>San Mateo Senior High</title>
+        <title>San Mateo IMS</title>
 </head>
 
 <body>
@@ -41,6 +41,8 @@
     <div class="smateo-logo">
         <img src="../images/smateo-shs.png" style="width: 70%;">
     </div>
+    <!-- wag mo tanggalin wtf pang studednt navigator nito -->
+    <nav>
     <ul >
         <a href="../student/account.php"><li><img src="../images/user-icon.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Account</h4></li></a>
         <a href="../student/dashboard.php"><li><img src="../images/dashboard (2).png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Dashboard</h4></li></a>
@@ -48,6 +50,7 @@
         <a href="../student/history.php"><li><img src="../images/settings.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">History</h4></li></a>
         <a href="#"><li><img src="../images/help-web-button.png" alt="">&nbsp;&nbsp;&nbsp; <h4 class="menu-text">Help</h4></li></a>
     </ul>
+</nav>
 </div>
 <!-- sidebar -->
   
@@ -66,9 +69,11 @@
                 <table class="course_lists">
                     <tr>
                         <th style="width: 30%;">Subjects</th>
-                        <th style="width: 15%;">1st Sem</th>
-                        <th style="width: 15%;">2nd Sem</th>
-                        <th style="width: 15%;">Final Grade</th>
+                        <th style="width: 15%;">1st Quarter</th>
+                        <th style="width: 15%;">2nd Quarter</th>
+                        <th style="width: 15%;">3rd Quarter</th>
+                        <th style="width: 15%;">4th Quarter</th>
+                        <th style="width: 15%;">Average</th>
                         <th style="width: 15%;">Remarks</th>
                     </tr>
                     <?php
@@ -100,11 +105,13 @@
                 
                 <table class="course_lists">
                 <tr>
-                    <th style="width: 30%;">Subjects</th>
-                    <th style="width: 15%;">1st Sem</th>
-                    <th style="width: 15%;">2nd Sem</th>
-                    <th style="width: 15%;">Final Grade</th>
-                    <th style="width: 15%;">Remarks</th>
+                        <th style="width: 30%;">Subjects</th>
+                        <th style="width: 15%;">1st Quarter</th>
+                        <th style="width: 15%;">2nd Quarter</th>
+                        <th style="width: 15%;">3rd Quarter</th>
+                        <th style="width: 15%;">4th Quarter</th>
+                        <th style="width: 15%;">Average</th>
+                        <th style="width: 15%;">Remarks</th>
                 </tr>
                 
                     <?php

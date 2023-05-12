@@ -98,7 +98,8 @@ h3 {
     margin: 0 0 5px 0;
     border: 1px solid black;
     border-radius: 6px;
-    padding: 3px 5px;
+    padding: 3px 15px;
+    cursor: pointer;
     background: linear-gradient(200deg, rgba(255,255,255,1) 0%, rgba(173,255,95,1) 28%, rgba(0,255,72,1) 100%);
 
     color: black;
@@ -113,7 +114,7 @@ h3 {
     margin: 5px 0 0 0;
     border: 1px solid black;
     border-radius: 6px;
-    padding: 3px;
+    padding: 3px 15px;
     background: linear-gradient(200deg, rgba(255,255,255,1) 0%, rgba(255,140,95,1) 28%, rgba(255,64,0,1) 100%);
 
     color: black;
@@ -181,15 +182,13 @@ h3 {
 .btn_crt {
     color: black;
     border: 1px black solid;
-    border-radius: 8px; 
-    cursor: pointer;
-    background-color: lightblue;
-    transition: .5s;
-    padding: 5px 10dvh;
+    transition: .3s;
+    cursor: pointer; 
+    padding: 5px 25px;
 }
 .btn_add:hover, .btn_crt:hover {
-    background-color: var(--main-color);
-    transition: .5s;
+    background-color: #ddd;
+    transition: .3s;
 }
 .btn_can {
     width: 100%; 

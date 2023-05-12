@@ -37,9 +37,10 @@
             <hr class="line">       
             <br>
             <!-- CRUD -->
-           
+           <br>
             <center>
             <a name="create" class="btn_crt" href="newevent.php">Create Announcement</a>
+            <br><br>
             <h3>Announcement Lists</h3>
             <table class=course_lists>
                 <tr>
@@ -68,7 +69,7 @@
                     <td><?php echo $row['title']; ?></td>
                     <td><?php echo $row['description']; ?> </td>
                     <td><?php echo $row['date']; ?></td>
-                    <td><a href="eventremove.php?id=<?php echo $row['id']; ?>" name="rem" class="btn_can" style="padding:2px 10px; color: black;">Remove</a></td>
+                    <td><a href="eventremove.php?id=<?php echo $row['id']; ?>" name="rem" class="btn_can" style="border: 1px black solid; padding:2px 10px; color: black;">Remove</a></td>
                 </tr>
                 <?php
                     }

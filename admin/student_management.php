@@ -66,27 +66,26 @@
             <!-- Manual Upload >> show if active -->
             <div id="manual-up">
                 <h1>Individual</h1>
-                    <form method="POST" action="../student_management.php" enctype="multipart/form-data">
+                    <form method="POST" action="student_management.php" enctype="multipart/form-data">
                     <table class="indiv">
                         <tr>
-                            <th><input type="text" name="name" placeholder="Name (SN, FN, MN)" style="font-family: Consolas; height: 30px;" require> </th>
-                            <th><input type="text" name="lrn" placeholder="LRN" style="font-family: Consolas; height: 30px;" require> </th>
-                            <th><input type="text" name="grade" placeholder="Grade" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="sec" placeholder="Section" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="strand" placeholder="Strand" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="orig_sec" placeholder="Originating Section" style="font-family: Consolas; height: 30px;" require> </th> 
+                            <th><input type="text" name="name" placeholder="Name (SN, FN, MN)" style="font-family: Consolas; height: 30px;" required></th>
+                            <th><input type="text" name="lrn" placeholder="LRN" style="font-family: Consolas; height: 30px;" required> </th>
+                            <th><input type="text" name="grade" placeholder="Grade" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="sec" placeholder="Section" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="strand" placeholder="Strand" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="orig_sec" placeholder="Originating Section" style="font-family: Consolas; height: 30px;" required> </th> 
                         </tr>
                         <tr>
-                            <th><input type="text" name="gen" placeholder="Gender" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="en_date" placeholder="Enrolled Date" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="add" placeholder="Address" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="phone" placeholder="Phone #" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="dob" placeholder="Date of Birth" style="font-family: Consolas; height: 30px;" require> </th> 
-                            <th><input type="text" name="m_tongue" placeholder="Mother Tounge" style="font-family: Consolas; height: 30px;" require></th>
+                            <th><input type="text" name="gen" placeholder="Gender" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="en_date" placeholder="Enrolled Date" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="address" placeholder="Address" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="phone" placeholder="Phone #" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="dob" placeholder="Date of Birth" style="font-family: Consolas; height: 30px;" required> </th> 
+                            <th><input type="text" name="m_tongue" placeholder="Mother Tounge" style="font-family: Consolas; height: 30px;" required></th>
                         </tr>
                 
                         <tr>
-
                             <th colspan=6><input type="submit" name="add" class="btn_add" style="width: 180px;" value="ADD"/></th>
                         </tr>
                     </tbody>
@@ -95,25 +94,24 @@
 
                         <?php
                         if(isset($_POST['add'])){
-                            $namest = isset($_POST['name']);
-                            $LRN = isset($_POST['lrn']);
-                            $grade = isset($_POST['grade']);
-                            $section = isset($_POST['sec']);
-                            $strand = isset($_POST['starnd']);
-                            $originating_sec = isset($_POST['orig_sec']);
-                            $gender = isset($_POST['gen']);
-                            $enrolleddate = isset($_POST['en_date']);
-                            $address = isset($_POST['add']);
-                            $phone = isset($_POST['phone']);
-                            $dob = isset($_POST['dob']);
-                            $user = isset($_POST['mother_tongue']);
+                            $namest = $_POST['name'];
+                            $LRN = $_POST['lrn'];
+                            $grade = $_POST['grade'];
+                            $section = $_POST['sec'];
+                            $strand = $_POST['strand'];
+                            $originating_sec = $_POST['orig_sec'];
+                            $gender = $_POST['gen'];
+                            $enrolleddate = $_POST['en_date'];
+                            $address = $_POST['address'];
+                            $phone = $_POST['phone'];
+                            $dob = $_POST['dob'];
+                            $user = $_POST['mother_tongue'];
                             
-                            $sql= "INSERT INTO student_tbl (`id`, `name`, `LRN`, `grade`, `section`, `strand`, `originating_sec`, `gender`, `enrolleddate`, `address`, `phone`, `dob`,`user`, `pass`, `enabled`)
-                            VALUES (null,'$namest', '$LRN','$grade','$section','$strand','$originating_sec','$gender','$enrolleddate','$address','$phone','$dob','$user','$pass',1)";
+                            $sql= "INSERT INTO student_tbl VALUES (null,'$namest', '$LRN','$grade','$section','$strand','$originating_sec','$gender','$enrolleddate','$address','$phone','$dob','$user','$pass',1)";
                             if (mysqli_query($conn, $sql)) {
-                            echo "New record created successfully";
+                                echo "New record created successfully";
                             } else {
-                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                             }
                         }
                         ?>
@@ -125,17 +123,35 @@
                 <hr>
             </center>
             <center> 
-        <h3>Students Lists
-            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <input type="text" name="search"/>
-            <button type="submit" name="srch" style="cursor: pointer;">Search</button></form>
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">    
+        <h3>Students Lists <br>
+            <input type="text" name="search" style="padding: 5px 10px;"/>
+            <button type="submit" name="srch" style="cursor: pointer; padding: 5px 10px;">Search</button>
         </h3>
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        
         <table>
             <tbody>
                 <tr>
                     <th>
-                            
+                    <?php  
+                            $query1 ="SELECT DISTINCT grade FROM student_tbl";
+                            $result1 = $conn->query($query1);
+                            if($result1->num_rows> 0){
+                                $options1= mysqli_fetch_all($result1, MYSQLI_ASSOC);
+                            }
+                            ?>
+                            <select id="grade" name="grade" style="font-family: Consolas; height: 30px; width: 100%;">
+                                <option>Select Grade</option>
+                                <?php 
+                                foreach ($options1 as $option1) {
+                                ?>
+                                    <option><?php echo $option1['grade']?> </option>
+                                <?php 
+                                    }
+                                ?>
+                            </select>
+                    </th>
+                    <th>
                         <?php  
                             $query ="SELECT DISTINCT section FROM student_tbl";
                             $result = $conn->query($query);
@@ -143,28 +159,30 @@
                                 $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
                             }
                             ?>
-                            
-                                <select id="section" name="section" style="font-family: Consolas; height: 30px; width: 100%;">
-                                    <option>Select Section</option>
-                                    <?php 
-                                    foreach ($options as $option) {
-                                    ?>
-                                        <option><?php echo $option['section']?> </option>
-                                    <?php 
-                                        }
-                                    ?>
-                                </select>
+                            <select id="section" name="section" style="font-family: Consolas; height: 30px; width: 100%;">
+                                <option>Select Section</option>
+                                <?php 
+                                foreach ($options as $option) {
+                                ?>
+                                    <option><?php echo $option['section']?> </option>
+                                <?php 
+                                    }
+                                ?>
+                            </select>
                     </th>
                     <th>
-                        <button type='submit' name='btnFilter' style="cursor: pointer;">Filter</button>
+                        <button type='submit' name='btnFilter' style="cursor: pointer; padding: 5px 10px;">Filter</button>
+                        <button type='submit' name='clearFilter' style="cursor: pointer; padding: 5px 10px;">Clear Filter</button>
                     </th> 
                 </tr>
             </tbody>
         </table>
+        <br>
         </form>
                 <table class=course_lists style="border: 1px solid black;">
                     <tbody>
                         <tr bgcolor=#363636 style='color:white;'>
+                            <th>NO.</th>
                             <th style="width: 15%;">Name</th>
                             <th>LRN</th>
                             <th>Grade</th>
@@ -179,19 +197,41 @@
                             <th colspan=2>Action</th>
                         </tr>
                         
-                            <?php
-                             $sql = "SELECT * FROM student_tbl where enabled=1 order by name";
-                            if(isset($_POST['btnFilter'])){
-                                $selected_sec = $_POST['section'];
-                                $sql = "SELECT * FROM student_tbl where section='$selected_sec' order by name and enabled=1";
-                            } 
-                               
-                                $result = mysqli_query($conn, $sql);
-                            
+                        <?php
+                            $sql = "SELECT * FROM student_tbl order by enabled DESC, name";
+                        if(isset($_POST['srch'])) {
+                            $searched = $_POST['search'];
+                            $sql = "SELECT * FROM student_tbl WHERE name LIKE '%".$searched."%' ORDER BY name";
+                        }
+                        
+                        if(isset($_POST['btnFilter'])){
+                            $selected_sec = $_POST['section'];
+                            $selected_grade = $_POST['grade'];
+
+                            $sql = "SELECT * FROM student_tbl where section='$selected_sec' OR grade='$selected_grade' order by name";
+                        } 
+                        elseif(isset($_POST['clearFilter'])){
+                            $sql = "SELECT * FROM student_tbl order by enabled DESC, name";
+                        }
+
+                            $result = mysqli_query($conn, $sql);
                             $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                            $i++;
-                        foreach ($rows as $row): ?>
-                        <tr bgcolor="white" style='color: #363636;'>
+
+                            $i = 1;
+                        foreach ($rows as $row): 
+                        $en = $row['enabled']; 
+                        
+                        if($en == '1') {                   
+                        ?>
+                            <tr bgcolor="white" style='color: #363636;'>
+                        <?php 
+                        } elseif($en == '0') {
+                        ?>
+                            <tr bgcolor='#ffcccb' style='color: #363636;'>
+                        <?php
+                        }
+                        ?>
+                            <td> <?php echo $i;?> </td>
                             <td> <?php echo $row['name']; ?> </td>
                             <td> <?php echo $row['LRN']; ?> </td>
                             <td> <?php echo $row['grade']; ?> </td>
@@ -208,7 +248,8 @@
                             <td><a href="../actions/std_remove.php?id=<?php echo ($row['id']); ?>" class="delete_btn">REMOVE</a></td>
                         </tr>
                         <?php
-                            endforeach 
+                            $i++; 
+                            endforeach;
                         ?>
                     </tbody>
                 </table>

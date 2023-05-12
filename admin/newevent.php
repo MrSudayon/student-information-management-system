@@ -39,15 +39,17 @@
 
             <div class="news_posting">
                 <div class="announcement">
-                    <h1> Create Announcement </h1><br>
+                    <h1> Create Announcement </h1>
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <label for="title">Announcement Title</label><br>
-                        <input type="text" name="title" id="title" placeholder="Subject Title"/><br>
+                        <input type="text" name="title" id="title" placeholder="Subject Title" style="padding: 5px 10px;"/><br><br>
+
                         <label for="desc">Description</label><br>
-                        <textarea name="desc" id="desc"></textarea><br>
+                        <textarea name="desc" id="desc" style="padding: 25px 70px; height: 150px; width:500px;"></textarea><br><br>
+
                         <label for="date">Date time</label><br>
-                        <input type="date" name="date" id="date"/>
-                        <input type="time" name="time" id="date"/><br>
+                        <input type="date" name="date" id="date" style="padding: 5px 10px;"/>
+                        <input type="time" name="time" id="date" style="padding: 5px 10px;"/><br><br>
                         <input type="submit" class="btn_crt" name="create" value="Create">
                     </form>
                 </div>
@@ -76,6 +78,9 @@
     <!-- Contents -->
 </div>
 <!-- Main -->
+  
+           
+  
 <script src="../sidebar_nav.js"></script>
 
 </body>

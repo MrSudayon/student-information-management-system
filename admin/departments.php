@@ -51,7 +51,7 @@
                 $HUMSS=mysqli_query($conn,"SELECT * FROM student_tbl WHERE strand='HUMSS' AND enabled=1")or die(mysqli_error($conn));
                 $humsscount=mysqli_num_rows($HUMSS);
 
-                $TVL=mysqli_query($conn,"SELECT * FROM student_tbl WHERE strand='TVL' AND enabled=1")or die(mysqli_error($conn));
+                $TVL=mysqli_query($conn,"SELECT * FROM student_tbl WHERE strand LIKE '%TVL%' AND enabled=1")or die(mysqli_error($conn));
                 $tvlcount=mysqli_num_rows($TVL);
 
                 $GAS=mysqli_query($conn,"SELECT * FROM student_tbl WHERE strand='GAS' AND enabled=1")or die(mysqli_error($conn));
@@ -59,31 +59,31 @@
             ?>
 
             <div class="boxes">
-                <a class="card card-std" href="student_management.php">
+                <a class="card card-std" href="student_management.php?dept=stem">
                     <img src="../images/male-student.png" style="width: 50%;">
                     <h3><?php echo $stemcount; ?></h3>
                     STEM
                 </a>
 
-                <a class="card card-tch" href="student_management.php">
+                <a class="card card-tch" href="student_management.php?dept=abm">
                     <img src="../images/male-student.png" style="width: 50%;">
                     <h3><?php echo $abmcount; ?></h3>
                     ABM
                 </a>
 
-                <a class="card card-prg" href="student_management.php">
+                <a class="card card-prg" href="student_management.php?dept=humss">
                     <img src="../images/male-student.png" style="width: 50%;">
                     <h3><?php echo $humsscount; ?></h3>
                     HUMSS
                 </a>
                 
-                <a class="card card-samp" href="student_management.php">
+                <a class="card card-samp" href="student_management.php?dept=tvl">
                     <img src="../images/male-student.png" style="width: 50%;">
                     <h3><?php echo $tvlcount; ?></h3>
                     TECHVOC
                 </a>
 
-                <a class="card card-samp" href="student_management.php">
+                <a class="card card-samp" href="student_management.php?dept=gas">
                     <img src="../images/male-student.png" style="width: 50%;">
                     <h3><?php echo $gascount; ?></h3>
                     GAS

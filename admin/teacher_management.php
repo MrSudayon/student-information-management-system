@@ -35,24 +35,23 @@
     <!-- Contents -->
         <div class="dashb_content">
             <hr class="line">       
-
-                <br>
+                <br><br>
                 <center>
                 <a name="create" class="btn_crt" href="../actions/tchr_create.php">Create User</a>
-                
+                <br><br>
                 <h3>Teachers Lists 
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <input type="text" name="search"/>
-                    <button type="submit" name="srch" style="cursor: pointer;">Search</button>
+                    <input type="text" name="search" style="cursor: pointer; padding: 5px 10px;"/>
+                    <button type="submit" name="srch" style="cursor: pointer; padding: 5px 10px;">Search</button>
                 
                 </h3>
                     <table class=course_lists >
                         <tbody>
-                        <tr bgcolor=#363636 style='color:white'>
+                        <tr bgcolor='#363636' style='color:white'>
                             <th>Instructor Name</th>
-                            <th>Section</th>
+                        <!--<th>Section</th>
                             <th>User</th>
-                            <th>Password</th>
+                            <th>Password</th>-->
                             <th>Phone #</th>
                             <th>Action</th>
                         </tr>
@@ -87,9 +86,9 @@
                                 
                         ?>
                             <?php echo "<td>" .$row['tchr_LAST'],', ' .$row['tchr_FIRST'],' ' .$row['tchr_MID']; ?>
-                            <td><?php echo $row['section']; ?></td>
+                        <!--<td><?php echo $row['section']; ?></td>
                             <td><?php echo $row['user']; ?></td>
-                            <td><?php echo $row['pass']; ?></td>
+                            <td><?php echo $row['pass']; ?></td> -->
                             <td><?php echo $row['tchr_PHONE']; ?></td>
                             <td><a href="../actions/tchr_update.php?id=<?php echo $row['id']; ?>" class="update_btn">UPDATE</a></td>
                         </tr>

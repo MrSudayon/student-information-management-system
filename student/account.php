@@ -3,7 +3,12 @@
     include "../php/dbase_config.php";
     
     $sql = mysqli_query($conn,"SELECT * FROM student_tbl WHERE id = '$sess_id' AND enabled = 1 ");
-    $row = mysqli_fetch_assoc($sql);          
+    $row = mysqli_fetch_assoc($sql);         
+    $LRN = $row['LRN'];
+
+    $guardian = mysqli_query($conn,"SELECT * FROM guardian_tbl WHERE std_lrn='$LRN'");
+    $grow = mysqli_fetch_assoc($guardian);
+    $glrn = $grow['std_lrn'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +81,7 @@
 
                     </tr>
                         <td><h4>LRN:</td>
-                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo $row['LRN']; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
+                        <td colspan="3"><input type="text" class="rc-text" value="<?php echo $LRN; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></h4></td>
                     <tr>
 
                     <tr>
@@ -100,7 +105,7 @@
                     <tr>
                         
                         <td><h4>Date of Birth:</td>
-                        <td colspan="3"><input type="date" class="rc-text" name="dob" value="<?php echo $row['dob']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                        <td colspan="3"><input type="date" class="rc-text" name="dob" value="<?php echo $row['dob']; ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></td>
                     </tr>
                         
                     <tr>
@@ -124,44 +129,47 @@
                     <td><h4>Password: </h4></td>
                         <td colspan="3"><input type="password" class="rc-text" name="newpass" value="<?php echo $row['pass']; ?>" contenteditable style="border: 1px solid black; width: 100%; border-radius: 5px; padding: 5px; text-align: center; "></td>        
                     </tr>
-               
+
+
+                    <!-- Parents and Guardian -->
                     <tr>
                         <td colspan=3><h1 style= "font-weight:100; font-family: 'Courier Sans'"><br>Parent's/Guardian Details</h1></td>
                     </tr>
-            
+
+
                     <tr>
                         <td><h4>Mother's Name:</h4></td>
-                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['name'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                        <td colspan=3><input type="text" name="m_name" class="rc-text" value="<?php echo $grow['m_name']; ?>" style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr>
 
                     <tr>
                         <td><h4>Contact no:</h4></td>
-                        <td colspan="3"><input type="text" class="rc-text" name="mother_phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                        <td colspan="3"><input type="text" name="m_contact" class="rc-text" value="<?php echo $grow['m_contact']; ?>" style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr> 
 
                     <tr>
                         <td><h4>Father's Name:</h4></td>
-                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['name'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                        <td colspan=3><input type="text" name="f_name" class="rc-text" value="<?php echo $grow['f_name']; ?>" style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr>
 
                     <tr>
                         <td><h4>Contact no:</h4></td>
-                        <td colspan="3"><input type="text" class="rc-text" name="father_phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                        <td colspan="3"><input type="text" name="f_contact" class="rc-text" value="<?php echo $grow['f_contact']; ?>" style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr> 
 
                     <tr>
                         <td><h4>Guardian's Name:</h4></td>
-                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['name'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                        <td colspan=3><input type="text" name="g_name" class="rc-text" value="<?php echo $grow['g_name']; ?>" style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr>
 
                     <tr>
                         <td><h4>Contact no:</h4></td>
-                        <td colspan="3"><input type="text" class="rc-text" name="guardian_phone" value="<?php echo $row['phone']; ?>" contenteditable style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
+                        <td colspan="3"><input type="text" name="g_contact" class="rc-text" value="<?php echo $grow['g_contact']; ?>" style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr> 
 
                     <tr>
                         <td><h4>Address Name:</h4></td>
-                        <td colspan=3><center><input type="text" class="rc-text" value="<?php echo $row['address'] ?>" readonly style="border: 1px solid black; border-radius: 5px; padding: 5px; background-color: #e6ffdb; border-style: dotted; cursor: default; text-align: center;"></center></td>
+                        <td colspan=3><input type="text" name="g_address" class="rc-text" value="<?php echo $grow['address']; ?>" style="border: 1px solid black; border-radius: 5px; padding: 5px; text-align: center; "></td>
                     </tr>
 
                      <tr>
@@ -186,7 +194,14 @@
 </body>
 </html>
 <?php
-  
+    $sql = mysqli_query($conn,"SELECT * FROM student_tbl WHERE id = '$sess_id' AND enabled = 1 ");
+    $row = mysqli_fetch_assoc($sql);         
+    $LRN = $row['LRN'];
+
+    $guardian = mysqli_query($conn,"SELECT * FROM guardian_tbl WHERE std_lrn='$LRN'");
+    $grow = mysqli_fetch_assoc($guardian);
+    $glrn = $grow['std_lrn'];
+    
     if(isset($_POST['sub'])) {
         $addr = $_POST['address'];
         $phone = $_POST['phone'];
@@ -194,13 +209,23 @@
         $newpass = $_POST['newpass'];
         
         //parent/guardian no.
-        $mom_phone = $_POST['mother_phone'];
-        $dad_phone = $_POST['father_phone'];
-        $g_phone = $_POST['guardian_phone'];
-    
+        $mom_name = $_POST['m_name'];
+        $mom_phone = $_POST['m_contact'];
+        $dad_name = $_POST['f_name'];
+        $dad_phone = $_POST['f_contact'];
+        $g_name = $_POST['g_name'];
+        $g_phone = $_POST['g_contact'];
+        $g_address = $_POST['g_address'];
                     
         $sql = "UPDATE student_tbl SET address = '$addr', phone = '$phone', dob = '$dob', pass = '$newpass' WHERE id = $sess_id ";
         
+        //$sqlG = 
+        if($glrn == $LRN) {
+            mysqli_query($conn,"UPDATE guardian_tbl SET m_name='$mom_name', m_contact='$mom_phone',f_name='$dad_name',f_contact='$dad_phone',g_name='$g_name',g_contact='$g_phone',address='$g_address' WHERE std_lrn='$LRN'");
+        } else {
+            mysqli_query($conn,"INSERT INTO guardian_tbl (std_lrn,m_name,m_contact,f_name,f_contact,g_name,g_contact,address) VALUES ('$LRN','$mom_name','$mom_phone','$dad_name','$dad_phone','$g_name','$g_phone','$g_address')")
+            or die(mysqli_error($conn));
+        }
         if(mysqli_query($conn, $sql)) {
             ?>
                 <script>
