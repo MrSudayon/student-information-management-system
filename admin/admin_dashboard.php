@@ -37,10 +37,7 @@
         <div class="dashb_content">
             <hr class="line">
             <h1> Hello, <?php echo ucfirst($sess_name); ?></h1>       
-            
-
             <?php 
-            
             
             /*student count*/
                 $student=mysqli_query($conn,"SELECT * FROM student_tbl WHERE enabled=1")or die(mysqli_error($conn));
@@ -61,8 +58,6 @@
             /*departments count*/
                 $dept=mysqli_query($conn,"SELECT DISTINCT department FROM department_tbl");
                 $deptcount=mysqli_num_rows($dept);
-            
-            
             ?>
 
             <div class="boxes">
@@ -83,23 +78,29 @@
                     <h3><?php echo $deptcount; ?></h3>
                     DEPARTMENTS
                 </a>
-                
+                <!--
                 <a class="card card-samp" href="course_management.php">
                     <img src="../images/folder.png" style="width: 50%;">
-                    <h3><?php echo $subjcount; ?></h3>
+                    
                     SUBJECTS
                 </a>
-
+                -->
                 <a class="card card-samp" href="eventlists.php">
                     <img src="../images/notifications.png" style="width: 50%;">
                     <h3><?php echo $activeannouncementcount; ?></h3>
                     ANNOUNCEMENT
                 </a>
             </div>
+        
+           
+            
+           
 
         </div>
     <!-- Contents -->
+
    
+
 </div>
 <!-- Main -->
 
