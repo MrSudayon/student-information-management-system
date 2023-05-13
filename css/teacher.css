@@ -28,9 +28,6 @@ h3 {
 .modulestbl th {
     border: 1px solid black;
 }
-.trdata a:hover {
-    text-decoration: underline black;
-}
 
 /* Upload Files */
 .btnup {
@@ -108,11 +105,56 @@ input[type="text"] {
 .t-table a:hover {
     text-decoration: underline;
 }
+/*teacher grade table*/
+
+.tableFixHead {
+overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+height: 100px; /* gives an initial height of 200px to the table */
+}
+.tableFixHead thead th {
+position: sticky; /* make the table heads sticky */
+top: 0px; /* table head will be placed from the top of the table and sticks to it */
+}
+table {
+border-collapse: collapse; /* make the table borders collapse to each other */
+width: 60%;
+height:30%;
+margin-top:2%;
+}
+.tBtns {
+    margin: 0 0 5px 0;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 3px 10px;
+    background: linear-gradient(200deg, rgba(255,255,255,1) 0%, rgba(173,255,95,1) 28%, rgba(0,255,72,1) 100%);
+    cursor: pointer;
+
+    color: black;
+    font-weight: 600;
+    font-size: .9em;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+}
+.tBtns:hover {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(173,255,95,1) 28%, rgba(0,255,72,1) 100%);
+}
+
+th,
+td {
+    
+    text-align:center;
+    padding: 8px 16px;
+    border: 1px solid black;
+}
+th {
+    background-color: var(--main-color);
+}
+
 
 /* Add Functions */
 .weektxt1 {
-    padding: 15px 10px;
+    padding: 14px 30px;
     width: 12%;
+    border: 1px solid black;
     border-radius: 5px;
 }
 .weeklbl {

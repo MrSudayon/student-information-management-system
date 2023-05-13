@@ -33,6 +33,16 @@ h3 {
     font-weight: 500;
     margin: 10px 0;
 }
+.modules_action {
+    cursor: pointer; 
+    padding: 3px 10px;
+    color: black;
+    border: 1px solid black;
+}
+.modules_action:hover {
+    transition: ease-in-out .3s;
+    background-color: var(--light-color);
+}
 .container {
     position: absolute;
     right: 0;
@@ -259,6 +269,7 @@ hr.line {
 
 .s-table {
     display: flex;
+    
     justify-content: center;
     border-collapse: collapse;
 }
@@ -275,6 +286,29 @@ hr.line {
 }
 .s-table a:hover {
     text-decoration: underline;
+}
+
+/* View Grades CSS */
+.grades_lists {
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: auto;
+    height: 50dvh;
+}
+.grades_lists tr {
+    border: .5px solid black;
+}
+.grades_lists th, td {
+    padding: 5px 15px;
+}
+.grades_lists th {
+    text-align: center;
+}
+.grades_lists td {
+    text-align: center;
+    white-space: pre-wrap;
 }
 
 /* Accounts CSS */
