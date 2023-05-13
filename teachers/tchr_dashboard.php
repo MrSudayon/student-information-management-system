@@ -2,6 +2,10 @@
     include '../php/dbase_config.php';
     require_once "../php/auth.php";
 
+    $sqll = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1");
+    while($sec=mysqli_fetch_array($sqll)) {  
+        $sect = $sec['target'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +22,7 @@
 <style>
 .field {
     min-width: 100%;
-    height: 15dvh;
+    height: 12dvh;
     display: flex;
     border: .5px solid black;
     border-radius: 10px;
@@ -47,23 +51,25 @@
 <!-- sidebar -->
   
 <!-- Main -->
+<?php
+    $sql1 = mysqli_query($conn, "SELECT tchr_FIRST FROM teachers_tbl WHERE id=$sess_id ");
+    $res = mysqli_fetch_array($sql1); 
+?>
 <div id="main">
-    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp;Dashboard</h2>  
+    <h2><button class="openbtn" onclick="openNav()">☰</button>&nbsp;&nbsp; Hello Teacher, <?php echo ucfirst($res['tchr_FIRST']); ?> </h2>  
     <button class="openbtn1" onclick="openNav1()">☰</button>
     <!-- Contents -->
         <div class="dashb_content">
             <hr class="line">
-            <?php
-                $sql1 = mysqli_query($conn, "SELECT tchr_FIRST FROM teachers_tbl WHERE id=$sess_id ");
-                $res = mysqli_fetch_array($sql1); 
-            ?>
-            <h1> Hello Teacher, <?php echo ucfirst($res['tchr_FIRST']); ?> </h1><br>
+            
             <div class="news">
                 <h3><img src="../images/announcement.png" style="width: 22px;"> Announcement</h3>
+                <br>
                 <div class="announcements">
                 <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1 ORDER BY date asc") or die ("No events listed!");
-                    
+                
+                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1 AND target='' ORDER BY date asc") or die ("No events listed!");
+                
                     while($row=mysqli_fetch_array($sql)) {  
                         
                         $date = $row['date']; // Numeric date in YYYY-MM-DD format
@@ -83,7 +89,7 @@
                     </div>
                     <br>
                 <?php
-                }
+                    }
                 ?>
                 </div>
             </div>

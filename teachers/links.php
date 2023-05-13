@@ -44,39 +44,27 @@
 
         <center>
             <form action="addlink.php" method="post" enctype="multipart/form-data">
-                <h3>Add Links</h3>
+                <h3>Add Link</h3>
                 <label class="weeklbl">Description:</label>
                 <input type="text" class="weektxt1" name="descript" required placeholder="Description"/>
-                    <br><br>
+                    &nbsp;&nbsp;
                 <label class="weeklbl">Link:</label>
-                <input type="text" class="weektxt1" name="link" required placeholder="paste link here"/>&nbsp;&nbsp;
-                <label class="weeklbl" for="subj">Status:</label>
-                            <select name="subj" id="subj" required class="status">
-                                <option value="FIL111">FILP</option>
-                                <option value="WATP">WATP</option>
-                            </select>
-                    <br>
-                <input type="submit" class="btnup" name="addbut" value="Add">
+                <input type="text" class="weektxt1" name="link" required placeholder="paste link here"/><br><br>
+                <input type="submit" style="cursor: pointer; padding: 5px 50px;" name="addbut" value="Add">
+                <br>
             </form>
-        
-        <hr>
-        <h3>List of Links</h3>
             <table class="t-table">
-            <tbody>
                 <tr>
                     <th>Description</th>
-                    <th>Link</th>
-                    <th>Uploaded to</th>
+                    <th>Links</th>
                 </tr>
 
                     <?php foreach ($files as $file): ?>
                 <tr bgcolor="white">
                     <td><?php echo $file['description']; ?></td>
                     <td><a href="<?php echo $file['links']; ?>" target="_blank"><?php echo $file['links']; ?></a></td>
-                    <td><?php echo $file['uploadedto']; ?></td>
                 </tr>
                     <?php endforeach;?>
-            </tbody>
             </table>
         </center>
     </div>
@@ -88,3 +76,6 @@
 
 </body>
 </html>
+
+
+

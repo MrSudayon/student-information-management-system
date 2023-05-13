@@ -39,66 +39,75 @@
         <hr class="line">
         <center>
         <form method="POST" action="student_list.php">
-            <table>
-                <tbody>
-                    <tr>
-                        <th>
-                            <?php  
-                                $query ="SELECT section FROM teachers_tbl where id='$sess_id'";
-                                $result = $conn->query($query);
-                                if($result->num_rows> 0){
-                                    $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
-                                }
-                                ?>
-                                    <select id="section" name="section" style="font-family: Consolas; height: 30px; width: 50%;">
-                                        <option>Select Section</option>
-                                        <?php 
-                                        foreach ($options as $option) {
-                                        ?>
-                                            <option><?php echo $option['section']?> </option>
-                                        <?php 
-                                            }
-                                        ?>
-                                    </select>
-                        </th>
-                        <th>
-                            <button type='submit' name='btnFilter'>Filter</button>
-                        </th> 
-                    </tr>
-                </tbody>
-            </table>
+            <?php  
+
+                    $query1 ="SELECT DISTINCT section FROM student_tbl";
+                    $result1 = $conn->query($query1);
+                    if($result1->num_rows> 0){
+                        $options= mysqli_fetch_all($result1, MYSQLI_ASSOC);
+                    }
+                
+                ?>
+                <br>
+                    <select id="section" name="section" style="font-family: Consolas; cursor: pointer; padding: 5px 10px; width: 40%;">
+                        <option>Select Section</option>
+                        <?php 
+                        foreach ($options as $option) :
+                        ?>
+                            <option><?php echo $option['section']?> </option>
+                        <?php 
+                            endforeach;
+                        ?>
+                    </select>
+            <br><br>
+            <button type='submit' name='btnFilter' style="cursor: pointer; padding: 5px 50px;">Filter</button>
         </form>
-        <br>
-        <hr><br>
-            <table class="t-table">
-            <tbody>
-                <tr>
-                    <th>No. of Student</th>
-                    <th>Student Name</th>
-                    <th>Gender</th>
-                </tr>
-                    <?php
-                        if(isset($_POST['btnFilter'])){
-                            $selected_sec = $_POST['section'];
+        <table class="course_lists">
+        
+        <tbody>
+            <tr>
+            <?php
+                if(isset($_POST['btnFilter'])){
+                    $selected_sec = $_POST['section'];
 
-                            $sql = "SELECT * FROM student_tbl where section='$selected_sec' order by name";
-                            $result = mysqli_query($conn, $sql);
-                        }
-                        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                    $i = 1;
-                    foreach ($rows as $row): ?>
-                <tr bgcolor="white">
+                    $sql = "SELECT * FROM student_tbl where section='$selected_sec' order by name";
+                    $result = mysqli_query($conn, $sql);
+                }
+                $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            
+            if($selected_sec==null) {
+            ?>
+                <th colspan=3 style="display: none;"><?php echo $selected_sec; ?></th>
+                <tr style="display: none;">
+            <?php
+            } else {
+            ?>
 
-                    <td><?php echo $i;  ?></td>
-                    <td><?php echo $row['name']; ?></td>
-                    <td><?php echo $row['gender']; ?></td>
-                </tr>
 
-                    <?php $i++; 
-                    
-                    endforeach;?>
-            </tbody>
-            </table>
+                <th colspan=3><?php echo $selected_sec; ?></th>
+            </tr>
+            <tr>
+                <th>No. of Student</th>
+                <th>Student Name</th>
+                <th>Gender</th>
+            </tr>
+
+            <?php
+            }
+                $i = 1;
+                foreach ($rows as $row): 
+            ?>
+            <tr bgcolor="white">
+                <td><?php echo $i;  ?></td>
+                <td><?php echo $row['name']; ?></td>
+                <td><?php echo $row['gender']; ?></td>
+            </tr>
+
+                <?php $i++; 
+                
+                endforeach;?>
+        </tbody>
+        </table>
         </center>
     </form>
     </div>

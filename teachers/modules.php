@@ -80,7 +80,7 @@
                         <br>
                         <button type="submit" name="save" class="btnup">Upload</button>
 				</form>
-                <br><hr>
+                <hr>
                 <h3>List of Modules</h3>
                         <table class="t-table">
                         <tbody>
