@@ -41,8 +41,9 @@
                 <br><br>
                 <h3>Teachers Lists 
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <input type="text" name="search" style="cursor: pointer; padding: 5px 10px;"/>
+                    <input type="text" name="search" placeholder="Search..." style="padding: 5px 10px;"/>
                     <button type="submit" name="srch" style="cursor: pointer; padding: 5px 10px;">Search</button>
+                    <button type="submit" name="clr" style="cursor: pointer; padding: 5px 10px;">Clear</button>
                 
                 </h3>
                     <table class=course_lists >
@@ -66,6 +67,8 @@
                                 $query = mysqli_query($conn, "SELECT * FROM teachers_tbl WHERE tchr_LAST LIKE '%".$search."%' OR tchr_FIRST LIKE '%".$search."%' OR tchr_MID LIKE '%".$search."%' 
                                 OR section LIKE '%".$search."%' OR department LIKE '%".$search."%' OR user LIKE '%".$search."%' OR subjects LIKE '%".$search."%'") or die ("Could not search"); 
                                 
+                            } elseif(isset($_POST['clr'])) {
+                                $query = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY tchr_STATUS ASC");
                             } else {    
                                 $query = mysqli_query($conn, "SELECT * FROM teachers_tbl ORDER BY tchr_STATUS ASC");
                             }

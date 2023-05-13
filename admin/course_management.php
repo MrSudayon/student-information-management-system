@@ -92,12 +92,13 @@
             <center>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
                     <label for="strand">Filter:</label>
-                    <select name="strand" id="strand" style="padding: 5px 10px;">
+                    <select name="strand" id="strand" style="cursor: pointer; padding: 5px 10px;">
                     <option value="">Select Strand</option>
                     <option value="STEM">STEM</option>
                     <option value="ABM">ABM</option>
+                    <option value="GAS">GAS</option>
                     <option value="HUMSS">HUMSS</option>
-                    <option value="Techvoc">Techvoc</option>
+                    <option value="TVL">Techvoc</option>
                     </select>
                     <input type="submit" name="btnsearch" style="cursor: pointer; padding: 5px 10px;" value="Filter"/>
                     <input type="submit" name="clear" style="cursor: pointer; padding: 5px 10px;" value="Clear"/>

@@ -179,9 +179,9 @@
         </table>
         <br>
         </form>
-                <table class=course_lists style="border: 1px solid black;">
+                <table class='course_lists' style="border: 1px solid black;">
                     <tbody>
-                        <tr bgcolor=#363636 style='color:white;'>
+                        <tr bgcolor='#363636' style='color:white;'>
                             <th>NO.</th>
                             <th style="width: 15%;">Name</th>
                             <th>LRN</th>
