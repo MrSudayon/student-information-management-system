@@ -2,34 +2,38 @@
     include "../php/dbase_config.php";
     require_once "../php/auth.php";
 
+    $sqll = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1");
+    while($sec=mysqli_fetch_array($sqll)) {  
+        $sect = $sec['target'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="../images/smateo-shs.png">
-        <link rel="stylesheet" href="../css/style.css">
-        <title>Dashboard</title>
-<style>
-.field {
-    min-width: 100%;
-    height: 12dvh;
-    display: flex;
-    border: 1px solid black;
-    border-radius: 10px;
-    align-items: center;
-    cursor: default;
-}
-.datetime {
-    color: black;
-}
-.chck {
-    padding: 10px 25px;
-}
-</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/smateo-shs.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Dashboard</title>
+    <style>
+    .field {
+        min-width: 100%;
+        height: 12dvh;
+        display: flex;
+        border: 1px solid black;
+        border-radius: 10px;
+        align-items: center;
+        cursor: default;
+    }
+    .datetime {
+        color: black;
+    }
+    .chck {
+        padding: 10px 25px;
+    }
+    </style>
 </head>
 
 <body>
@@ -47,8 +51,10 @@
 <!-- Main -->
 
 <?php 
-$stdName = mysqli_query($conn, "SELECT name FROM student_tbl WHERE id=$sess_id ");
+$stdName = mysqli_query($conn, "SELECT * FROM student_tbl WHERE id=$sess_id ");
 $stdRes = mysqli_fetch_array($stdName);
+$section = $stdRes['section'];
+$strand = $stdRes['strand'];
 ?>
 
 <div id="main">
@@ -65,8 +71,9 @@ $stdRes = mysqli_fetch_array($stdName);
                 <div class="announcements">
                 <br>
                 <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1 ORDER BY date asc") or die ("No events listed!");
-                    
+                if($sect!=null) {
+                    $sql = mysqli_query($conn, "SELECT * FROM announcement_tbl WHERE enabled = 1 AND target='$section' OR target LIKE '%".$strand."%' ORDER BY date asc") or die ("No events listed!");
+                }
                     while($row=mysqli_fetch_array($sql)) {  
                         
                         $date = $row['date']; // Numeric date in YYYY-MM-DD format
@@ -86,7 +93,8 @@ $stdRes = mysqli_fetch_array($stdName);
                     </div>
                     <br>
                 <?php
-                }
+                    }
+                
                 ?>
 
                 </div>
